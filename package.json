@@ -1,7 +1,11 @@
 {
   "name": "occicode",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Astro starter used digital agency.",
+  "license": "MIT",
+  "author": "Julien MARTIN <contact@occicode.fr>",
+  "homepage": "https://occicode.fr",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -9,16 +13,51 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "format": "prettier --write .",
+    "fix": "npm run format && npm run lint",
+    "test": "vitest",
+    "check": "astro check",
+    "typecheck": "tsc --noEmit",
+    "build-preview": "npm run build && npm run preview",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.2",
     "astro-icon": "^1.2.0",
-    "tailwindcss": "^4.3.3"
+    "astro-seo": "^1.2.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@iconify-json/mdi": "^1.2.3",
+    "eslint": "^10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^3.1.0",
+    "globals": "^17.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "1.0.0",
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,astro}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,mdx,css}": [
+      "prettier --write"
+    ]
   }
 }

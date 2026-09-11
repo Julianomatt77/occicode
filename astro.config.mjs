@@ -7,9 +7,22 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [sitemap(), icon()],
-
-  vite: {
-    plugins: [tailwindcss()]
-  }
+    site: "https://occicode.fr/",
+    integrations: [sitemap(), icon()],
+    i18n: {
+        defaultLocale: "fr",
+        locales: ["fr", "en"],
+        routing: {
+            prefixDefaultLocale: false,
+        },
+    },
+    prefetch: {
+        prefetchAll: true,
+        defaultStrategy: "viewport",
+    },
+    build: { inlineStylesheets: "always", },
+    compressHTML: true,
+    vite: {
+        plugins: [tailwindcss()]
+    }
 });
