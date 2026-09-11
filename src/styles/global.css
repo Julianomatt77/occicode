@@ -1,102 +1,81 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+}
+
+/*@theme inline {*/
+/*  !* couleurs pilotées par les CSS custom properties injectées par site *!*/
+/*  --font-display: var(--display);*/
+/*  --font-sans: var(--sans);*/
+
+/*  !* on réutilise les emplacements natifs du scale radius/shadow/ease *!*/
+/*  --radius-md: var(--radius);*/
+/*  --radius-lg: var(--radius-lg);*/
+
+/*  --shadow-md: var(--shadow);*/
+/*  --shadow-xl: var(--shadow-lg);*/
+
+/*  --ease-brand: var(--ease);*/
+/*}*/
+
 :root {
-  --ink: #241b14;
-  --ink-soft: #5a4d40;
-  --paper: #f7f2e6;
-  --burgundy: #7c1f3d;
-  --gold: #b9852a;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --primary: #0254d8;
+  --border: #e5e7eb;
+  --muted: #f4f4f5;
+  --muted-foreground: #52525b;
+  --card: #ffffff;
 }
 
-* {
-  box-sizing: border-box;
+:root[data-theme="dark"] {
+  --background: #030303;
+  --foreground: #e5e7eb;
+  --primary: #8bbcff;
+  --border: #262626;
+  --muted: #171717;
+  --muted-foreground: #a1a1aa;
+  --card: #0a0a0a;
 }
 
-html,
-body {
-  height: 100%;
-}
+/* Base styles using variables */
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
 
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: "Nunito", system-ui, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
   }
 }
 
-main {
-  text-align: center;
-  max-width: 460px;
+/* Animations - Reveal on Scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  will-change: opacity, transform;
 }
 
-.logo {
-  width: 92px;
-  height: 92px;
-  margin-bottom: 28px;
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-h1 {
-  font-family: "Nunito", system-ui, sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.9rem, 5vw, 2.5rem);
-  line-height: 1.2;
-  margin: 0;
-}
-
-h1 em {
-  font-style: normal;
-  color: var(--burgundy);
-}
-
-p {
-  margin: 18px 0 0;
-  color: var(--ink-soft);
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-img {
-  display: inline-block;
-}
-
-.rule {
-  width: 34px;
-  height: 1px;
-  background: var(--gold);
-  margin: 30px auto;
-}
-
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-}
-
-a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--gold);
-  font-size: 0.98rem;
-}
-
-a:hover {
-  color: var(--burgundy);
-  border-color: var(--burgundy);
-}
-
-a:focus-visible {
-  outline: 2px solid var(--burgundy);
-  outline-offset: 3px;
+/* Prevent double-bounce conflicts when Astro View Transitions is actively animating */
+:root[data-astro-transition] .reveal {
+  transition: none !important;
 }

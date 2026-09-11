@@ -124,7 +124,9 @@ const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gta
       </>
     )}
   </head>
-  <body>
-    <slot />
+  <body class="bg-background text-foreground antialiased">
+    <main id="main-content" class="relative z-10 grow pt-[72px]">
+      <slot />
+    </main>
   </body>
 </html>
