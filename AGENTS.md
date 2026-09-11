@@ -1,28 +1,44 @@
 # AGENTS.md
 
-Astro 7 showcase site for Occicode (agence web Occitanie, artisans/TPE). Early scaffold: `src/pages/index.astro` + `Welcome` + `Layout`. Production site: https://occicode.fr/
+Site vitrine OcciCode — agence web en Occitanie (artisans/TPE). Astro 7, Tailwind v4, i18n `fr` (défaut) + `en`. Prod : https://occicode.fr/
 
-## Rules to respect
+## Règles projet (`.opencode/rules/` — à lire avant toute tâche non triviale)
 
-Project rules in `.opencode/rules/` apply always — read `instructions.md` (code preferences, Tailwind v4, a11y, no git actions) and `workflow.md` (plan mode, subagents, verification) before non-trivial work. In particular: **never run git commit/push or other git write actions** — the user handles commits.
+`instructions.md` — préférences code :
 
-## Commands
+- Toujours inclure la gestion des erreurs.
+- Après chaque fonction / fichier / modification : identifier 3 bugs potentiels ou cas limites, puis corriger le code.
+- Tailwind v4 uniquement (pas de CSS custom) ; le modificateur important est en **suffixe** : `m-0!`, jamais `!m-0`.
+- Icônes : sets Iconify via `astro-icon` (`import { Icon } from "astro-icon/components"` puis `<Icon name="mdi:account" />`).
+- Boutons : toujours `title` + `type` + `role`. Accessibilité : attributs HTML + `aria-label`.
+- Design simple, sobre, thème clair ; pas d'icônes ni badges flashy.
+- **Interdiction de toute action git** (commit, push, etc.) — l'utilisateur s'en charge.
+- Note : `instructions.md` cite `.openclaude/rules` (coquille) — la source réelle est `.opencode/rules`.
 
-Requires Node `>=22.12.0`, npm (`package-lock.json`), ESM (`"type": "module"`).
+`workflow.md` — méthode :
 
-- `npm run dev` — dev server at `localhost:4321`. In OpenCode sessions prefer background mode: `astro dev --background` (`astro dev status` / `astro dev logs` / `astro dev stop`).
-- `npm run build` / `npm run preview` / `npm run build-preview` — build to `dist/`, preview locally.
-- `npm run check` (`astro check`) + `npm run typecheck` (`tsc --noEmit`) — **both run on pre-push** (`.husky/pre-push`); run both before finishing.
-- `npm run lint:check` — verify; `npm run lint` (`eslint . --fix`) mutates. `npm run format` (`prettier --write .`) mutates; `npm run fix` = format + lint.
-- `npm test` — vitest (watch mode, no config file). Single file, no-watch: `npx vitest run <path>`. Note: **no tests exist yet** — don't claim coverage.
+- Plan mode par défaut dès 3+ étapes ou décision d'architecture ; si ça déraille, STOP et re-planifier.
+- Vérification obligatoire avant de terminer : `npm run check` + `npm run typecheck`, tests, logs.
+- Simplicité d'abord, impact minimal, pas de fix temporaire ; remettre en question ses propres choix sur les changements non triviaux.
+
+## Commandes
+
+Node `>=22.12.0`, npm (`package-lock.json`), ESM (`"type": "module"`).
+
+- `npm run dev` — dev sur `localhost:4321`. En session OpenCode : mode background `astro dev --background` (`astro dev status` / `astro dev logs` / `astro dev stop`).
+- `npm run build` / `npm run preview` / `npm run build-preview` — build vers `dist/`, prévisualisation locale.
+- `npm run check` (`astro check`) + `npm run typecheck` (`tsc --noEmit`) — **les deux tournent au pre-push** (`.husky/pre-push`) ; les lancer avant de finir.
+- `npm run lint:check` — vérifie ; `npm run lint` (`eslint . --fix`) modifie. `npm run format` (`prettier --write .`) modifie ; `npm run fix` = format + lint.
+- `npm test` — vitest (watch, sans config). Un seul fichier sans watch : `npx vitest run <chemin>`. **Aucun test n'existe encore** — ne pas prétendre le contraire.
 
 ## Architecture / conventions
 
-- Astro config (`astro.config.mjs`): `site: https://occicode.fr/`, integrations `sitemap()` + `icon()` (`astro-icon`), i18n `fr` default + `en` with `prefixDefaultLocale: false`, `prefetchAll: viewport`, `inlineStylesheets: "always"`, `compressHTML: true`.
-- Styling is Tailwind v4 CSS-first: `@tailwindcss/vite` plugin + `@import "tailwindcss"` in `src/styles/global.css`. No `tailwind.config`. Prefer Tailwind utilities over custom CSS. Important modifier is **suffix**: `m-0!`, not `!m-0`.
-- Path alias: `@/*` → `src/*` (`tsconfig.json`, extends `astro/tsconfigs/strict`). Layout: `src/pages/`, `src/layouts/`, `src/components/`, `src/assets/`, `src/styles/`, `src/icons/` (empty, reserved for local icons), `public/` (favicons only).
-- Icons via `astro-icon` + `@iconify-json/mdi`: `<Icon name="mdi:account" />` (`import { Icon } from "astro-icon/components"`).
-- Lint-staged (pre-commit): `*.{js,jsx,ts,tsx,astro}` → `eslint --fix` + `prettier --write`; `*.{json,md,mdx,css}` → `prettier --write`. Prettier needs `prettier-plugin-astro` for `.astro` (see `.prettierrc`).
-- Design: simple, sober, light theme; no flashy icons/badges. Always include error handling and a11y attributes (`title`/`type`/`role` on buttons, `aria-label` + HTML attributes where relevant).
+- Config Astro (`astro.config.mjs`) : `site: https://occicode.fr/`, intégrations `sitemap()` + `icon()` (`astro-icon`), `prefetchAll: viewport`, `inlineStylesheets: "always"`, `compressHTML: true`.
+- Tailwind v4 CSS-first : plugin `@tailwindcss/vite` + `@import "tailwindcss"` dans `src/styles/global.css` (importé par `Layout.astro`). Pas de `tailwind.config`.
+- Alias `@/*` → `src/*` (`tsconfig.json`, étend `astro/tsconfigs/strict`). Dossiers : `src/pages/`, `src/layouts/`, `src/components/`, `src/assets/`, `src/styles/`, `src/config/` (constantes site/SEO), `src/icons/` (vide, réservé aux icônes locales), `public/` (favicons uniquement).
+- SEO centralisé : constantes dans `src/config/site.ts`, composant `<SEO>` de `astro-seo` dans `src/layouts/Layout.astro` (title, description, canonical, OG, Twitter). Les pages surchargent via props `title` / `description` / `canonical` / `noindex` / `nofollow`. Viewport, favicons, JSON-LD et gtag sont hors `astro-seo`, gérés à la main dans le même `Layout`.
+- `<html lang="fr">` (site en français). Canonical par défaut : `https://occicode.fr` (jamais `Astro.url` brut, qui donnerait `localhost` en dev).
+- Scripts inline Astro : toujours `is:inline` (contenu dynamique construit dans le frontmatter et injecté via `set:html`), sinon Astro les bundle/transforme et `astro check` remonte des hints.
+- Lint-staged (pre-commit) : `*.{js,jsx,ts,tsx,astro}` → `eslint --fix` + `prettier --write` ; `*.{json,md,mdx,css}` → `prettier --write`. Prettier exige `prettier-plugin-astro` pour `.astro` (voir `.prettierrc`).
 
-Full Astro docs: https://docs.astro.build
+Docs Astro : https://docs.astro.build — `astro-seo` : voir `node_modules/astro-seo/README.md` (props supportées).

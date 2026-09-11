@@ -1,1 +1,102 @@
 @import "tailwindcss";
+
+:root {
+  --ink: #241b14;
+  --ink-soft: #5a4d40;
+  --paper: #f7f2e6;
+  --burgundy: #7c1f3d;
+  --gold: #b9852a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Nunito", system-ui, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+main {
+  text-align: center;
+  max-width: 460px;
+}
+
+.logo {
+  width: 92px;
+  height: 92px;
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-family: "Nunito", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--burgundy);
+}
+
+p {
+  margin: 18px 0 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+img {
+  display: inline-block;
+}
+
+.rule {
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
+  margin: 30px auto;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  font-size: 0.98rem;
+}
+
+a:hover {
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 3px;
+}

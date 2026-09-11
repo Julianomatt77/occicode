@@ -1,23 +1,130 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import { SEO } from "astro-seo";
+import { site } from "../config/site";
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string | URL | null;
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  canonical = site.canonical,
+  noindex = false,
+  nofollow = false,
+} = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  description: site.ogDescription,
+  url: site.canonical,
+  image: site.ogImage,
+  telephone: site.telephone,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.city,
+    postalCode: site.postalCode,
+    addressRegion: site.region,
+    addressCountry: site.country,
+  },
+  areaServed: {
+    "@type": "State",
+    name: "Occitanie",
+  },
+  priceRange: "€",
+  founder: {
+    "@type": "Person",
+    name: site.author,
+  },
+  sameAs: Object.values(site.socials),
+};
+
+const showAnalytics = import.meta.env.PROD;
+
+const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "${site.gtagId}");`;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <SEO
+      charset="UTF-8"
+      title={title}
+      description={description}
+      canonical={canonical}
+      noindex={noindex}
+      nofollow={nofollow}
+      openGraph={{
+        basic: {
+          title,
+          type: "website",
+          image: site.ogImage,
+          url: canonical ?? site.canonical,
+        },
+        optional: {
+          description: site.ogDescription,
+          locale: site.locale,
+          siteName: site.name,
+        },
+        image: {
+          alt: site.ogImageAlt,
+          height: "630",
+          width: "1200",
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title,
+        description: site.twitterDescription,
+        image: site.ogImage,
+        imageAlt: site.ogImageAlt,
+      }}
+      extend={{
+        link: [
+          { rel: "icon", href: "/favicon.ico" },
+          { rel: "apple-touch-icon", href: "/favicon.ico" },
+          { rel: "preconnect", href: "https://fonts.googleapis.com" },
+          {
+            rel: "preconnect",
+            href: "https://fonts.gstatic.com",
+            crossorigin: "",
+          },
+          {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap",
+          },
+        ],
+        meta: [{ name: "author", content: site.author }],
+      }}
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(jsonLd)}
+    ></script>
+    {showAnalytics && (
+      <>
+        <script
+          is:inline
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${site.gtagId}`}
+        ></script>
+        <script is:inline set:html={gtagInlineScript}></script>
+      </>
+    )}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
