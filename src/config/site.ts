@@ -17,8 +17,6 @@ export const site = {
   postalCode: "34800",
   region: "Occitanie",
   country: "FR",
-  // Coordonnées GPS de Péret (34800), Hérault — source Insee/Wikipédia
-  // (43° 34′ 34″ N, 3° 23′ 53″ E converti en degrés décimaux).43.57566981168466, 3.3967169566957436
   coordinates: {
     lat: 43.57566981168466,
     lon: 3.3967169566957436,
@@ -68,11 +66,10 @@ export const site = {
   // (aucune donnée légale n'est inventée).
   legal: {
     ownerName: "Julien Martin",
-    legalForm: "Auto entrepreneur",
-    siret: "[À compléter : numéro SIRET]",
-    rcs: "[À compléter : ville d'immatriculation RCS/RM, le cas échéant]",
-    vatNumber:
-      "[À compléter : numéro de TVA intracommunautaire, le cas échéant]",
+    legalForm: "Entrepreneur individuel",
+    siret: "91917177700031",
+    rcs: "Béziers",
+    vatNumber: "FR22919171777",
     hosting: {
       name: "Hostinger",
       company: "Hostinger International Ltd.",

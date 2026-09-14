@@ -40,6 +40,25 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm run deploy`          | Build then push `dist/` to the server via rsync  |
+
+## 🚀 Déploiement
+
+`npm run deploy` build le site puis envoie le contenu de `dist/` sur le
+serveur via `rsync` + SSH (`scripts/deploy.sh`).
+
+1. Copier `.env.example` en `.env` (déjà ignoré par git) et renseigner :
+   - `SERVER` (ex: `username@monserveur.hostinger.com`)
+   - `TARGET_PATH` (ex: `/home/username/domains/occicode.fr/public_html`)
+   - `PORT` si différent de `22` (Hostinger fournit souvent un port dédié)
+   - `SSH_KEY_PATH` (optionnel : sinon la clé/agent SSH par défaut est utilisé)
+2. Lancer `npm run deploy`.
+
+Options utiles (dans `.env`) :
+
+- `DEPLOY_DRY_RUN=true` : simule le déploiement sans rien transférer.
+- `DEPLOY_DELETE=true` : supprime côté serveur les fichiers absents de
+  `dist/` (désactivé par défaut par prudence).
 
 ## 👀 Want to learn more?
 
