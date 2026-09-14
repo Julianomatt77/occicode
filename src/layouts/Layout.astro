@@ -1,6 +1,8 @@
 ---
 import { SEO } from "astro-seo";
 import { site } from "../config/site";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -14,10 +16,18 @@ interface Props {
 const {
   title = site.title,
   description = site.description,
-  canonical = site.canonical,
+  canonical: canonicalProp = null,
   noindex = false,
   nofollow = false,
 } = Astro.props;
+
+// Canonical par défaut = origine officielle du site + chemin de la page
+// courante (jamais Astro.url complet, qui donnerait localhost en dev).
+// Avant ce correctif, toute page sans prop "canonical" explicite pointait
+// à tort vers la racine du site (cf. /tarifs).
+const currentPath =
+  Astro.url.pathname === "/" ? "" : Astro.url.pathname.replace(/\/+$/, "");
+const canonical = canonicalProp ?? `${site.canonical}${currentPath}`;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -34,6 +44,11 @@ const jsonLd = {
     postalCode: site.postalCode,
     addressRegion: site.region,
     addressCountry: site.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.coordinates.lat,
+    longitude: site.coordinates.lon,
   },
   areaServed: {
     "@type": "State",
@@ -125,9 +140,17 @@ const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gta
       </>
     )}
   </head>
-  <body class="bg-background text-foreground antialiased">
+  <body class="flex min-h-screen flex-col bg-background text-foreground antialiased">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+    >
+      Aller au contenu principal
+    </a>
+    <Header />
     <main id="main-content" class="relative z-10 grow pt-[72px]">
       <slot />
     </main>
+    <Footer />
   </body>
 </html>

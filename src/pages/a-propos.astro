@@ -1,0 +1,118 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Headline from "@/components/ui/Headline.astro";
+import Button from "@/components/ui/Button.astro";
+import { site } from "@/config/site";
+
+const metadata = {
+  title: "OcciCode - À propos",
+  description:
+    "Julien Martin, développeur indépendant basé à Péret (Hérault), conçoit des sites internet sobres pour les artisans et indépendants d'Occitanie.",
+};
+
+// Carte OpenStreetMap centrée sur Péret (34800). En cas de coordonnées
+// manquantes ou invalides dans la config, on masque simplement la carte
+// plutôt que d'afficher un iframe cassé.
+const { lat, lon } = site.coordinates;
+const hasValidCoordinates = Number.isFinite(lat) && Number.isFinite(lon);
+
+const mapDelta = 0.01;
+const mapBbox = hasValidCoordinates
+  ? `${lon - mapDelta},${lat - mapDelta * 0.75},${lon + mapDelta},${lat + mapDelta * 0.75}`
+  : "";
+const mapEmbedSrc = hasValidCoordinates
+  ? `https://www.openstreetmap.org/export/embed.html?bbox=${mapBbox}&layer=mapnik&marker=${lat},${lon}`
+  : "";
+const mapLinkHref = hasValidCoordinates
+  ? `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=14/${lat}/${lon}`
+  : "";
+---
+
+<Layout {...metadata}>
+  <section
+    class="mx-auto max-w-3xl scroll-mt-[72px] px-4 py-12 sm:px-6 md:py-20"
+    id="section-a-propos"
+  >
+    <Headline
+      tagline={site.aPropos.tagline}
+      title={site.aPropos.title}
+      subtitle={site.aPropos.subtitle}
+      titleAs="h1"
+      classes={{
+        container: "max-w-3xl",
+        title: "text-3xl md:text-4xl",
+      }}
+    />
+
+    <div class="mt-10 space-y-6 text-muted-foreground">
+      <p>
+        Je m'appelle Julien Martin. Je conçois et développe des sites internet
+        pour les artisans, commerçants et indépendants d'Occitanie, depuis
+        Péret, dans l'Hérault.
+      </p>
+      <p>
+        Mon objectif est simple : vous donner un site clair, rapide et facile à
+        faire évoluer, sans fonctionnalités inutiles qui ralentissent le
+        chargement ou compliquent la maintenance. Les sites que je livre sont
+        construits avec des technologies modernes et performantes, pensées pour
+        le référencement et pour durer dans le temps.
+      </p>
+      <p>
+        Je travaille en direct avec vous, du premier échange à la mise en ligne
+        : pas d'intermédiaire, pas de jargon technique inutile. Vous savez
+        toujours à quelle étape en est votre projet.
+      </p>
+      <p>
+        Je me déplace dans l'Hérault et échange à distance avec des clients
+        partout en Occitanie, selon ce qui vous convient le mieux.
+      </p>
+    </div>
+
+    {hasValidCoordinates && (
+      <div class="mt-10">
+        <h2 class="text-lg font-bold text-foreground">Basé à Péret (34800)</h2>
+        <div class="mt-4 overflow-hidden rounded-2xl border border-border">
+          <iframe
+            src={mapEmbedSrc}
+            title="Carte OpenStreetMap centrée sur Péret (34800), Hérault"
+            class="h-[320px] w-full md:h-[400px]"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <p class="mt-3 text-sm text-muted-foreground">
+          <a
+            href={mapLinkHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:underline"
+            title="Voir Péret en plus grand sur OpenStreetMap"
+          >
+            Voir la carte en plus grand sur OpenStreetMap
+          </a>
+        </p>
+      </div>
+    )}
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <Button
+        href={`mailto:${site.email}?subject=${encodeURIComponent(
+          "Demande de devis - site internet",
+        )}`}
+        variant="primary"
+        title="Envoyer un email pour demander un devis gratuit"
+        aria-label="Demander un devis gratuit par email"
+      >
+        Demander un devis gratuit
+      </Button>
+      <Button
+        href="/tarifs"
+        variant="secondary"
+        title="Consulter la page des tarifs"
+        aria-label="Voir les tarifs"
+      >
+        Voir les tarifs
+      </Button>
+    </div>
+  </section>
+</Layout>

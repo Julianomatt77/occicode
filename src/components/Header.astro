@@ -1,0 +1,100 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+import { site } from "@/config/site";
+
+const navLinks = site.navLinks;
+const quoteHref = `mailto:${site.email}?subject=${encodeURIComponent(
+  "Demande de devis - site internet",
+)}`;
+---
+
+<header class="fixed inset-x-0 top-0 z-50 h-[72px] border-b border-border bg-background/95 backdrop-blur">
+  <div class="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+    <a
+      href="/"
+      class="flex items-center gap-2 shrink-0"
+      title="Retour à l'accueil OcciCode"
+      aria-label="Retour à l'accueil OcciCode"
+    >
+      <img
+        src="/assets/images/logo_675x675.webp"
+        alt="Logo OcciCode"
+        width="36"
+        height="36"
+        class="h-9 w-9"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="text-lg font-bold text-foreground">{site.name}</span>
+    </a>
+
+    <nav aria-label="Navigation principale" class="hidden md:block">
+      <ul class="flex items-center gap-8 text-sm font-medium text-foreground">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="transition-colors hover:text-primary"
+              title={link.text}
+            >
+              {link.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="hidden md:block shrink-0">
+      <Button
+        href={quoteHref}
+        variant="primary"
+        size="sm"
+        title="Envoyer un email pour demander un devis gratuit"
+        aria-label="Demander un devis gratuit par email"
+      >
+        Devis gratuit
+      </Button>
+    </div>
+
+    <details class="relative md:hidden">
+      <summary
+        class="flex h-10 w-10 list-none items-center justify-center rounded-lg border border-border [&::-webkit-details-marker]:hidden"
+        title="Ouvrir le menu"
+        aria-label="Ouvrir le menu"
+      >
+        <Icon
+          name="mdi:menu"
+          class="h-5 w-5 text-foreground"
+          aria-hidden="true"
+        />
+      </summary>
+      <div class="absolute right-0 top-full mt-2 w-56 rounded-xl border border-border bg-card p-4 shadow-lg">
+        <ul class="flex flex-col gap-3 text-sm font-medium text-foreground">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="block transition-colors hover:text-primary"
+                title={link.text}
+                onclick="this.closest('details')?.removeAttribute('open')"
+              >
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <Button
+          href={quoteHref}
+          variant="primary"
+          size="sm"
+          class="mt-4 w-full"
+          title="Envoyer un email pour demander un devis gratuit"
+          aria-label="Demander un devis gratuit par email"
+        >
+          Devis gratuit
+        </Button>
+      </div>
+    </details>
+  </div>
+</header>

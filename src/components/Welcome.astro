@@ -3,22 +3,10 @@ import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
 import Headline from "@/components/ui/Headline.astro";
 import { site } from "@/config/site";
+import { formatPhone } from "@/utils/format";
 
 const { hero, services, process, whyUs, areas, faq, cta } = site.home;
 const packages = site.services;
-
-// Numéro affiché au format "06 17 18 23 60". En cas de format inattendu
-// (ex. numéro trop court, absent), on retombe sur la valeur brute pour ne
-// jamais casser l'affichage.
-function formatPhone(raw: string): string {
-  try {
-    const digits = raw.replace(/^\+33/, "0").replace(/\D/g, "");
-    if (digits.length !== 10) return raw;
-    return digits.replace(/(\d{2})(?=\d)/g, "$1 ").trim();
-  } catch {
-    return raw;
-  }
-}
 const phoneDisplay = formatPhone(site.telephone);
 
 // JSON-LD FAQPage : uniquement si des questions existent, pour éviter
@@ -43,7 +31,7 @@ const faqJsonLd =
 <Fragment>
   <!-- Hero -->
   <section
-    class="mx-auto max-w-7xl px-4 sm:px-6 md:px-6 py-12 md:py-24"
+    class="mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6 py-12 md:py-24"
     id="section-hero"
   >
     <div class="flex flex-col items-start gap-6 max-w-3xl">
@@ -109,7 +97,7 @@ const faqJsonLd =
 
   <!-- Formules -->
   <section
-    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-services"
   >
     <Headline
@@ -159,7 +147,7 @@ const faqJsonLd =
 
   <!-- Processus -->
   <section
-    class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    class="py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-process"
   >
     <Headline
@@ -186,7 +174,7 @@ const faqJsonLd =
 
   <!-- Pourquoi OcciCode -->
   <section
-    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-why-us"
   >
     <Headline
@@ -210,7 +198,7 @@ const faqJsonLd =
 
   <!-- Zone d'intervention -->
   <section
-    class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    class="py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-areas"
   >
     <Headline
@@ -233,7 +221,7 @@ const faqJsonLd =
 
   <!-- FAQ -->
   <section
-    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-faq"
   >
     <Headline tagline={faq.tagline} title={faq.title} subtitle={faq.subtitle} />
@@ -264,7 +252,7 @@ const faqJsonLd =
 
   <!-- Contact -->
   <section
-    class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    class="py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-contact"
   >
     <div class="rounded-3xl bg-foreground px-6 py-12 md:px-16 md:py-16 text-background">

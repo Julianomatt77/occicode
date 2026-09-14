@@ -17,6 +17,12 @@ export const site = {
   postalCode: "34800",
   region: "Occitanie",
   country: "FR",
+  // Coordonnées GPS de Péret (34800), Hérault — source Insee/Wikipédia
+  // (43° 34′ 34″ N, 3° 23′ 53″ E converti en degrés décimaux).43.57566981168466, 3.3967169566957436
+  coordinates: {
+    lat: 43.57566981168466,
+    lon: 3.3967169566957436,
+  },
   email: "contact@occicode.fr",
   gtagId: "G-DJ9P3L1MN8",
   socials: {
@@ -24,11 +30,9 @@ export const site = {
     instagram: "https://www.instagram.com/occicode",
   },
   navLinks: [
-    { text: "Accueil", href: "/" },
-    { text: "Services", href: "/services" },
     { text: "Tarifs", href: "/tarifs" },
     { text: "À propos", href: "/a-propos" },
-    { text: "Contact", href: "/contact" },
+    { text: "FAQ", href: "/#section-faq" },
   ],
   // 4 couleurs principales du thème clair, reprises de src/styles/global.css (:root).
   // Sert de source unique pour tout ce qui ne peut pas lire les variables CSS
@@ -47,6 +51,28 @@ export const site = {
     tagline: "Tarifs",
     title: "Des prix adaptés aux petites entreprises",
     subtitle: "Le site est entièrement à vous.",
+  },
+  aPropos: {
+    tagline: "À propos",
+    title: "Un interlocuteur unique, une approche directe",
+    subtitle:
+      "OcciCode, c'est Julien Martin : un développeur basé en Occitanie qui conçoit des sites simples et durables pour les artisans et indépendants de la région.",
+  },
+  // Informations légales. Les champs marqués "[À compléter]" doivent être
+  // renseignés avec les données réelles de l'entreprise avant mise en ligne
+  // (aucune donnée légale n'est inventée).
+  legal: {
+    ownerName: "Julien Martin",
+    legalForm: "Auto entrepreneur",
+    siret: "[À compléter : numéro SIRET]",
+    rcs: "[À compléter : ville d'immatriculation RCS/RM, le cas échéant]",
+    vatNumber:
+      "[À compléter : numéro de TVA intracommunautaire, le cas échéant]",
+    hosting: {
+      name: "Hostinger",
+      company: "Hostinger International Ltd.",
+      website: "https://www.hostinger.fr",
+    },
   },
   home: {
     hero: {

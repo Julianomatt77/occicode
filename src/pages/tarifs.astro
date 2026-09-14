@@ -11,11 +11,15 @@ const metadata = {
   title: "OcciCode - Tarifs",
 };
 
+const pricingHeadline = site.tarifs;
 const services = site.services;
 const features = site.includedFeatures.features;
 const includedFeatures = site.includedFeatures;
 const faq = site.faqItems;
 const faqItems = site.faqItems.items;
+const quoteHref = `mailto:${site.email}?subject=${encodeURIComponent(
+  "Demande de devis - site internet",
+)}`;
 ---
 
 <Layout {...metadata}>
@@ -24,9 +28,10 @@ const faqItems = site.faqItems.items;
     id="section-pricing"
   >
     <Headline
-      title={includedFeatures.title}
-      subtitle={includedFeatures.subtitle}
-      tagline={includedFeatures.tagline}
+      title={pricingHeadline.title}
+      subtitle={pricingHeadline.subtitle}
+      tagline={pricingHeadline.tagline}
+      titleAs="h1"
     />
 
     <div
@@ -74,9 +79,11 @@ const faqItems = site.faqItems.items;
           </ul>
 
           <Button
-            href="/contact"
+            href={quoteHref}
             variant={service.isPopular ? "primary" : "secondary"}
             class="w-full"
+            title={`Demander un devis pour la formule ${service.name}`}
+            aria-label={`Demander un devis pour la formule ${service.name}`}
           >
             {service.buttonText}
           </Button>

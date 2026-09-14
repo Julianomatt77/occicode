@@ -1,0 +1,177 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Headline from "@/components/ui/Headline.astro";
+import { site } from "@/config/site";
+import { formatPhone } from "@/utils/format";
+
+const metadata = {
+  title: "OcciCode - Mentions légales & CGV",
+  description:
+    "Mentions légales, informations sur l'hébergement et conditions générales de vente d'OcciCode.",
+  noindex: true,
+};
+
+const phoneDisplay = formatPhone(site.telephone);
+const legal = site.legal;
+---
+
+<Layout {...metadata}>
+  <section
+    class="mx-auto max-w-3xl scroll-mt-[72px] px-4 py-12 sm:px-6 md:py-20"
+    id="section-mentions-legales"
+  >
+    <Headline
+      tagline="Informations légales"
+      title="Mentions légales"
+      titleAs="h1"
+      classes={{ container: "max-w-3xl", title: "text-3xl md:text-4xl" }}
+    />
+
+    <div class="mt-8 space-y-10 text-muted-foreground">
+      <div>
+        <h2 class="text-xl font-bold text-foreground">Éditeur du site</h2>
+        <ul class="mt-3 space-y-1">
+          <li>Nom : {legal.ownerName}</li>
+          <li>Forme juridique : {legal.legalForm}</li>
+          <li>SIRET : {legal.siret}</li>
+          <li>RCS / RM : {legal.rcs}</li>
+          <li>Numéro de TVA intracommunautaire : {legal.vatNumber}</li>
+          <li>
+            Adresse : {site.city} ({site.postalCode}), {site.region}
+          </li>
+          <li>Téléphone : {phoneDisplay}</li>
+          <li>
+            Email :{" "}
+            <a
+              href={`mailto:${site.email}`}
+              class="text-primary hover:underline"
+            >
+              {site.email}
+            </a>
+          </li>
+        </ul>
+        <p class="mt-3 text-sm">
+          Les champs marqués « À compléter » doivent être renseignés avec les
+          informations réelles de l'entreprise avant toute mise en ligne
+          définitive.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-foreground">Hébergement</h2>
+        <p class="mt-3">
+          Ce site est hébergé par {legal.hosting.company} ({legal.hosting.name}
+          ). Coordonnées complètes de l'hébergeur disponibles sur{" "}
+          <a
+            href={legal.hosting.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:underline"
+          >
+            {legal.hosting.website}
+          </a>
+          .
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-foreground">
+          Propriété intellectuelle
+        </h2>
+        <p class="mt-3">
+          L'ensemble des contenus présents sur ce site (textes, images, logos,
+          mise en page) est la propriété de {legal.ownerName}, sauf mention
+          contraire. Toute reproduction, représentation ou utilisation, totale
+          ou partielle, sans autorisation préalable est interdite.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-foreground">Liens externes</h2>
+        <p class="mt-3">
+          Ce site peut contenir des liens vers des sites tiers.{" "}
+          {legal.ownerName} n'exerce aucun contrôle sur ces sites et décline
+          toute responsabilité quant à leur contenu.
+        </p>
+      </div>
+
+      <hr class="border-border" />
+
+      <div id="cgv">
+        <h2 class="text-2xl font-bold text-foreground">
+          Conditions générales de vente (CGV)
+        </h2>
+        <p class="mt-3">
+          Les présentes CGV s'appliquent à toute prestation de création ou de
+          maintenance de site internet commandée auprès de {legal.ownerName} par
+          un client professionnel (artisan, commerçant, indépendant,
+          entreprise).
+        </p>
+
+        <h3 class="mt-6 text-lg font-bold text-foreground">
+          1. Devis et commande
+        </h3>
+        <p class="mt-2">
+          Chaque prestation fait l'objet d'un devis gratuit détaillant le
+          périmètre, les délais et le prix. La commande est confirmée à
+          l'acceptation écrite du devis par le client, valant accord sur les
+          présentes CGV.
+        </p>
+
+        <h3 class="mt-6 text-lg font-bold text-foreground">
+          2. Tarifs et paiement
+        </h3>
+        <p class="mt-2">
+          Les tarifs indiqués sont exprimés en euros. Sauf accord contraire
+          précisé sur le devis, le paiement s'effectue en deux fois : 50 % au
+          démarrage du projet, 50 % à la mise en ligne du site. Un paiement en
+          plusieurs fois peut être proposé selon les modalités indiquées au
+          devis.
+        </p>
+
+        <h3 class="mt-6 text-lg font-bold text-foreground">3. Délais</h3>
+        <p class="mt-2">
+          Les délais de réalisation sont donnés à titre indicatif dans le devis.
+          Ils dépendent notamment de la réactivité du client (fourniture des
+          contenus, validations, retours).
+        </p>
+
+        <h3 class="mt-6 text-lg font-bold text-foreground">
+          4. Droit de rétractation
+        </h3>
+        <p class="mt-2">
+          Les prestations étant conclues avec des clients professionnels pour
+          les besoins de leur activité, le droit de rétractation prévu par le
+          Code de la consommation pour les particuliers ne s'applique pas, sauf
+          disposition contraire expressément prévue au devis.
+        </p>
+
+        <h3 class="mt-6 text-lg font-bold text-foreground">
+          5. Propriété du site livré
+        </h3>
+        <p class="mt-2">
+          Une fois la prestation intégralement payée, le site (contenu et code
+          associés) est la propriété du client, à l'exclusion des outils,
+          gabarits ou composants réutilisables propres à {legal.ownerName}.
+        </p>
+
+        <h3 class="mt-6 text-lg font-bold text-foreground">6. Maintenance</h3>
+        <p class="mt-2">
+          Un contrat de maintenance distinct peut être proposé après livraison.
+          En son absence, le client est responsable du maintien en conditions
+          opérationnelles de son site (hébergement, nom de domaine, mises à
+          jour).
+        </p>
+
+        <h3 class="mt-6 text-lg font-bold text-foreground">
+          7. Droit applicable et litiges
+        </h3>
+        <p class="mt-2">
+          Les présentes CGV sont soumises au droit français. À défaut de
+          résolution amiable, tout litige relève des juridictions compétentes du
+          ressort de {legal.ownerName}.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
