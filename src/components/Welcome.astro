@@ -47,23 +47,27 @@ const faqJsonLd =
     id="section-hero"
   >
     <div class="flex flex-col items-start gap-6 max-w-3xl">
-      <img
-        src="/assets/images/logo_675x675.webp"
-        alt="Logo OcciCode, une croix occitane encadrée par deux C"
-        width="56"
-        height="56"
-        class="h-14 w-14"
-        loading="eager"
-        decoding="async"
-      />
+      <div class="flex items-center gap-4">
+        <img
+          src="/assets/images/logo_675x675.webp"
+          alt="Logo OcciCode, une croix occitane encadrée par deux C"
+          width="96"
+          height="96"
+          class="h-20 w-20 md:h-24 md:w-24"
+          loading="eager"
+          decoding="async"
+        />
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+          {site.name}
+        </h1>
+      </div>
       <Headline
         tagline={hero.tagline}
         title={hero.title}
         subtitle={hero.subtitle}
-        titleAs="h1"
         classes={{
           container: "max-w-3xl",
-          title: "text-4xl md:text-5xl lg:text-6xl",
+          title: "text-3xl md:text-4xl lg:text-5xl",
           subtitle: "text-lg md:text-xl",
         }}
       />
