@@ -10,7 +10,7 @@ export const site = {
   author: "Julien MARTIN",
   canonical: "https://www.occicode.fr",
   locale: "fr_FR",
-  ogImage: "https://occicode.fr/assets/images/logo_avec_fond_1200x630.png",
+  ogImage: "https://www.occicode.fr/assets/images/logo_avec_fond_1200x630.png",
   ogImageAlt: "Logo OcciCode — création de sites internet en Occitanie",
   telephone: "+33617182360",
   city: "Péret",
@@ -55,6 +55,12 @@ export const site = {
     { text: "Mentions légales", href: "/mentions-legales" },
     { text: "Politique de confidentialité", href: "/confidentialite" },
   ],
+  // Source unique des pages à exclure de l'indexation. Utilisé à la fois par
+  // chaque page (prop `noindex` passée au Layout) et par le filtre du
+  // sitemap dans astro.config.mjs : une seule liste à tenir à jour évite
+  // qu'une page marquée noindex se retrouve quand même listée dans le
+  // sitemap (contradictoire pour les moteurs de recherche).
+  noindexPaths: ["/mentions-legales", "/confidentialite"],
   tarifs: {
     tagline: "Tarifs",
     title: "Des prix adaptés aux petites entreprises",

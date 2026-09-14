@@ -8,7 +8,7 @@ const metadata = {
   title: "OcciCode - Mentions légales & CGV",
   description:
     "Mentions légales, informations sur l'hébergement et conditions générales de vente d'OcciCode.",
-  noindex: true,
+  noindex: site.noindexPaths.includes("/mentions-legales"),
 };
 
 const phoneDisplay = formatPhone(site.telephone);
