@@ -13,7 +13,6 @@ Site vitrine OcciCode — agence web en Occitanie (artisans/TPE). Astro 7, Tailw
 - Boutons : toujours `title` + `type` + `role`. Accessibilité : attributs HTML + `aria-label`.
 - Design simple, sobre, thème clair ; pas d'icônes ni badges flashy.
 - **Interdiction de toute action git** (commit, push, etc.) — l'utilisateur s'en charge.
-- Note : `instructions.md` cite `.openclaude/rules` (coquille) — la source réelle est `.opencode/rules`.
 
 `workflow.md` — méthode :
 

@@ -1,13 +1,12 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
+import Welcome from "@/components/Welcome.astro";
+import Layout from "@/layouts/Layout.astro";
 
-// const metadata = {
-//   title: "OcciCode - À propos"
-// };
+const metadata = {
+  title: "OcciCode - Création de site internet en Occitanie",
+};
 ---
 
-<!--<Layout {...metadata}>-->
-<Layout>
+<Layout {...metadata}>
   <Welcome />
 </Layout>

@@ -1,18 +1,297 @@
-<main>
-  <img
-    class="logo"
-    src="assets/images/logo_675x675.webp"
-    alt="Logo OcciCode, une croix occitane encadrée par deux C"
-  />
-  <h1>
-    OcciCode arrive <em>prochainement</em>
-  </h1>
-  <p>
-    Création de sites vitrine pour artisans et petites entreprises en Occitanie.
-    Le site est en cours de construction — revenez bientôt.
-  </p>
-  <div class="rule" aria-hidden="true"></div>
-  <div class="contact-links">
-    <a href="mailto:contact@occicode.fr">contact@occicode.fr</a>
-  </div>
-</main>
+---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+import Headline from "@/components/ui/Headline.astro";
+import { site } from "@/config/site";
+
+const { hero, services, process, whyUs, areas, faq, cta } = site.home;
+const packages = site.services;
+
+// Numéro affiché au format "06 17 18 23 60". En cas de format inattendu
+// (ex. numéro trop court, absent), on retombe sur la valeur brute pour ne
+// jamais casser l'affichage.
+function formatPhone(raw: string): string {
+  try {
+    const digits = raw.replace(/^\+33/, "0").replace(/\D/g, "");
+    if (digits.length !== 10) return raw;
+    return digits.replace(/(\d{2})(?=\d)/g, "$1 ").trim();
+  } catch {
+    return raw;
+  }
+}
+const phoneDisplay = formatPhone(site.telephone);
+
+// JSON-LD FAQPage : uniquement si des questions existent, pour éviter
+// d'injecter un schéma vide ou invalide.
+const faqJsonLd =
+  faq.items && faq.items.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }
+    : null;
+---
+
+<Fragment>
+  <!-- Hero -->
+  <section
+    class="mx-auto max-w-7xl px-4 sm:px-6 md:px-6 py-12 md:py-24"
+    id="section-hero"
+  >
+    <div class="flex flex-col items-start gap-6 max-w-3xl">
+      <img
+        src="/assets/images/logo_675x675.webp"
+        alt="Logo OcciCode, une croix occitane encadrée par deux C"
+        width="56"
+        height="56"
+        class="h-14 w-14"
+        loading="eager"
+        decoding="async"
+      />
+      <Headline
+        tagline={hero.tagline}
+        title={hero.title}
+        subtitle={hero.subtitle}
+        titleAs="h1"
+        classes={{
+          container: "max-w-3xl",
+          title: "text-4xl md:text-5xl lg:text-6xl",
+          subtitle: "text-lg md:text-xl",
+        }}
+      />
+
+      <div class="flex flex-wrap gap-4 pt-2">
+        <Button
+          href={`mailto:${site.email}?subject=${encodeURIComponent("Demande de devis - site internet")}`}
+          variant="primary"
+          size="lg"
+          title="Envoyer un email pour demander un devis gratuit"
+          aria-label="Demander un devis gratuit par email"
+        >
+          Demander un devis gratuit
+        </Button>
+        <Button
+          href="/tarifs"
+          variant="secondary"
+          size="lg"
+          title="Consulter la page des tarifs"
+          aria-label="Voir les tarifs"
+        >
+          Voir les tarifs
+        </Button>
+      </div>
+
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-muted-foreground">
+        {hero.trust.map((item) => (
+          <li class="flex items-center gap-2">
+            <span
+              class="h-1.5 w-1.5 rounded-full bg-primary"
+              aria-hidden="true"
+            ></span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Formules -->
+  <section
+    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    id="section-services"
+  >
+    <Headline
+      tagline={services.tagline}
+      title={services.title}
+      subtitle={services.subtitle}
+    />
+
+    <div class="grid gap-6 md:grid-cols-3 pt-10">
+      {packages.map((pkg) => (
+        <article
+          class={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 hover:shadow-lg ${
+            pkg.isPopular
+              ? "bg-primary/5 border-primary/40 shadow-md"
+              : "bg-card border-border/50 shadow-sm"
+          }`}
+        >
+          {pkg.isPopular && (
+            <span class="absolute -top-3 right-8 inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">
+              Le plus choisi
+            </span>
+          )}
+          <h3 class="text-xl font-bold text-foreground">{pkg.name}</h3>
+          <p class="mt-2 text-muted-foreground text-sm flex-1">
+            {pkg.description}
+          </p>
+          <p class="mt-6 flex items-baseline gap-1">
+            <span class="text-sm text-muted-foreground">{pkg.from}</span>
+            <span class="text-2xl font-extrabold text-foreground">
+              {pkg.price}
+            </span>
+          </p>
+          <Button
+            href="/tarifs"
+            variant={pkg.isPopular ? "primary" : "secondary"}
+            size="sm"
+            class="mt-6"
+            title={`Voir le détail de la formule ${pkg.name}`}
+            aria-label={`Voir le détail de la formule ${pkg.name}`}
+          >
+            Voir le détail
+          </Button>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Processus -->
+  <section
+    class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    id="section-process"
+  >
+    <Headline
+      tagline={process.tagline}
+      title={process.title}
+      subtitle={process.subtitle}
+    />
+
+    <ol class="grid gap-8 md:grid-cols-3 pt-10">
+      {process.steps.map((step, index) => (
+        <li class="flex flex-col gap-3">
+          <span
+            class="text-4xl font-extrabold text-primary/25"
+            aria-hidden="true"
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 class="text-lg font-bold text-foreground">{step.title}</h3>
+          <p class="text-muted-foreground text-sm">{step.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Pourquoi OcciCode -->
+  <section
+    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    id="section-why-us"
+  >
+    <Headline
+      tagline={whyUs.tagline}
+      title={whyUs.title}
+      subtitle={whyUs.subtitle}
+    />
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 pt-10">
+      {whyUs.items.map((item) => (
+        <article class="flex flex-col gap-3 rounded-2xl border border-border/50 bg-card p-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <Icon name={item.icon} class="h-5 w-5" aria-hidden="true" />
+          </div>
+          <h3 class="text-base font-bold text-foreground">{item.title}</h3>
+          <p class="text-sm text-muted-foreground">{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Zone d'intervention -->
+  <section
+    class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    id="section-areas"
+  >
+    <Headline
+      tagline={areas.tagline}
+      title={areas.title}
+      subtitle={areas.subtitle}
+    />
+
+    <ul
+      class="flex flex-wrap gap-3 pt-8"
+      aria-label="Villes et secteurs d'intervention"
+    >
+      {areas.cities.map((city) => (
+        <li class="rounded-full border border-border bg-muted/50 px-4 py-1.5 text-sm text-foreground">
+          {city}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section
+    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    id="section-faq"
+  >
+    <Headline tagline={faq.tagline} title={faq.title} subtitle={faq.subtitle} />
+
+    <div class="grid sm:grid-cols-2 gap-8 md:gap-12 pt-10">
+      {faq.items.map((item) => (
+        <article class="flex flex-col">
+          <h3 class="mb-2 text-lg font-bold text-foreground flex items-start">
+            <Icon
+              name="mdi:chevron-right"
+              class="h-5 w-5 text-primary shrink-0 mr-1 mt-0.5"
+              aria-hidden="true"
+            />
+            {item.question}
+          </h3>
+          <p class="text-sm text-muted-foreground ml-6">{item.answer}</p>
+        </article>
+      ))}
+    </div>
+    {faqJsonLd && (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={JSON.stringify(faqJsonLd)}
+      ></script>
+    )}
+  </section>
+
+  <!-- Contact -->
+  <section
+    class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6"
+    id="section-contact"
+  >
+    <div class="rounded-3xl bg-foreground px-6 py-12 md:px-16 md:py-16 text-background">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl md:text-3xl font-bold">{cta.title}</h2>
+        <p class="mt-3 text-background/80">{cta.subtitle}</p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-6">
+          <Button
+            href={`mailto:${site.email}?subject=${encodeURIComponent("Demande de devis - site internet")}`}
+            variant="secondary"
+            size="lg"
+            title="Envoyer un email pour demander un devis gratuit"
+            aria-label="Demander un devis gratuit par email"
+          >
+            Demander un devis gratuit
+          </Button>
+          <a
+            href={`tel:${site.telephone}`}
+            title={`Appeler OcciCode au ${phoneDisplay}`}
+            aria-label={`Appeler OcciCode au ${phoneDisplay}`}
+            class="font-semibold text-background underline underline-offset-4 hover:text-background/80"
+          >
+            {phoneDisplay}
+          </a>
+        </div>
+
+        <p class="mt-8 text-sm text-background/60">
+          {site.city} ({site.postalCode}) &middot; {site.region}
+        </p>
+      </div>
+    </div>
+  </section>
+</Fragment>
