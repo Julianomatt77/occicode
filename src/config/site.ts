@@ -34,14 +34,19 @@ export const site = {
     { text: "À propos", href: "/a-propos" },
     { text: "FAQ", href: "/#section-faq" },
   ],
-  // 4 couleurs principales du thème clair, reprises de src/styles/global.css (:root).
-  // Sert de source unique pour tout ce qui ne peut pas lire les variables CSS
-  // (ex. meta "theme-color", JSON-LD, génération d'images).
+  // Source unique des couleurs du thème (clair uniquement, pas de mode sombre
+  // pour l'instant). Ces valeurs sont injectées comme variables CSS sur `:root`
+  // par Layout.astro (`<style define:vars={site.siteColors}>`) : le thème
+  // Tailwind (`@theme` dans global.css) les consomme via `var(--nom)`.
+  // Les clés doivent correspondre aux `--color-*` déclarés dans `@theme`.
   siteColors: {
     background: "#ffffff",
     foreground: "#0a0a0a",
     primary: "#0254d8",
+    border: "#e5e7eb",
     muted: "#f4f4f5",
+    "muted-foreground": "#52525b",
+    card: "#ffffff",
   },
   footerLinks: [
     { text: "Mentions légales", href: "/mentions-legales" },
