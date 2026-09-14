@@ -62,7 +62,7 @@ const faqJsonLd =
 
       <div class="flex flex-wrap gap-4 pt-2">
         <Button
-          href={`mailto:${site.email}?subject=${encodeURIComponent("Demande de devis - site internet")}`}
+          href="/contact"
           variant="primary"
           size="lg"
           title="Envoyer un email pour demander un devis gratuit"
@@ -97,7 +97,7 @@ const faqJsonLd =
 
   <!-- Formules -->
   <section
-    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
+    class="bg-muted xl:rounded-4xl py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-services"
   >
     <Headline
@@ -174,7 +174,7 @@ const faqJsonLd =
 
   <!-- Pourquoi OcciCode -->
   <section
-    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
+    class="bg-muted xl:rounded-4xl py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-why-us"
   >
     <Headline
@@ -221,7 +221,7 @@ const faqJsonLd =
 
   <!-- FAQ -->
   <section
-    class="bg-muted/30 py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
+    class="bg-muted xl:rounded-4xl py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-faq"
   >
     <Headline tagline={faq.tagline} title={faq.title} subtitle={faq.subtitle} />
@@ -252,17 +252,17 @@ const faqJsonLd =
 
   <!-- Contact -->
   <section
-    class="py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
+    class="py-12 md:py-20 mx-auto max-w-5xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-contact"
   >
-    <div class="rounded-3xl bg-foreground px-6 py-12 md:px-16 md:py-16 text-background">
+    <div class="rounded-4xl bg-foreground/90 px-6 py-12 md:px-16 md:py-16 text-background">
       <div class="max-w-2xl">
         <h2 class="text-2xl md:text-3xl font-bold">{cta.title}</h2>
         <p class="mt-3 text-background/80">{cta.subtitle}</p>
 
         <div class="mt-8 flex flex-wrap items-center gap-6">
           <Button
-            href={`mailto:${site.email}?subject=${encodeURIComponent("Demande de devis - site internet")}`}
+            href="/contact"
             variant="secondary"
             size="lg"
             title="Envoyer un email pour demander un devis gratuit"

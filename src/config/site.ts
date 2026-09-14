@@ -31,20 +31,25 @@ export const site = {
     { text: "Tarifs", href: "/tarifs" },
     { text: "À propos", href: "/a-propos" },
     { text: "FAQ", href: "/#section-faq" },
+    { text: "Contact", href: "/contact" },
   ],
   // Source unique des couleurs du thème (clair uniquement, pas de mode sombre
   // pour l'instant). Ces valeurs sont injectées comme variables CSS sur `:root`
   // par Layout.astro (`<style define:vars={site.siteColors}>`) : le thème
   // Tailwind (`@theme` dans global.css) les consomme via `var(--nom)`.
   // Les clés doivent correspondre aux `--color-*` déclarés dans `@theme`.
+
   siteColors: {
-    background: "#ffffff",
+    background: "#F7F7F5",
     foreground: "#0a0a0a",
     primary: "#0254d8",
     border: "#e5e7eb",
-    muted: "#f4f4f5",
+    // Volontairement plus foncé que background/card (#ffffff) pour rester
+    // visible en tant que fond de section : #f4f4f5 était trop proche du
+    // blanc pour se distinguer.
+    muted: "#e7e9ec",
     "muted-foreground": "#52525b",
-    card: "#ffffff",
+    card: "#F7F7F5",
   },
   footerLinks: [
     { text: "Mentions légales", href: "/mentions-legales" },
@@ -60,6 +65,16 @@ export const site = {
     title: "Un interlocuteur unique, une approche directe",
     subtitle:
       "OcciCode, c'est Julien Martin : un développeur basé en Occitanie qui conçoit des sites simples et durables pour les artisans et indépendants de la région.",
+  },
+  contact: {
+    tagline: "Contact",
+    title: "Discutons de votre projet",
+    subtitle:
+      "Décrivez-moi votre activité et vos besoins : je vous réponds sous 48h.",
+    // Lien "action" du formulaire (Formspree). Remplacer "VOTRE_ID" par
+    // l'identifiant réel obtenu après création du formulaire sur
+    // https://formspree.io (Settings > votre formulaire > "Endpoint").
+    formAction: "https://formspree.io/f/maeyrygj",
   },
   // Informations légales. Les champs marqués "[À compléter]" doivent être
   // renseignés avec les données réelles de l'entreprise avant mise en ligne

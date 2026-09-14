@@ -4,9 +4,10 @@ import Button from "@/components/ui/Button.astro";
 import { site } from "@/config/site";
 
 const navLinks = site.navLinks;
-const quoteHref = `mailto:${site.email}?subject=${encodeURIComponent(
-  "Demande de devis - site internet",
-)}`;
+// const quoteHref = `mailto:${site.email}?subject=${encodeURIComponent(
+//   "Demande de devis - site internet",
+// )}`;
+const quoteHref = `/contact`;
 ---
 
 <header class="fixed inset-x-0 top-0 z-50 h-[72px] border-b border-border bg-background/95 backdrop-blur">

@@ -1,0 +1,343 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Headline from "@/components/ui/Headline.astro";
+import Button from "@/components/ui/Button.astro";
+import { site } from "@/config/site";
+import { formatPhone } from "@/utils/format";
+
+const metadata = {
+  title: "OcciCode - Contact",
+  description:
+    "Contactez OcciCode pour un devis gratuit : décrivez votre projet de site internet, réponse sous 48h.",
+};
+
+const phoneDisplay = formatPhone(site.telephone);
+const objetOptions = [...site.services.map((service) => service.name), "Autre"];
+
+const inputClass =
+  "w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30";
+const labelClass = "mb-1 block text-sm font-medium text-foreground";
+---
+
+<Layout {...metadata}>
+  <section
+    class="mx-auto max-w-4xl scroll-mt-[72px] px-4 py-12 sm:px-6 md:py-20"
+    id="section-contact"
+  >
+    <Headline
+      tagline={site.contact.tagline}
+      title={site.contact.title}
+      subtitle={site.contact.subtitle}
+      titleAs="h1"
+      classes={{ container: "max-w-2xl", title: "text-3xl md:text-4xl" }}
+    />
+
+    <div class="mt-10 grid gap-10 md:grid-cols-[1fr_1.4fr]">
+      <div class="space-y-4 text-sm text-muted-foreground">
+        <p>
+          Vous pouvez aussi me contacter directement, sans passer par le
+          formulaire :
+        </p>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href={`mailto:${site.email}`}
+              class="text-primary hover:underline"
+              title="Envoyer un email à OcciCode"
+            >
+              {site.email}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`tel:${site.telephone}`}
+              class="text-primary hover:underline"
+              title={`Appeler OcciCode au ${phoneDisplay}`}
+            >
+              {phoneDisplay}
+            </a>
+          </li>
+          <li>
+            {site.city} ({site.postalCode}), {site.region}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div
+          id="contact-form-status"
+          role="status"
+          aria-live="polite"
+          class="hidden mb-5 rounded-lg border px-4 py-3 text-sm"
+        ></div>
+
+        <form
+          id="contact-form"
+          method="POST"
+          action={site.contact.formAction}
+          class="space-y-5"
+        >
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class={labelClass}>
+                Nom *
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                class={inputClass}
+                placeholder="Jean Dupond"
+              />
+            </div>
+            <div>
+              <label for="email" class={labelClass}>
+                Email *
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                class={inputClass}
+                placeholder="jean.dupond@email.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="objet" class={labelClass}>
+              Objet *
+            </label>
+            <select id="objet" name="objet" required class={inputClass}>
+              <option value="" disabled selected>
+                Choisissez un objet
+              </option>
+              {objetOptions.map((option) => (
+                <option value={option}>{option}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label for="phone" class={labelClass}>
+              Téléphone (optionnel)
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              maxlength="14"
+              class={inputClass}
+              placeholder="01 23 45 67 89"
+            />
+          </div>
+
+          <div>
+            <label for="message" class={labelClass}>
+              Votre message *
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              class={inputClass}
+              placeholder="Je souhaiterais un devis pour un nouveau site"
+            ></textarea>
+          </div>
+
+          <p class="text-xs text-muted-foreground">* champs obligatoires</p>
+
+          <input
+            type="hidden"
+            id="subject-field"
+            name="_subject"
+            value="Nouveau message depuis occicode.fr"
+          />
+
+          <input
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="hidden"
+          />
+
+          <Button
+            type="submit"
+            variant="primary"
+            title="Envoyer le message"
+            aria-label="Envoyer le message"
+            class="cursor-pointer"
+          >
+            Envoyer le message
+          </Button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const form = document.getElementById("contact-form");
+      if (!form) return;
+
+      const status = document.getElementById("contact-form-status");
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      if (form.action.indexOf("VOTRE_ID") !== -1) {
+        console.warn(
+          "[OcciCode] Formulaire de contact non configuré : renseigne site.contact.formAction dans src/config/site.ts avec ton vrai lien Formspree.",
+        );
+      }
+
+      // Pré-remplissage de l'objet depuis l'URL (ex: /contact?objet=Site%20Pro),
+      // utilisé par les boutons "Voir le détail" de la page /tarifs.
+      const objetSelect = document.getElementById("objet");
+      const subjectField = document.getElementById("subject-field");
+
+      function updateSubjectField() {
+        if (!subjectField || !objetSelect) return;
+        subjectField.value = objetSelect.value
+          ? "Nouveau message (" + objetSelect.value + ") depuis occicode.fr"
+          : "Nouveau message depuis occicode.fr";
+      }
+
+      if (objetSelect) {
+        const requestedObjet = new URLSearchParams(window.location.search).get(
+          "objet",
+        );
+        if (requestedObjet) {
+          const knownValues = Array.from(objetSelect.options).map(
+            function (option) {
+              return option.value;
+            },
+          );
+          objetSelect.value = knownValues.includes(requestedObjet)
+            ? requestedObjet
+            : "Autre";
+          document.getElementById("message")?.focus();
+        }
+        updateSubjectField();
+        objetSelect.addEventListener("change", updateSubjectField);
+      }
+
+      // Formatage progressif du téléphone : "0612345678" -> "06 12 34 56 78"
+      // en conservant la position du curseur pendant la saisie.
+      const phoneInput = document.getElementById("phone");
+      if (phoneInput) {
+        phoneInput.addEventListener("input", function () {
+          const cursorPos =
+            phoneInput.selectionStart ?? phoneInput.value.length;
+          const digitsBeforeCursor = (
+            phoneInput.value.slice(0, cursorPos).match(/\d/g) || []
+          ).length;
+
+          const digits = phoneInput.value
+            .replace(/^\+33\s?/, "0")
+            .replace(/\D/g, "")
+            .slice(0, 10);
+          const grouped = digits.replace(/(\d{2})(?=\d)/g, "$1 ");
+
+          phoneInput.value = grouped;
+
+          let newCursorPos = grouped.length;
+          let digitCount = 0;
+          for (let i = 0; i < grouped.length; i++) {
+            if (/\d/.test(grouped[i])) digitCount++;
+            if (digitCount === digitsBeforeCursor) {
+              newCursorPos = i + 1;
+              break;
+            }
+          }
+          if (digitsBeforeCursor === 0) newCursorPos = 0;
+
+          phoneInput.setSelectionRange(newCursorPos, newCursorPos);
+        });
+      }
+
+      function showStatus(message, isError) {
+        if (!status) return;
+        status.textContent = message;
+        status.classList.remove("hidden");
+        status.classList.toggle("border-red-200", Boolean(isError));
+        status.classList.toggle("bg-red-50", Boolean(isError));
+        status.classList.toggle("text-red-700", Boolean(isError));
+        status.classList.toggle("border-green-200", !isError);
+        status.classList.toggle("bg-green-50", !isError);
+        status.classList.toggle("text-green-700", !isError);
+        status.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      function resetSubmitButton() {
+        if (!submitBtn) return;
+        submitBtn.disabled = false;
+        if (submitBtn.dataset.originalText) {
+          submitBtn.textContent = submitBtn.dataset.originalText;
+        }
+      }
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.dataset.originalText =
+            submitBtn.dataset.originalText || submitBtn.textContent;
+          submitBtn.textContent = "Envoi en cours...";
+        }
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+
+          let body = null;
+          try {
+            body = await response.json();
+          } catch {
+            body = null;
+          }
+
+          if (response.ok) {
+            form.reset();
+            resetSubmitButton();
+            showStatus(
+              "Merci, votre message a bien été envoyé. Je vous réponds sous 48h.",
+              false,
+            );
+            return;
+          }
+
+          let errorMessage =
+            "Une erreur est survenue. Réessayez, ou écrivez-moi directement par email.";
+          if (body && Array.isArray(body.errors) && body.errors.length > 0) {
+            errorMessage = body.errors
+              .map(function (e) {
+                return e.message;
+              })
+              .join(" ");
+          }
+          showStatus(errorMessage, true);
+          resetSubmitButton();
+        } catch {
+          showStatus(
+            "Impossible d'envoyer le message (problème réseau). Réessayez, ou écrivez-moi directement par email.",
+            true,
+          );
+          resetSubmitButton();
+        }
+      });
+    })();
+  </script>
+</Layout>

@@ -17,9 +17,6 @@ const features = site.includedFeatures.features;
 const includedFeatures = site.includedFeatures;
 const faq = site.faqItems;
 const faqItems = site.faqItems.items;
-const quoteHref = `mailto:${site.email}?subject=${encodeURIComponent(
-  "Demande de devis - site internet",
-)}`;
 ---
 
 <Layout {...metadata}>
@@ -79,7 +76,7 @@ const quoteHref = `mailto:${site.email}?subject=${encodeURIComponent(
           </ul>
 
           <Button
-            href={quoteHref}
+            href={`/contact?objet=${encodeURIComponent(service.name)}`}
             variant={service.isPopular ? "primary" : "secondary"}
             class="w-full"
             title={`Demander un devis pour la formule ${service.name}`}
@@ -93,7 +90,7 @@ const quoteHref = `mailto:${site.email}?subject=${encodeURIComponent(
   </section>
 
   <section
-    class="bg-muted/30 py-12 relative not-prose scroll-mt-[72px] reveal active mx-auto max-w-7xl px-4 md:px-6 text-default md:py-12"
+    class="bg-muted py-12 relative not-prose scroll-mt-[72px] reveal active mx-auto max-w-7xl px-4 md:px-6 text-default md:py-12"
     id="section-included-features"
   >
     <Headline
