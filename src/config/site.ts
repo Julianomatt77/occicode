@@ -165,13 +165,35 @@ export const site = {
     },
     faq: {
       tagline: "Questions fréquentes",
-      title: "Avant de vous lancer",
-      subtitle: "Les questions qu'on me pose le plus souvent.",
+      title: "Ce qu'on me demande souvent",
+      subtitle: "De quoi lever les derniers doutes avant de vous lancer.",
       items: [
         {
-          question: "Combien de temps faut-il pour créer mon site ?",
+          question:
+            "Pourquoi choisir un développeur indépendant plutôt qu'une agence ?",
           answer:
-            "Comptez en moyenne 2 à 4 semaines entre le premier échange et la mise en ligne, selon la complexité du projet et votre disponibilité pour les retours.",
+            "Chez une agence, votre projet passe souvent entre plusieurs mains (chef de projet, designer, développeur), ce qui allonge les délais et complique les échanges. Avec OcciCode, vous parlez directement à la personne qui conçoit et développe votre site, du premier échange à la mise en ligne : un seul interlocuteur, et un tarif qui reflète une activité indépendante plutôt que la structure d'une agence.",
+        },
+        {
+          question: "Travaillez-vous avec tous les types d'activités ?",
+          answer:
+            "Je travaille surtout avec des artisans, commerçants, professions libérales et indépendants d'Occitanie. Les formules Site Vitrine et Site Pro couvrent la plupart des besoins courants ; pour un besoin plus spécifique (vente en ligne, prise de rendez-vous...), la formule Sur Mesure permet d'adapter le site. Si votre projet sort de mon champ de compétence, je vous le dirai dès l'échange initial.",
+        },
+        {
+          question:
+            "Je n'ai pas encore une idée précise de ce que je veux, est-ce un problème ?",
+          answer:
+            "Non, c'est même la situation la plus fréquente. L'échange initial sert justement à clarifier votre activité et vos objectifs pour construire une proposition claire. Vous n'avez pas besoin d'arriver avec une maquette : votre connaissance de votre métier suffit pour démarrer.",
+        },
+        {
+          question: "Que se passe-t-il si le résultat ne me convient pas ?",
+          answer:
+            "Le projet avance par étapes validées : d'abord la structure du site, puis les textes et visuels définitifs. Vous pouvez demander des ajustements à chaque étape avant la mise en ligne, pour ne pas découvrir le résultat final au dernier moment.",
+        },
+        {
+          question: "Combien de temps dure un projet, en moyenne ?",
+          answer:
+            "Comptez en moyenne 2 à 4 semaines entre le premier échange et la mise en ligne, selon la complexité du site et votre disponibilité pour fournir les contenus et valider les étapes. Ce délai est précisé dans le devis avant le démarrage.",
         },
         {
           question: "Dois-je fournir les textes et les photos ?",
@@ -184,9 +206,9 @@ export const site = {
             "Oui, selon la formule choisie, vous avez accès à une interface simple pour mettre à jour vos textes, photos et tarifs sans compétence technique.",
         },
         {
-          question: "Travaillez-vous uniquement avec des artisans ?",
+          question: "Proposez-vous un suivi après la mise en ligne ?",
           answer:
-            "Non. J'accompagne aussi les commerçants, professions libérales et petites entreprises qui ont besoin d'un site clair et fonctionnel.",
+            "Oui, un forfait de maintenance est disponible pour garder votre site à jour dans la durée. Il n'est pas obligatoire : le site reste pleinement fonctionnel sans lui, mais il vous libère de la gestion technique au quotidien.",
         },
       ],
     },
