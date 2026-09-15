@@ -31,67 +31,75 @@ const faqJsonLd =
 <Fragment>
   <!-- Hero -->
   <section
-    class="mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6 py-12 md:py-24"
+    class="relative isolate scroll-mt-[72px] bg-cover bg-center bg-no-repeat mb-4"
+    style={`background-image: url('${site.heroImage}');`}
     id="section-hero"
   >
-    <div class="flex flex-col items-start gap-6 max-w-3xl">
-      <div class="flex items-center gap-4">
-        <img
-          src="/assets/images/logo_675x675.webp"
-          alt="Logo OcciCode, une croix occitane encadrée par deux C"
-          width="96"
-          height="96"
-          class="h-20 w-20 md:h-24 md:w-24"
-          loading="eager"
-          decoding="async"
+    <div
+      class="absolute inset-0 -z-10 bg-linear-to-r from-background via-background/80 to-background/40"
+      aria-hidden="true"
+    ></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-6 py-12 md:py-24">
+      <div class="flex flex-col items-start gap-6 max-w-3xl">
+        <div class="flex items-center gap-4">
+          <img
+            src="/assets/images/logo_675x675.webp"
+            alt="Logo OcciCode, une croix occitane encadrée par deux C"
+            width="96"
+            height="96"
+            class="h-20 w-20 md:h-24 md:w-24"
+            loading="eager"
+            decoding="async"
+          />
+          <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+            {site.name}
+          </h1>
+        </div>
+        <Headline
+          tagline={hero.tagline}
+          title={hero.title}
+          subtitle={hero.subtitle}
+          classes={{
+            container: "max-w-3xl",
+            title: "text-3xl md:text-4xl lg:text-5xl",
+            subtitle: "text-lg md:text-xl",
+          }}
         />
-        <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-          {site.name}
-        </h1>
-      </div>
-      <Headline
-        tagline={hero.tagline}
-        title={hero.title}
-        subtitle={hero.subtitle}
-        classes={{
-          container: "max-w-3xl",
-          title: "text-3xl md:text-4xl lg:text-5xl",
-          subtitle: "text-lg md:text-xl",
-        }}
-      />
 
-      <div class="flex flex-wrap gap-4 pt-2">
-        <Button
-          href="/contact"
-          variant="primary"
-          size="lg"
-          title="Envoyer un email pour demander un devis gratuit"
-          aria-label="Demander un devis gratuit par email"
-        >
-          Demander un devis gratuit
-        </Button>
-        <Button
-          href="/tarifs"
-          variant="secondary"
-          size="lg"
-          title="Consulter la page des tarifs"
-          aria-label="Voir les tarifs"
-        >
-          Voir les tarifs
-        </Button>
-      </div>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <Button
+            href="/contact"
+            variant="primary"
+            size="lg"
+            title="Envoyer un email pour demander un devis gratuit"
+            aria-label="Demander un devis gratuit par email"
+          >
+            Demander un devis gratuit
+          </Button>
+          <Button
+            href="/tarifs"
+            variant="secondary"
+            size="lg"
+            title="Consulter la page des tarifs"
+            aria-label="Voir les tarifs"
+          >
+            Voir les tarifs
+          </Button>
+        </div>
 
-      <ul class="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-muted-foreground">
-        {hero.trust.map((item) => (
-          <li class="flex items-center gap-2">
-            <span
-              class="h-1.5 w-1.5 rounded-full bg-primary"
-              aria-hidden="true"
-            ></span>
-            {item}
-          </li>
-        ))}
-      </ul>
+        <ul class="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-muted-foreground">
+          {hero.trust.map((item) => (
+            <li class="flex items-center gap-2">
+              <span
+                class="h-1.5 w-1.5 rounded-full bg-primary"
+                aria-hidden="true"
+              ></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 

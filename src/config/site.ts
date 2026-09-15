@@ -51,6 +51,7 @@ export const site = {
     "muted-foreground": "#52525b",
     card: "#F7F7F5",
   },
+  heroImage: "/assets/images/unsplash1.webp",
   footerLinks: [
     { text: "Mentions légales", href: "/mentions-legales" },
     { text: "Politique de confidentialité", href: "/confidentialite" },
