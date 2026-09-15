@@ -46,7 +46,7 @@ export const site = {
     border: "#e5e7eb",
     // Volontairement plus foncé que background/card (#ffffff) pour rester
     // visible en tant que fond de section : #f4f4f5 était trop proche du
-    // blanc pour se distinguer.
+    // blanc pour se distinguer. #061a2b
     muted: "#e7e9ec",
     "muted-foreground": "#52525b",
     card: "#F7F7F5",
@@ -109,6 +109,12 @@ export const site = {
         "Interventions dans toute l'Occitanie",
         "Réponse sous 48h",
       ],
+    },
+    screens: {
+      tagline: "Sur tous les écrans",
+      title: "Un site pensé pour chaque écran",
+      subtitle:
+        "Près de 60 % du trafic web se fait depuis un mobile. Votre site s'adapte automatiquement au téléphone, à la tablette et à l'ordinateur, sans version dégradée.",
     },
     services: {
       tagline: "Nos formules",

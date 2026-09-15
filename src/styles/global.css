@@ -8,6 +8,101 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-card: var(--card);
+
+  /* Révélation au scroll des maquettes d'écrans (section "chaque écran").
+     Aucune `animation-duration` n'est déclarée : avec `animation-timeline:
+     view()` c'est la timeline qui pilote la progression ; sur un navigateur
+     sans support, la durée vaut 0s et `both` applique directement l'état
+     final — l'élément reste visible, jamais bloqué à `opacity: 0`. */
+  --animate-screen-left: screen-left linear both;
+  --animate-screen-center: screen-center linear both;
+  --animate-screen-right: screen-right linear both;
+}
+
+@keyframes screen-left {
+  from {
+    opacity: 0;
+    transform: translateX(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes screen-center {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes screen-right {
+  from {
+    opacity: 0;
+    transform: translateX(3rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* La timeline doit rester dans une règle SÉPARÉE de la shorthand `animation`
+   (émise par les classes `animate-screen-*`), pour deux raisons :
+   1. la shorthand réinitialise `animation-timeline` / `animation-range` ;
+   2. dans une même règle, le minifieur les refusionne en une shorthand
+      `animation: ... view()` que les navigateurs rejettent.
+   Cette règle est volontairement hors `@layer` : les déclarations non
+   "layered" l'emportent sur celles des couches Tailwind, quel que soit
+   l'ordre du fichier généré. */
+.reveal-screen {
+  animation-timeline: view();
+  animation-range: entry 10% cover 35%;
+}
+
+/* Repli pour les navigateurs sans `animation-timeline` (Firefox stable au
+   16/09/2026 : la fonctionnalité est un axe Interop 2026, toujours derrière
+   le flag `layout.css.scroll-driven-animations.enabled`, cf. bugzilla).
+   Sur ces navigateurs, la timeline ci-dessus est ignorée : l'animation garde
+   sa durée par défaut (0s) et s'applique instantanément, donc l'écran reste
+   simplement visible — sans aucune révélation, mais jamais masqué.
+
+   La classe `.js-reveal` n'est posée que par le <script> de
+   ScreensShowcase.astro, une fois confirmé via `CSS.supports()` que le
+   navigateur n'a pas la timeline ET que IntersectionObserver est
+   disponible. Sans JavaScript (ou si le script échoue avant de poser la
+   classe), cette règle ne s'applique jamais : l'écran reste dans son état
+   visible par défaut plutôt que de risquer de rester caché indéfiniment. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-screen.js-reveal {
+    animation: none;
+    opacity: 0;
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  .reveal-screen.js-reveal[data-direction="left"] {
+    transform: translateX(-3rem);
+  }
+
+  .reveal-screen.js-reveal[data-direction="center"] {
+    transform: scale(0.85);
+  }
+
+  .reveal-screen.js-reveal[data-direction="right"] {
+    transform: translateX(3rem);
+  }
+
+  .reveal-screen.js-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @layer base {

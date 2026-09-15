@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
+import ScreensShowcase from "@/components/ScreensShowcase.astro";
 import Headline from "@/components/ui/Headline.astro";
 import { site } from "@/config/site";
 import { formatPhone } from "@/utils/format";
@@ -103,9 +104,39 @@ const faqJsonLd =
     </div>
   </section>
 
+  <!-- Processus -->
+  <section
+    class="py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
+    id="section-process"
+  >
+    <Headline
+      tagline={process.tagline}
+      title={process.title}
+      subtitle={process.subtitle}
+    />
+
+    <ol class="grid gap-8 md:grid-cols-3 pt-10">
+      {process.steps.map((step, index) => (
+        <li class="flex flex-col gap-3">
+          <span
+            class="text-4xl font-extrabold text-primary/25"
+            aria-hidden="true"
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 class="text-lg font-bold text-foreground">{step.title}</h3>
+          <p class="text-muted-foreground text-sm">{step.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Multi-écrans -->
+  <ScreensShowcase />
+
   <!-- Formules -->
   <section
-    class="bg-muted xl:rounded-4xl py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
+    class="py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
     id="section-services"
   >
     <Headline
@@ -151,33 +182,6 @@ const faqJsonLd =
         </article>
       ))}
     </div>
-  </section>
-
-  <!-- Processus -->
-  <section
-    class="py-12 md:py-20 mx-auto max-w-7xl scroll-mt-[72px] px-4 sm:px-6 md:px-6"
-    id="section-process"
-  >
-    <Headline
-      tagline={process.tagline}
-      title={process.title}
-      subtitle={process.subtitle}
-    />
-
-    <ol class="grid gap-8 md:grid-cols-3 pt-10">
-      {process.steps.map((step, index) => (
-        <li class="flex flex-col gap-3">
-          <span
-            class="text-4xl font-extrabold text-primary/25"
-            aria-hidden="true"
-          >
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <h3 class="text-lg font-bold text-foreground">{step.title}</h3>
-          <p class="text-muted-foreground text-sm">{step.description}</p>
-        </li>
-      ))}
-    </ol>
   </section>
 
   <!-- Pourquoi OcciCode -->
