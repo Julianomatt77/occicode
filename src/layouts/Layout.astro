@@ -154,4 +154,44 @@ const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gta
     </main>
     <Footer />
   </body>
+  <script>
+    // Repli pour les navigateurs sans `animation-timeline: view()` (Firefox
+    // stable au 16/09/2026 : la timeline scroll-driven y est encore derrière
+    // un flag).
+    try {
+      const supportsScrollTimeline =
+        typeof CSS !== "undefined" &&
+        typeof CSS.supports === "function" &&
+        CSS.supports("animation-timeline", "view()");
+
+      const revealables = document.querySelectorAll(
+        ".reveal-screen, .reveal-section",
+      );
+
+      if (!supportsScrollTimeline && revealables.length > 0) {
+        if ("IntersectionObserver" in window) {
+          revealables.forEach((el) => el.classList.add("js-reveal"));
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                entry.target.classList.toggle(
+                  "is-visible",
+                  entry.isIntersecting,
+                );
+              }
+            },
+            { threshold: 0.2 },
+          );
+
+          revealables.forEach((el) => observer.observe(el));
+        }
+      }
+    } catch (error) {
+      console.error("Révélation de secours indisponible :", error);
+      document
+        .querySelectorAll(".reveal-screen.js-reveal, .reveal-section.js-reveal")
+        .forEach((el) => el.classList.remove("js-reveal"));
+    }
+  </script>
 </html>

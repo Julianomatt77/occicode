@@ -17,6 +17,8 @@
   --animate-screen-left: screen-left linear both;
   --animate-screen-center: screen-center linear both;
   --animate-screen-right: screen-right linear both;
+
+  --animate-section-fade: section-fade linear both;
 }
 
 @keyframes screen-left {
@@ -60,24 +62,33 @@
    Cette règle est volontairement hors `@layer` : les déclarations non
    "layered" l'emportent sur celles des couches Tailwind, quel que soit
    l'ordre du fichier généré. */
-.reveal-screen {
+.reveal-section {
   animation-timeline: view();
-  animation-range: entry 10% cover 35%;
+  animation-range: cover 0% cover 100%;
+}
+
+@keyframes section-fade {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  15% {
+    opacity: 1;
+    transform: none;
+  }
+  85% {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+  }
 }
 
 /* Repli pour les navigateurs sans `animation-timeline` (Firefox stable au
    16/09/2026 : la fonctionnalité est un axe Interop 2026, toujours derrière
-   le flag `layout.css.scroll-driven-animations.enabled`, cf. bugzilla).
-   Sur ces navigateurs, la timeline ci-dessus est ignorée : l'animation garde
-   sa durée par défaut (0s) et s'applique instantanément, donc l'écran reste
-   simplement visible — sans aucune révélation, mais jamais masqué.
-
-   La classe `.js-reveal` n'est posée que par le <script> de
-   ScreensShowcase.astro, une fois confirmé via `CSS.supports()` que le
-   navigateur n'a pas la timeline ET que IntersectionObserver est
-   disponible. Sans JavaScript (ou si le script échoue avant de poser la
-   classe), cette règle ne s'applique jamais : l'écran reste dans son état
-   visible par défaut plutôt que de risquer de rester caché indéfiniment. */
+   le flag `layout.css.scroll-driven-animations.enabled`, cf. bugzilla). */
 @media (prefers-reduced-motion: no-preference) {
   .reveal-screen.js-reveal {
     animation: none;
@@ -100,6 +111,20 @@
   }
 
   .reveal-screen.js-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-section.js-reveal {
+    animation: none;
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  .reveal-section.js-reveal.is-visible {
     opacity: 1;
     transform: none;
   }
