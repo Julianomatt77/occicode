@@ -1,5 +1,5 @@
 /**
- * Formate un numéro de téléphone français au format "06 17 18 23 60".
+ * Formate un numéro de téléphone français au format "06 23 45 67 89".
  * Accepte les formats "+336..." ou "06...".
  * En cas de format inattendu (longueur incorrecte, valeur vide), retombe
  * sur la valeur brute pour ne jamais casser l'affichage.

@@ -12,7 +12,7 @@ export const site = {
   locale: "fr_FR",
   ogImage: "https://www.occicode.fr/assets/images/logo_avec_fond_1200x630.png",
   ogImageAlt: "Logo OcciCode — création de sites internet en Occitanie",
-  telephone: "+33617182360",
+  telephone: "+33781373341",
   city: "Péret",
   postalCode: "34800",
   region: "Occitanie",
