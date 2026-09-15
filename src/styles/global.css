@@ -9,6 +9,10 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-card: var(--card);
 
+  --font-sans:
+    "Nunito", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
   /* Révélation au scroll des maquettes d'écrans (section "chaque écran").
      Aucune `animation-duration` n'est déclarée : avec `animation-timeline:
      view()` c'est la timeline qui pilote la progression ; sur un navigateur
@@ -131,9 +135,14 @@
 }
 
 @layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
+    font-family: var(--font-sans);
   }
 
   :focus-visible {
