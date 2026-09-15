@@ -118,10 +118,10 @@
   .reveal-section.js-reveal {
     animation: none;
     opacity: 0;
-    transform: translateY(1.5rem);
+    transform: translateY(3rem);
     transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out;
+      opacity 0.9s ease-out,
+      transform 0.9s ease-out;
   }
 
   .reveal-section.js-reveal.is-visible {
