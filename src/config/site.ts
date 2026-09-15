@@ -260,7 +260,7 @@ export const site = {
       price: "890 €",
       features: [
         "Site 1 à 3 pages",
-        "Design responsive",
+        "Adapté aux mobiles",
         "Formulaire de contact",
         "Optimisation SEO",
         "Nom de domaine .fr offert pendant 1 an",
@@ -314,7 +314,7 @@ export const site = {
       "Pas de mauvaise surprise. Chaque site bénéficie de ces avantages.",
     features: [
       {
-        title: "Design responsive",
+        title: "SIte adapté tous écrans",
         description:
           "Votre site s'adapte parfaitement aux mobiles, tablettes et ordinateurs.",
         icon: "mdi:smartphone",
