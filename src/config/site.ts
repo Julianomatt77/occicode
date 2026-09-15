@@ -52,6 +52,7 @@ export const site = {
     card: "#F7F7F5",
   },
   heroImage: "/assets/images/unsplash1.webp",
+  interventionAreaImage: "/assets/images/map.webp",
   footerLinks: [
     { text: "Mentions légales", href: "/mentions-legales" },
     { text: "Politique de confidentialité", href: "/confidentialite" },
