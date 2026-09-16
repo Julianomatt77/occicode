@@ -4,9 +4,6 @@ import Button from "@/components/ui/Button.astro";
 import { site } from "@/config/site";
 
 const navLinks = site.navLinks;
-// const quoteHref = `mailto:${site.email}?subject=${encodeURIComponent(
-//   "Demande de devis - site internet",
-// )}`;
 const quoteHref = `/contact`;
 ---
 
@@ -19,7 +16,7 @@ const quoteHref = `/contact`;
       aria-label="Retour à l'accueil OcciCode"
     >
       <img
-        src="/assets/images/logo_36x36.webp"
+        src={site.logo.logo_36x36}
         alt="Logo OcciCode"
         width="36"
         height="36"

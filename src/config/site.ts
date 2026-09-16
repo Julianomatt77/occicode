@@ -2,11 +2,11 @@ export const site = {
   name: "OcciCode",
   title: "OcciCode - Création de site internet en Occitanie",
   description:
-    "Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   ogDescription:
-    "Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   twitterDescription:
-    "Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   author: "Julien MARTIN",
   canonical: "https://www.occicode.fr",
   locale: "fr_FR",
@@ -33,35 +33,26 @@ export const site = {
     { text: "FAQ", href: "/#section-faq" },
     { text: "Contact", href: "/contact" },
   ],
-  // Source unique des couleurs du thème (clair uniquement, pas de mode sombre
-  // pour l'instant). Ces valeurs sont injectées comme variables CSS sur `:root`
-  // par Layout.astro (`<style define:vars={site.siteColors}>`) : le thème
-  // Tailwind (`@theme` dans global.css) les consomme via `var(--nom)`.
-  // Les clés doivent correspondre aux `--color-*` déclarés dans `@theme`.
-
-  siteColors: {
+  colors: {
     background: "#F7F7F5",
     foreground: "#0a0a0a",
     primary: "#0254d8",
     border: "#e5e7eb",
-    // Volontairement plus foncé que background/card (#ffffff) pour rester
-    // visible en tant que fond de section : #f4f4f5 était trop proche du
-    // blanc pour se distinguer. #061a2b
     muted: "#e7e9ec",
     "muted-foreground": "#52525b",
     card: "#F7F7F5",
   },
   heroImage: "/assets/images/unsplash1.webp",
   interventionAreaImage: "/assets/images/map.webp",
+  logo: {
+    logo_32x32: "/assets/images/logo_32x32.webp",
+    logo_36x36: "/assets/images/logo_36x36.webp",
+    logo_80x80: "/assets/images/logo_80x80.webp",
+  },
   footerLinks: [
     { text: "Mentions légales", href: "/mentions-legales" },
     { text: "Politique de confidentialité", href: "/confidentialite" },
   ],
-  // Source unique des pages à exclure de l'indexation. Utilisé à la fois par
-  // chaque page (prop `noindex` passée au Layout) et par le filtre du
-  // sitemap dans astro.config.mjs : une seule liste à tenir à jour évite
-  // qu'une page marquée noindex se retrouve quand même listée dans le
-  // sitemap (contradictoire pour les moteurs de recherche).
   noindexPaths: ["/mentions-legales", "/confidentialite"],
   tarifs: {
     tagline: "Tarifs",
@@ -84,9 +75,6 @@ export const site = {
     // https://formspree.io (Settings > votre formulaire > "Endpoint").
     formAction: "https://formspree.io/f/maeyrygj",
   },
-  // Informations légales. Les champs marqués "[À compléter]" doivent être
-  // renseignés avec les données réelles de l'entreprise avant mise en ligne
-  // (aucune donnée légale n'est inventée).
   legal: {
     ownerName: "Julien Martin",
     legalForm: "Entrepreneur individuel",
@@ -96,7 +84,7 @@ export const site = {
     hosting: {
       name: "Hostinger",
       company: "Hostinger International Ltd.",
-      website: "https://www.hostinger.fr",
+      website: "https://www.hostinger.com",
     },
   },
   home: {
