@@ -3,6 +3,7 @@ interface Props {
   variant?: "primary" | "secondary" | "tertiary";
   size?: "sm" | "md" | "lg";
   href?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
   type?: "button" | "submit" | "reset";
   class?: string;
   "aria-label"?: string;
@@ -13,6 +14,7 @@ const {
   variant = "primary",
   size = "md",
   href,
+  target,
   type = "button",
   class: className = "",
   "aria-label": ariaLabel,
@@ -46,6 +48,7 @@ const Tag = href ? "a" : "button";
 <Tag
   type={href ? undefined : type}
   href={href}
+  target={target}
   class={classes}
   aria-label={ariaLabel}
   {...rest}

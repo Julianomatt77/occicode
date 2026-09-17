@@ -29,6 +29,7 @@ export const site = {
   },
   navLinks: [
     { text: "Tarifs", href: "/tarifs" },
+    { text: "Réalisations", href: "/realisations" },
     { text: "À propos", href: "/a-propos" },
     { text: "FAQ", href: "/#section-faq" },
     { text: "Contact", href: "/contact" },
@@ -64,6 +65,35 @@ export const site = {
     title: "Un interlocuteur unique, une approche directe",
     subtitle:
       "OcciCode, c'est Julien Martin : un développeur basé en Occitanie qui conçoit des sites simples et durables pour les artisans et indépendants de la région.",
+  },
+  realisations: {
+    tagline: "Nos réalisation",
+    title: "Un design personnalisé et sur mesure",
+    subtitle:
+      "Découvrez des exemples de sites vitrines afin de commencer à vous projeter.",
+    sections: [
+      {
+        title: "L'Atelier du Bois",
+        text: "Site vitrine d'un menuisier",
+        href: "https://demo1.occicode.fr",
+        image: "/assets/images/demo1.webp",
+        imageAlt: "demo1 - Atelier du bois",
+      },
+      {
+        title: "L'Atelier du Bois",
+        text: "Site vitrine d'un menuisier, avec une approche design différente",
+        href: "https://demo2.occicode.fr",
+        image: "/assets/images/demo2.webp",
+        imageAlt: "demo2 - Atelier du bois",
+      },
+      {
+        title: "Le Mazet",
+        text: "Site vitrine d'un restaurant.",
+        href: "https://demo3.occicode.fr",
+        image: "/assets/images/demo3.webp",
+        imageAlt: "demo3 - Le Mazet",
+      },
+    ],
   },
   contact: {
     tagline: "Contact",
