@@ -1,17 +1,17 @@
 export const site = {
   name: "OcciCode",
-  title: "OcciCode - Création de site internet en Occitanie",
+  title: "OcciCode - Création de site internet situé en Occitanie",
   description:
-    "OcciCode - Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME situé dans l'Hérault, Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   ogDescription:
-    "OcciCode - Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME situé dans l'Hérault, Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   twitterDescription:
-    "OcciCode - Création de sites vitrine pour artisans et PME dans l'Hérault et toute l'Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME situé dans l'Hérault, Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   author: "Julien MARTIN",
   canonical: "https://www.occicode.fr",
   locale: "fr_FR",
   ogImage: "https://www.occicode.fr/assets/images/logo_avec_fond_1200x630.png",
-  ogImageAlt: "Logo OcciCode — création de sites internet en Occitanie",
+  ogImageAlt: "Logo OcciCode — création de sites internet situé Occitanie",
   telephone: "+33781373341",
   city: "Péret",
   postalCode: "34800",
@@ -64,7 +64,7 @@ export const site = {
     tagline: "À propos",
     title: "Un interlocuteur unique, une approche directe",
     subtitle:
-      "OcciCode, c'est Julien Martin : un développeur basé en Occitanie qui conçoit des sites simples et durables pour les artisans et indépendants de la région.",
+      "OcciCode, c'est Julien Martin : un développeur basé en Occitanie qui conçoit des sites simples et durables pour les artisans et indépendants.",
   },
   realisations: {
     tagline: "Nos réalisation",
@@ -80,8 +80,8 @@ export const site = {
         imageAlt: "demo1 - Atelier du bois",
       },
       {
-        title: "L'Atelier du Bois",
-        text: "Site vitrine d'un menuisier, avec une approche design différente",
+        title: "Les Jardins du Biterrois",
+        text: "Site vitrine d'un paysagiste avec un design moderne",
         href: "https://demo2.occicode.fr",
         image: "/assets/images/demo2.webp",
         imageAlt: "demo2 - Atelier du bois",
@@ -100,9 +100,6 @@ export const site = {
     title: "Discutons de votre projet",
     subtitle:
       "Décrivez-moi votre activité et vos besoins : je vous réponds sous 48h.",
-    // Lien "action" du formulaire (Formspree). Remplacer "VOTRE_ID" par
-    // l'identifiant réel obtenu après création du formulaire sur
-    // https://formspree.io (Settings > votre formulaire > "Endpoint").
     formAction: "https://formspree.io/f/maeyrygj",
   },
   legal: {
@@ -122,7 +119,7 @@ export const site = {
       tagline: "Sites internet pour artisans & TPE",
       title: "Un site professionnel, pensé pour votre activité",
       subtitle:
-        "OcciCode conçoit des sites vitrine sobres et efficaces pour les artisans, commerçants et TPE de l'Hérault et de toute l'Occitanie.",
+        "OcciCode conçoit des sites vitrine sobres et efficaces pour les artisans, commerçants et TPE.",
       trust: [
         "Basé à Péret (34)",
         "Interventions dans toute l'Occitanie",
@@ -383,7 +380,7 @@ export const site = {
       },
       {
         question: "Combien coûte la maintenance après la livraison ?",
-        answer: "Nous proposons un forfait maintenance à partir de 19 €/mois.",
+        answer: "Nous proposons un forfait maintenance à partir de 9€/mois.",
       },
     ],
   },

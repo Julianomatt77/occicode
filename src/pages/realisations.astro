@@ -26,10 +26,11 @@ const metadata = {
   </section>
 
   {page.sections.map((section, index) => (
-    <section class="mx-auto reveal-section scroll-mt-[73px] my-12 md:my-0 max-w-6xl">
+    <section class="reveal-section scroll-mt-[73px] my-12 md:my-0 md:mx-12">
       <article
         class:list={[
-          "bg-muted mx-auto grid grid-cols-1 items-center gap-16 md:grid-cols-12 my-4 rounded-4xl overflow-hidden",
+          "bg-muted grid w-full max-w-6xl grid-cols-1 items-center gap-16 md:grid-cols-12 my-4 rounded-4xl overflow-hidden",
+          index % 2 === 0 ? "md:mr-auto" : "md:ml-auto",
           { "md:[&>*:first-child]:order-2": index % 2 === 1 },
         ]}
       >
