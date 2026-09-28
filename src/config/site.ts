@@ -74,11 +74,11 @@ export const site = {
       "Découvrez des exemples de sites vitrines afin de commencer à vous projeter.",
     sections: [
       {
-        title: "L'Atelier du Bois",
-        text: "Site vitrine d'un menuisier",
-        href: "https://demo1.occicode.fr",
-        image: "/assets/images/demo1.webp",
-        imageAlt: "demo1 - Atelier du bois",
+        title: "Le Mazet",
+        text: "Site vitrine d'un restaurant.",
+        href: "https://demo3.occicode.fr",
+        image: "/assets/images/demo3.webp",
+        imageAlt: "demo3 - Le Mazet",
       },
       {
         title: "Les Jardins du Biterrois",
@@ -88,11 +88,11 @@ export const site = {
         imageAlt: "demo2 - Les Jardins du Biterrois",
       },
       {
-        title: "Le Mazet",
-        text: "Site vitrine d'un restaurant.",
-        href: "https://demo3.occicode.fr",
-        image: "/assets/images/demo3.webp",
-        imageAlt: "demo3 - Le Mazet",
+        title: "L'Atelier du Bois",
+        text: "Site vitrine d'un menuisier",
+        href: "https://demo1.occicode.fr",
+        image: "/assets/images/demo1.webp",
+        imageAlt: "demo1 - Atelier du bois",
       },
     ],
   },
