@@ -4,7 +4,7 @@ import { site } from "../config/site";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
-import JsonLd from "../components/JsonLd.astro";
+import { buildJsonLd } from "../utils/jsonld";
 
 interface Props {
   title?: string;
@@ -48,6 +48,17 @@ const canonical = canonicalProp ?? `${site.canonical}${currentPath}`;
 const showAnalytics = import.meta.env.PROD;
 
 const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "${site.gtagId}");`;
+
+const jsonLd = buildJsonLd({
+  title,
+  description,
+  canonical: String(canonical),
+  pageType,
+  breadcrumbs,
+  faq,
+  services,
+  extra,
+});
 ---
 
 <!doctype html>
@@ -98,16 +109,7 @@ const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gta
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content={site.colors.background} />
     <meta name="generator" content={Astro.generator} />
-    <JsonLd
-      title={title}
-      description={description}
-      canonical={String(canonical)}
-      pageType={pageType}
-      breadcrumbs={breadcrumbs}
-      faq={faq}
-      services={services}
-      extra={extra}
-    />
+    <script type="application/ld+json" is:inline set:html={jsonLd}></script>
     {showAnalytics && (
       <>
         <script
