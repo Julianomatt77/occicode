@@ -9,6 +9,8 @@ const metadata = {
   title: "OcciCode - Contact",
   description:
     "Contactez OcciCode pour un devis gratuit : décrivez votre projet de site internet, réponse sous 48h.",
+  pageType: "ContactPage" as const,
+  breadcrumbs: [{ name: "Contact", path: "/contact" }],
 };
 
 const phoneDisplay = formatPhone(site.telephone);

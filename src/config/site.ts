@@ -2,14 +2,15 @@ export const site = {
   name: "OcciCode",
   title: "OcciCode - Création de site internet situé en Occitanie",
   description:
-    "OcciCode - Création de sites vitrine pour artisans et PME situé dans l'Hérault, Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   ogDescription:
-    "OcciCode - Création de sites vitrine pour artisans et PME situé dans l'Hérault, Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   twitterDescription:
-    "OcciCode - Création de sites vitrine pour artisans et PME situé dans l'Hérault, Occitanie. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Création de sites vitrine pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   author: "Julien MARTIN",
   canonical: "https://www.occicode.fr",
   locale: "fr_FR",
+  logo_schema: "https://www.occicode.fr/assets/images/logo_675x675.png",
   ogImage: "https://www.occicode.fr/assets/images/logo_avec_fond_1200x630.png",
   ogImageAlt: "Logo OcciCode — création de sites internet situé Occitanie",
   telephone: "+33781373341",
@@ -67,7 +68,7 @@ export const site = {
       "OcciCode, c'est Julien Martin : un développeur basé en Occitanie qui conçoit des sites simples et durables pour les artisans et indépendants.",
   },
   realisations: {
-    tagline: "Nos réalisation",
+    tagline: "Nos réalisations",
     title: "Un design personnalisé et sur mesure",
     subtitle:
       "Découvrez des exemples de sites vitrines afin de commencer à vous projeter.",
@@ -84,7 +85,7 @@ export const site = {
         text: "Site vitrine d'un paysagiste avec un design moderne",
         href: "https://demo2.occicode.fr",
         image: "/assets/images/demo2.webp",
-        imageAlt: "demo2 - Atelier du bois",
+        imageAlt: "demo2 - Les Jardins du Biterrois",
       },
       {
         title: "Le Mazet",
@@ -122,7 +123,7 @@ export const site = {
         "OcciCode conçoit des sites vitrine sobres et efficaces pour les artisans, commerçants et TPE.",
       trust: [
         "Basé à Péret (34)",
-        "Interventions dans toute l'Occitanie",
+        "En Occitanie et à distance partout en France",
         "Réponse sous 48h",
       ],
     },
@@ -169,7 +170,7 @@ export const site = {
         {
           title: "Basé en Occitanie",
           description:
-            "Basé à Péret, dans l'Hérault, j'échange à distance ou je me déplace selon vos besoins.",
+            "Basé à Péret, dans l'Hérault, je me déplace partout en Occitanie et je travaille à distance avec des clients dans toute la France.",
           icon: "mdi:map-marker-outline",
         },
         {
@@ -197,7 +198,7 @@ export const site = {
       title:
         "Des sites conçus pour les entreprises de l'Hérault et d'Occitanie",
       subtitle:
-        "Que vous soyez artisan à Béziers, commerçant à Pézenas ou indépendant à Montpellier, votre site est pensé pour être visible dans les recherches locales de votre secteur.",
+        "Que vous soyez artisan à Béziers, commerçant à Pézenas ou indépendant à Montpellier, je me déplace pour vous rencontrer. Hors Occitanie, nous travaillons à distance, par visio et par téléphone.",
       cities: [
         "Péret",
         "Béziers",
@@ -223,7 +224,7 @@ export const site = {
         {
           question: "Travaillez-vous avec tous les types d'activités ?",
           answer:
-            "Je travaille surtout avec des artisans, commerçants, professions libérales et indépendants d'Occitanie. Les formules Site Vitrine et Site Pro couvrent la plupart des besoins courants ; pour un besoin plus spécifique (vente en ligne, prise de rendez-vous...), la formule Sur Mesure permet d'adapter le site. Si votre projet sort de mon champ de compétence, je vous le dirai dès l'échange initial.",
+            "Je travaille surtout avec des artisans, commerçants, professions libérales et indépendants, en face à face en Occitanie et à distance partout en France.. Les formules Site Vitrine et Site Pro couvrent la plupart des besoins courants ; pour un besoin plus spécifique, la formule Sur Mesure permet d'adapter le site. Si votre projet sort de mon champ de compétence, je vous le dirai dès l'échange initial.",
         },
         {
           question:
@@ -305,7 +306,7 @@ export const site = {
     {
       id: "site-devis",
       name: "Sur Mesure",
-      slug: "Sur-mesure",
+      slug: "sur-mesure",
       description:
         "Vous avez besoin de fonctionnalités spécifiques ? Nous créons la solution adaptée.",
       icon: "mdi:offer",
@@ -329,7 +330,7 @@ export const site = {
       "Pas de mauvaise surprise. Chaque site bénéficie de ces avantages.",
     features: [
       {
-        title: "SIte adapté tous écrans",
+        title: "Site adapté tous écrans",
         description:
           "Votre site s'adapte parfaitement aux mobiles, tablettes et ordinateurs.",
         icon: "mdi:smartphone",
@@ -366,12 +367,12 @@ export const site = {
       {
         question: "Y a-t-il des frais cachés ?",
         answer:
-          "Non. Le prix affiché est le prix total pour la création du site. L'hébergement et le nom de domaine sont offerts la première année. Ensuite, comptez environ 150 €/an pour le renouvellement (hébergement + domaine).",
+          "Non. Le prix affiché est le prix total pour la création du site. Le nom de domaine est offert la première année. Ensuite, comptez environ 15 €/an pour le renouvellement.",
       },
       {
         question: "Puis-je payer en plusieurs fois ?",
         answer:
-          "Oui, nous proposons un paiement en 2 ou 3 fois sans frais. 50 % à la commande, 50 % à la mise en ligne.",
+          "Oui, nous proposons un paiement en 2 fois sans frais. 50 % à la commande, 50 % à la mise en ligne.",
       },
       {
         question: "Qu'est-ce qui n'est pas inclus dans le prix ?",

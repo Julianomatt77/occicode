@@ -4,6 +4,7 @@ import { site } from "../config/site";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import JsonLd from "../components/JsonLd.astro";
 
 interface Props {
   title?: string;
@@ -11,6 +12,16 @@ interface Props {
   canonical?: string | URL | null;
   noindex?: boolean;
   nofollow?: boolean;
+  pageType?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+  breadcrumbs?: { name: string; path: string }[];
+  faq?: { question: string; answer: string }[];
+  services?: {
+    name: string;
+    description: string;
+    serviceType?: string;
+    price?: number;
+  }[];
+  extra?: Record<string, unknown>[];
 }
 
 const {
@@ -19,6 +30,11 @@ const {
   canonical: canonicalProp = null,
   noindex = false,
   nofollow = false,
+  pageType,
+  breadcrumbs,
+  faq,
+  services,
+  extra,
 } = Astro.props;
 
 // Canonical par défaut = origine officielle du site + chemin de la page
@@ -28,39 +44,6 @@ const {
 const currentPath =
   Astro.url.pathname === "/" ? "" : Astro.url.pathname.replace(/\/+$/, "");
 const canonical = canonicalProp ?? `${site.canonical}${currentPath}`;
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: site.name,
-  description: site.ogDescription,
-  url: site.canonical,
-  image: site.ogImage,
-  telephone: site.telephone,
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: site.city,
-    postalCode: site.postalCode,
-    addressRegion: site.region,
-    addressCountry: site.country,
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: site.coordinates.lat,
-    longitude: site.coordinates.lon,
-  },
-  areaServed: {
-    "@type": "State",
-    name: "Occitanie",
-  },
-  priceRange: "€",
-  founder: {
-    "@type": "Person",
-    name: site.author,
-  },
-  sameAs: Object.values(site.socials),
-};
 
 const showAnalytics = import.meta.env.PROD;
 
@@ -108,16 +91,6 @@ const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gta
         link: [
           { rel: "icon", href: "/favicon.ico" },
           { rel: "apple-touch-icon", href: "/favicon.ico" },
-          { rel: "preconnect", href: "https://fonts.googleapis.com" },
-          {
-            rel: "preconnect",
-            href: "https://fonts.gstatic.com",
-            crossorigin: "",
-          },
-          {
-            rel: "stylesheet",
-            href: "https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap",
-          },
         ],
         meta: [{ name: "author", content: site.author }],
       }}
@@ -125,11 +98,16 @@ const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gta
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content={site.colors.background} />
     <meta name="generator" content={Astro.generator} />
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify(jsonLd)}
-    ></script>
+    <JsonLd
+      title={title}
+      description={description}
+      canonical={String(canonical)}
+      pageType={pageType}
+      breadcrumbs={breadcrumbs}
+      faq={faq}
+      services={services}
+      extra={extra}
+    />
     {showAnalytics && (
       <>
         <script
@@ -153,45 +131,47 @@ const gtagInlineScript = `window.dataLayer = window.dataLayer || [];function gta
       <slot />
     </main>
     <Footer />
-  </body>
-  <script>
-    // Repli pour les navigateurs sans `animation-timeline: view()` (Firefox
-    // stable au 16/09/2026 : la timeline scroll-driven y est encore derrière
-    // un flag).
-    try {
-      const supportsScrollTimeline =
-        typeof CSS !== "undefined" &&
-        typeof CSS.supports === "function" &&
-        CSS.supports("animation-timeline", "view()");
+    <script>
+      // Repli pour les navigateurs sans `animation-timeline: view()` (Firefox
+      // stable au 16/09/2026 : la timeline scroll-driven y est encore derrière
+      // un flag).
+      try {
+        const supportsScrollTimeline =
+          typeof CSS !== "undefined" &&
+          typeof CSS.supports === "function" &&
+          CSS.supports("animation-timeline", "view()");
 
-      const revealables = document.querySelectorAll(
-        ".reveal-screen, .reveal-section",
-      );
+        const revealables = document.querySelectorAll(
+          ".reveal-screen, .reveal-section",
+        );
 
-      if (!supportsScrollTimeline && revealables.length > 0) {
-        if ("IntersectionObserver" in window) {
-          revealables.forEach((el) => el.classList.add("js-reveal"));
+        if (!supportsScrollTimeline && revealables.length > 0) {
+          if ("IntersectionObserver" in window) {
+            revealables.forEach((el) => el.classList.add("js-reveal"));
 
-          const observer = new IntersectionObserver(
-            (entries) => {
-              for (const entry of entries) {
-                entry.target.classList.toggle(
-                  "is-visible",
-                  entry.isIntersecting,
-                );
-              }
-            },
-            { threshold: 0.2 },
-          );
+            const observer = new IntersectionObserver(
+              (entries) => {
+                for (const entry of entries) {
+                  entry.target.classList.toggle(
+                    "is-visible",
+                    entry.isIntersecting,
+                  );
+                }
+              },
+              { threshold: 0.2 },
+            );
 
-          revealables.forEach((el) => observer.observe(el));
+            revealables.forEach((el) => observer.observe(el));
+          }
         }
+      } catch (error) {
+        console.error("Révélation de secours indisponible :", error);
+        document
+          .querySelectorAll(
+            ".reveal-screen.js-reveal, .reveal-section.js-reveal",
+          )
+          .forEach((el) => el.classList.remove("js-reveal"));
       }
-    } catch (error) {
-      console.error("Révélation de secours indisponible :", error);
-      document
-        .querySelectorAll(".reveal-screen.js-reveal, .reveal-section.js-reveal")
-        .forEach((el) => el.classList.remove("js-reveal"));
-    }
-  </script>
+    </script>
+  </body>
 </html>

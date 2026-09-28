@@ -7,7 +7,9 @@ import { site } from "@/config/site";
 const metadata = {
   title: "OcciCode - À propos",
   description:
-    "Julien Martin, développeur indépendant basé à Péret (Hérault), conçoit des sites internet sobres pour les artisans et indépendants d'Occitanie.",
+    "Julien Martin, développeur indépendant basé à Péret (Hérault), conçoit des sites internet sobres pour les artisans et indépendants.",
+  pageType: "AboutPage" as const,
+  breadcrumbs: [{ name: "À propos", path: "/a-propos" }],
 };
 
 // Carte OpenStreetMap centrée sur Péret (34800). En cas de coordonnées
@@ -47,8 +49,8 @@ const mapLinkHref = hasValidCoordinates
     <div class="mt-10 space-y-6 text-muted-foreground">
       <p>
         Je m'appelle Julien Martin. Je conçois et développe des sites internet
-        pour les artisans, commerçants et indépendants d'Occitanie, depuis
-        Péret, dans l'Hérault.
+        pour les artisans, commerçants et indépendants, depuis Péret, dans
+        l'Hérault.
       </p>
       <p>
         Mon objectif est simple : vous donner un site clair, rapide et facile à
@@ -63,8 +65,8 @@ const mapLinkHref = hasValidCoordinates
         toujours à quelle étape en est votre projet.
       </p>
       <p>
-        Je me déplace dans l'Hérault et échange à distance avec des clients
-        partout en Occitanie, selon ce qui vous convient le mieux.
+        Je me déplace partout en Occitanie et je travaille à distance avec des
+        clients dans toute la France, selon ce qui vous convient le mieux.
       </p>
     </div>
 

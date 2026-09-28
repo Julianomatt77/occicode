@@ -13,3 +13,9 @@ export function formatPhone(raw: string): string {
     return raw;
   }
 }
+
+/** "1990 €" -> 1990 ; "Sur devis" -> undefined */
+export function toNumber(price: string): number | undefined {
+  const value = Number(price.replace(/[^\d]/g, ""));
+  return value > 0 ? value : undefined;
+}

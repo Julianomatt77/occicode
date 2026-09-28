@@ -5,7 +5,7 @@
   "description": "Astro starter used digital agency.",
   "license": "MIT",
   "author": "Julien MARTIN <contact@occicode.fr>",
-  "homepage": "https://occicode.fr",
+  "homepage": "https://www.occicode.fr",
   "engines": {
     "node": ">=22.12.0"
   },

@@ -7,6 +7,26 @@ import Button from "@/components/ui/Button.astro";
 const page = site.realisations;
 const metadata = {
   title: "OcciCode - Réalisations",
+  description:
+    "Démos de sites vitrine réalisés par OcciCode pour des artisans et indépendants d'Occitanie.",
+  pageType: "CollectionPage" as const,
+  breadcrumbs: [{ name: "Réalisations", path: "/realisations" }],
+  extra: [
+    {
+      "@type": "ItemList",
+      itemListElement: page.sections.map((section, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "CreativeWork",
+          name: section.title,
+          description: section.text,
+          url: section.href,
+          image: section.image,
+        },
+      })),
+    },
+  ],
 };
 ---
 
