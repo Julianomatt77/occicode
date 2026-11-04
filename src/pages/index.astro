@@ -10,6 +10,28 @@ const { hero, services, process, whyUs, areas, faq, cta } = site.home;
 const packages = site.services;
 const phoneDisplay = formatPhone(site.telephone);
 
+// Three contact paths, given equal weight in the hero
+const contactPaths = [
+  {
+    label: "Demander un devis",
+    href: "/contact",
+    kind: "button",
+    variant: "primary" as const,
+  },
+  {
+    label: site.telephone,
+    href: `tel:${site.telephone}`,
+    kind: "tel",
+    variant: "secondary" as const,
+  },
+  {
+    label: "contact@occicode.fr",
+    href: `mailto:${site.email}`,
+    kind: "email",
+    variant: "secondary" as const,
+  },
+];
+
 const metadata = {
   title: "OcciCode - Création de site internet",
   faq: faq.items.map(({ question, answer }) => ({ question, answer })),
@@ -70,6 +92,59 @@ const metadata = {
               </li>
             ))}
           </ul>
+          {/* Three contact paths, equal weight */}
+          <div class="mt-4 flex flex-wrap gap-3">
+            {contactPaths.map((cp) => {
+              if (cp.kind === "button") {
+                return (
+                  <Button
+                    href={cp.href}
+                    variant={cp.variant}
+                    size="md"
+                    title={cp.label}
+                    aria-label={cp.label}
+                  >
+                    {cp.label}
+                  </Button>
+                );
+              }
+              if (cp.kind === "tel") {
+                return (
+                  <a
+                    href={`tel:${site.telephone}`}
+                    class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                    title={`Appeler OcciCode au ${phoneDisplay}`}
+                    aria-label={`Appeler OcciCode au ${phoneDisplay}`}
+                  >
+                    <Icon
+                      name="mdi:phone-outline"
+                      class="h-5 w-5 shrink-0 text-primary"
+                      aria-hidden="true"
+                    />
+                    {cp.label}
+                  </a>
+                );
+              }
+              if (cp.kind === "email") {
+                return (
+                  <a
+                    href={`mailto:${site.email}`}
+                    class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                    title={`Envoyer un email à ${site.email}`}
+                    aria-label={`Envoyer un email à ${site.email}`}
+                  >
+                    <Icon
+                      name="mdi:email-outline"
+                      class="h-5 w-5 shrink-0 text-primary"
+                      aria-hidden="true"
+                    />
+                    {cp.label}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </div>
         </div>
 
         <aside

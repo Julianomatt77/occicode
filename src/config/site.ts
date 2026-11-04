@@ -122,7 +122,7 @@ export const site = {
       tagline: "Sites internet pour artisans & TPE",
       title: "Un site professionnel, pensé pour votre activité",
       subtitle:
-        "Julien Martin, développeur à Péret, conçoit et livre lui-même des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
+        "Julien Martin, développeur à Péret, conçoit et livre des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
       trust: [
         "Basé à Péret (34)",
         "En Occitanie et à distance partout en France",

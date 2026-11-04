@@ -21,8 +21,14 @@ const {
   ...rest
 } = Astro.props;
 
+/* Anneau de focus visible : 3 px pour rester perceptible sur fond clair comme sur le panneau sombre.
+   Doit gagner sur les utilitaires Tailwind (hors @layer). */
+const focusVisible =
+  "focus-visible:outline-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary";
+
 const baseStyles =
-  "inline-flex items-center justify-center font-bold transition-colors motion-reduce:transition-none disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed rounded-xl";
+  "inline-flex items-center justify-center font-bold transition-colors motion-reduce:transition-none disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed rounded-xl " +
+  focusVisible;
 
 const variants = {
   primary:
