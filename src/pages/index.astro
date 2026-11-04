@@ -2,8 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Layout from "@/layouts/Layout.astro";
 import Button from "@/components/ui/Button.astro";
-import ScreensShowcase from "@/components/ScreensShowcase.astro";
-import Headline from "@/components/ui/Headline.astro";
+import DemoShowcase from "@/components/DemoShowcase.astro";
 import { site } from "@/config/site";
 import { formatPhone, toNumber } from "@/utils/format";
 
@@ -25,132 +24,140 @@ const metadata = {
 <Layout {...metadata}>
   <!-- Hero -->
   <section
-    class="relative isolate scroll-mt-[72px] bg-cover bg-center bg-no-repeat mb-4"
-    style={`background-image: url('${site.heroImage}');`}
     id="section-hero"
+    class="relative isolate mb-4 scroll-mt-[72px] overflow-hidden bg-muted"
   >
+    <img
+      src={site.heroImage}
+      alt=""
+      width="1919"
+      height="1279"
+      fetchpriority="high"
+      decoding="async"
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+    />
+    <!-- Voile mobile et tablette : le texte couvre toute la largeur, donc la
+         photo reste très diluée pour conserver 4,5:1. -->
     <div
-      class="absolute inset-0 -z-10 bg-linear-to-r from-background via-background/80 to-background/40"
+      class="absolute inset-0 -z-10 bg-background/88 lg:hidden"
+      aria-hidden="true"
+    ></div>
+    <!-- Voile desktop : opaque sous le texte à gauche, dégradé vers la photo
+         à droite. -->
+    <div
+      class="absolute inset-0 -z-10 hidden bg-linear-to-r from-background from-0% via-background/95 via-55% to-background/25 lg:block"
       aria-hidden="true"
     ></div>
 
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-6 py-12 md:py-24 reveal-section animate-section-fade">
-      <div class="flex flex-col items-start gap-6 max-w-3xl">
-        <div class="flex items-center gap-4">
-          <img
-            src={site.logo.logo_80x80}
-            alt="Logo OcciCode, une croix occitane encadrée par deux C"
-            width="80"
-            height="80"
-            class="h-20 w-20 md:h-24 md:w-24"
-            loading="eager"
-            decoding="async"
-          />
-          <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-            {site.name}
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start lg:gap-16">
+        <div class="flex flex-col items-start gap-6">
+          <h1 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl lg:text-5xl">
+            {hero.title}
           </h1>
-        </div>
-        <Headline
-          tagline={hero.tagline}
-          title={hero.title}
-          subtitle={hero.subtitle}
-          classes={{
-            container: "max-w-3xl",
-            title: "text-3xl md:text-4xl lg:text-5xl",
-            subtitle: "text-lg md:text-xl",
-          }}
-        />
-
-        <div class="flex flex-wrap gap-4 pt-2">
-          <Button
-            href="/contact"
-            variant="primary"
-            size="lg"
-            title="Envoyer un email pour demander un devis gratuit"
-            aria-label="Demander un devis gratuit par email"
-          >
-            Demander un devis gratuit
-          </Button>
-          <Button
-            href="/tarifs"
-            variant="secondary"
-            size="lg"
-            title="Consulter la page des tarifs"
-            aria-label="Voir les tarifs"
-          >
-            Voir les tarifs
-          </Button>
+          <p class="max-w-2xl text-pretty text-lg text-muted-foreground md:text-xl">
+            {hero.subtitle}
+          </p>
+          <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
+            {hero.trust.map((item) => (
+              <li class="flex items-center gap-2">
+                <Icon
+                  name="mdi:check"
+                  class="h-4 w-4 shrink-0 text-primary"
+                  aria-hidden="true"
+                />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <ul class="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-muted-foreground">
-          {hero.trust.map((item) => (
-            <li class="flex items-center gap-2">
-              <span
-                class="h-1.5 w-1.5 rounded-full bg-primary"
+        <aside
+          class="rounded-3xl border border-border bg-card p-6 shadow-sm md:p-8"
+          aria-labelledby="hero-contact-title"
+        >
+          <h2 id="hero-contact-title" class="text-xl font-bold text-foreground">
+            Parlons de votre projet
+          </h2>
+          <p class="mt-2 text-pretty text-sm text-muted-foreground">
+            Je vous réponds sous 48 h, sans engagement.
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3">
+            <Button
+              href="/contact"
+              variant="primary"
+              size="md"
+              class="w-full"
+              title="Demander un devis gratuit"
+              aria-label="Demander un devis gratuit"
+            >
+              Demander un devis
+            </Button>
+            <a
+              href={`tel:${site.telephone}`}
+              class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+              title={`Appeler OcciCode au ${phoneDisplay}`}
+              aria-label={`Appeler OcciCode au ${phoneDisplay}`}
+            >
+              <Icon
+                name="mdi:phone-outline"
+                class="h-5 w-5 shrink-0 text-primary"
                 aria-hidden="true"
-              ></span>
-              {item}
-            </li>
-          ))}
-        </ul>
+              />
+              {phoneDisplay}
+            </a>
+            <a
+              href={`mailto:${site.email}`}
+              class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+              title={`Envoyer un email à ${site.email}`}
+              aria-label={`Envoyer un email à ${site.email}`}
+            >
+              <Icon
+                name="mdi:email-outline"
+                class="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              {site.email}
+            </a>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
 
-  <!-- Processus -->
-  <section class="relative isolate scroll-mt-[72px] mb-4" id="section-process">
-    <div class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6 reveal-section animate-section-fade">
-      <Headline
-        tagline={process.tagline}
-        title={process.title}
-        subtitle={process.subtitle}
-      />
-
-      <ol class="grid gap-8 md:grid-cols-3 pt-10">
-        {process.steps.map((step, index) => (
-          <li class="flex flex-col gap-3">
-            <span
-              class="text-4xl font-extrabold text-primary/25"
-              aria-hidden="true"
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <h3 class="text-lg font-bold text-foreground">{step.title}</h3>
-            <p class="text-muted-foreground text-sm">{step.description}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- Multi-écrans -->
-  <ScreensShowcase />
+  <!-- Démos -->
+  <DemoShowcase />
 
   <!-- Formules -->
-  <section class="relative isolate scroll-mt-[72px] mb-4" id="section-services">
-    <div class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6 reveal-section animate-section-fade">
-      <Headline
-        tagline={services.tagline}
-        title={services.title}
-        subtitle={services.subtitle}
-      />
+  <section
+    id="section-services"
+    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
+  >
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+      <h2 class="text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+        {services.title}
+      </h2>
+      <p class="mt-4 text-pretty text-lg text-muted-foreground">
+        {services.subtitle}
+      </p>
 
-      <div class="grid gap-6 md:grid-cols-3 pt-10">
+      <div class="grid gap-6 pt-10 md:grid-cols-3">
         {packages.map((pkg) => (
           <article
-            class={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 hover:shadow-lg ${
+            class={`relative flex flex-col rounded-3xl border p-8 transition-shadow duration-300 hover:shadow-lg ${
               pkg.isPopular
-                ? "bg-primary/5 border-primary/40 shadow-md"
-                : "bg-card border-border/50 shadow-sm"
+                ? "border-primary/40 bg-primary/5 shadow-sm"
+                : "border-border/60 bg-card shadow-sm"
             }`}
           >
-            {pkg.isPopular && (
+            {pkg.badge && (
               <span class="absolute -top-3 right-8 inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">
-                Le plus choisi
+                {pkg.badge}
               </span>
             )}
             <h3 class="text-xl font-bold text-foreground">{pkg.name}</h3>
-            <p class="mt-2 text-muted-foreground text-sm flex-1">
+            <p class="mt-2 text-pretty text-sm text-muted-foreground">
               {pkg.description}
             </p>
             <p class="mt-6 flex items-baseline gap-1">
@@ -159,65 +166,116 @@ const metadata = {
                 {pkg.price}
               </span>
             </p>
+            <ul class="mt-6 flex flex-1 flex-col gap-2 text-pretty text-sm text-muted-foreground">
+              {pkg.features.slice(0, 3).map((feature) => (
+                <li class="flex items-start gap-2">
+                  <Icon
+                    name="mdi:check"
+                    class="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                    aria-hidden="true"
+                  />
+                  {feature}
+                </li>
+              ))}
+            </ul>
             <Button
-              href="/tarifs"
+              href="/tarifs#tarif-list"
               variant={pkg.isPopular ? "primary" : "secondary"}
               size="sm"
-              class="mt-6"
-              title={`Voir le détail de la formule ${pkg.name}`}
-              aria-label={`Voir le détail de la formule ${pkg.name}`}
+              class="mt-6 w-full"
+              title={`Voir la formule ${pkg.name} et ce qu'elle contient`}
+              aria-label={`Voir la formule ${pkg.name} et ce qu'elle contient`}
             >
-              Voir le détail
+              Voir cette formule
             </Button>
           </article>
         ))}
       </div>
+
+      <p class="mt-8 text-pretty text-sm text-muted-foreground">
+        Le code, le contenu et le nom de domaine restent les vôtres. La
+        maintenance est optionnelle.
+      </p>
+    </div>
+  </section>
+
+  <!-- Processus -->
+  <section id="section-process" class="relative isolate mb-4 scroll-mt-[72px]">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+      <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+        {process.title}
+      </h2>
+      <p class="mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
+        {process.subtitle}
+      </p>
+
+      <ol class="grid gap-8 pt-10 md:grid-cols-3">
+        {process.steps.map((step, index) => (
+          <li class="flex flex-col gap-3">
+            <span
+              class="text-4xl font-extrabold text-primary/70"
+              aria-hidden="true"
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3 class="text-lg font-bold text-foreground">{step.title}</h3>
+            <p class="text-pretty text-sm text-muted-foreground">
+              {step.description}
+            </p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
   <!-- Pourquoi OcciCode -->
   <section
-    class="relative isolate scroll-mt-[72px] bg-muted mb-4"
     id="section-why-us"
+    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
   >
-    <div class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6 reveal-section animate-section-fade">
-      <Headline
-        tagline={whyUs.tagline}
-        title={whyUs.title}
-        subtitle={whyUs.subtitle}
-      />
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+        <div>
+          <h2 class="max-w-md text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+            {whyUs.title}
+          </h2>
+          <p class="mt-4 max-w-md text-pretty text-lg text-muted-foreground">
+            {whyUs.subtitle}
+          </p>
+        </div>
 
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 pt-10">
-        {whyUs.items.map((item) => (
-          <article class="flex flex-col gap-3 rounded-2xl border border-border/50 bg-card p-6">
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <Icon name={item.icon} class="h-5 w-5" aria-hidden="true" />
+        <dl class="divide-y divide-border border-y border-border">
+          {whyUs.points.map((point) => (
+            <div class="grid gap-2 py-5 sm:grid-cols-[14rem_minmax(0,1fr)] sm:gap-6">
+              <dt class="font-bold text-foreground">{point.title}</dt>
+              <dd class="text-pretty text-sm text-muted-foreground">
+                {point.description}
+              </dd>
             </div>
-            <h3 class="text-base font-bold text-foreground">{item.title}</h3>
-            <p class="text-sm text-muted-foreground">{item.description}</p>
-          </article>
-        ))}
+          ))}
+        </dl>
       </div>
     </div>
   </section>
 
   <!-- Zone d'intervention -->
-  <section class="relative isolate scroll-mt-[72px] mb-4" id="section-areas">
-    <div class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6 reveal-section animate-section-fade">
+  <section id="section-areas" class="relative isolate mb-4 scroll-mt-[72px]">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
       <div class="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
         <div>
-          <Headline
-            tagline={areas.tagline}
-            title={areas.title}
-            subtitle={areas.subtitle}
-          />
+          <h2 class="max-w-xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+            {areas.title}
+          </h2>
+          <p class="mt-4 max-w-xl text-pretty text-lg text-muted-foreground">
+            {areas.subtitle}
+          </p>
 
           <ul
             class="flex flex-wrap gap-3 pt-8"
             aria-label="Villes et secteurs d'intervention"
           >
             {areas.cities.map((city) => (
-              <li class="rounded-full border border-border bg-muted/50 px-4 py-1.5 text-sm text-foreground">
+              <li class="rounded-full border border-border bg-muted/60 px-4 py-2 text-sm text-foreground">
                 {city}
               </li>
             ))}
@@ -226,10 +284,10 @@ const metadata = {
 
         <img
           src={site.interventionAreaImage}
-          alt="Carte des zones d'intervention d'OcciCode en Occitanie"
-          width="640"
-          height="480"
-          class="w-full h-auto rounded-2xl border border-border/50 shadow-sm"
+          alt="Une carte papier et une épingle, pour illustrer les interventions d'OcciCode en Occitanie"
+          width="639"
+          height="479"
+          class="h-auto w-full rounded-2xl border border-border/60 shadow-sm"
           loading="lazy"
           decoding="async"
         />
@@ -239,66 +297,79 @@ const metadata = {
 
   <!-- FAQ -->
   <section
-    class="relative isolate scroll-mt-[72px] bg-muted mb-4"
     id="section-faq"
+    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
   >
-    <div class="py-12 md:py-20 mx-auto max-w-7xl px-4 sm:px-6 md:px-6 reveal-section animate-section-fade">
-      <Headline
-        tagline={faq.tagline}
-        title={faq.title}
-        subtitle={faq.subtitle}
-      />
+    <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
+      <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+        {faq.title}
+      </h2>
+      <p class="mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
+        {faq.subtitle}
+      </p>
 
-      <div class="grid sm:grid-cols-2 gap-8 md:gap-12 pt-10">
+      <div class="mt-10 border-y border-border">
         {faq.items.map((item) => (
-          <article class="flex flex-col">
-            <h3 class="mb-2 text-lg font-bold text-foreground flex items-start">
+          <details class="group border-b border-border last:border-b-0">
+            <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-4 font-bold text-foreground [&::-webkit-details-marker]:hidden">
+              <span>{item.question}</span>
               <Icon
-                name="mdi:chevron-right"
-                class="h-5 w-5 text-primary shrink-0 mr-1 mt-0.5"
+                name="mdi:chevron-down"
+                class="h-5 w-5 shrink-0 text-primary transition-transform group-open:rotate-180"
                 aria-hidden="true"
               />
-              {item.question}
-            </h3>
-            <p class="text-sm text-muted-foreground ml-6">{item.answer}</p>
-          </article>
+            </summary>
+            <p class="max-w-3xl pb-4 text-pretty text-sm text-muted-foreground">
+              {item.answer}
+            </p>
+          </details>
         ))}
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section class="relative isolate scroll-mt-[72px] mb-4" id="section-contact">
-    <div class="py-12 md:py-20 mx-auto max-w-5xl px-4 sm:px-6 md:px-6 reveal-section animate-section-fade">
-      <div class="rounded-4xl bg-foreground/90 px-6 py-12 md:px-16 md:py-16 text-background">
-        <div class="max-w-2xl">
-          <h2 class="text-2xl md:text-3xl font-bold">{cta.title}</h2>
-          <p class="mt-3 text-background/80">{cta.subtitle}</p>
+  <section id="section-contact" class="relative isolate mb-4 scroll-mt-[72px]">
+    <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
+      <div class="rounded-3xl bg-foreground px-6 py-10 text-background md:px-12 md:py-14">
+        <h2 class="max-w-2xl text-2xl font-bold text-balance md:text-3xl">
+          {cta.title}
+        </h2>
+        <p class="mt-3 max-w-2xl text-background/80">{cta.subtitle}</p>
 
-          <div class="mt-8 flex flex-wrap items-center gap-6">
-            <Button
-              href="/contact"
-              variant="secondary"
-              size="lg"
-              title="Envoyer un email pour demander un devis gratuit"
-              aria-label="Demander un devis gratuit par email"
-            >
-              Demander un devis gratuit
-            </Button>
-            <a
-              href={`tel:${site.telephone}`}
-              title={`Appeler OcciCode au ${phoneDisplay}`}
-              aria-label={`Appeler OcciCode au ${phoneDisplay}`}
-              class="font-semibold text-background underline underline-offset-4 hover:text-background/80"
-            >
-              {phoneDisplay}
-            </a>
-          </div>
-
-          <p class="mt-8 text-sm text-background/60">
-            {site.city} ({site.postalCode}) &middot; {site.region}
-          </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button
+            href="/contact"
+            variant="secondary"
+            size="lg"
+            title="Demander un devis gratuit"
+            aria-label="Demander un devis gratuit"
+          >
+            Demander un devis
+          </Button>
+          <a
+            href={`tel:${site.telephone}`}
+            class="inline-flex min-h-14 items-center gap-2 rounded-xl border border-background/30 px-5 font-semibold text-background transition-colors hover:bg-background/10"
+            title={`Appeler OcciCode au ${phoneDisplay}`}
+            aria-label={`Appeler OcciCode au ${phoneDisplay}`}
+          >
+            <Icon name="mdi:phone-outline" class="h-5 w-5" aria-hidden="true" />
+            {phoneDisplay}
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            class="inline-flex min-h-14 items-center gap-2 rounded-xl border border-background/30 px-5 font-semibold text-background transition-colors hover:bg-background/10"
+            title={`Envoyer un email à ${site.email}`}
+            aria-label={`Envoyer un email à ${site.email}`}
+          >
+            <Icon name="mdi:email-outline" class="h-5 w-5" aria-hidden="true" />
+            {site.email}
+          </a>
         </div>
+
+        <p class="mt-8 text-sm text-background/70">
+          Julien Martin, {site.city} ({site.postalCode}), {site.region}.
+        </p>
       </div>
     </div>
   </section>

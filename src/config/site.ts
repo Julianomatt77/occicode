@@ -1,18 +1,20 @@
 export const site = {
   name: "OcciCode",
-  title: "OcciCode - Création de site internet situé en Occitanie",
+  title: "OcciCode - Conception de site internet situé en Occitanie",
   description:
-    "OcciCode - Création de sites vitrine pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Conception de sites internet pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   ogDescription:
-    "OcciCode - Création de sites vitrine pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Conception de sites internet pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   twitterDescription:
-    "OcciCode - Création de sites vitrine pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "OcciCode - Conception de sites internet pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+  footerTagline:
+    "Julien Martin conçoit et développe lui-même chaque site, depuis Péret, en\u00A0Occitanie.",
   author: "Julien MARTIN",
   canonical: "https://www.occicode.fr",
   locale: "fr_FR",
   logo_schema: "https://www.occicode.fr/assets/images/logo_675x675.png",
   ogImage: "https://www.occicode.fr/assets/images/logo_avec_fond_1200x630.png",
-  ogImageAlt: "Logo OcciCode — création de sites internet situé Occitanie",
+  ogImageAlt: "Logo OcciCode — Conception de sites internet situé Occitanie",
   telephone: "+33781373341",
   city: "Péret",
   postalCode: "34800",
@@ -71,7 +73,7 @@ export const site = {
     tagline: "Nos réalisations",
     title: "Un design personnalisé et sur mesure",
     subtitle:
-      "Découvrez des exemples de sites vitrines afin de commencer à vous projeter.",
+      "Découvrez des exemples de sites afin de commencer à vous projeter.",
     sections: [
       {
         title: "Le Mazet",
@@ -120,18 +122,17 @@ export const site = {
       tagline: "Sites internet pour artisans & TPE",
       title: "Un site professionnel, pensé pour votre activité",
       subtitle:
-        "OcciCode conçoit des sites vitrine sobres et efficaces pour les artisans, commerçants et TPE.",
+        "Julien Martin, développeur à Péret, conçoit et livre lui-même des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
       trust: [
         "Basé à Péret (34)",
         "En Occitanie et à distance partout en France",
         "Réponse sous 48h",
       ],
     },
-    screens: {
-      tagline: "Sur tous les écrans",
-      title: "Un site pensé pour chaque écran",
+    demos: {
+      title: "Trois démos à explorer",
       subtitle:
-        "Près de 60 % du trafic web se fait depuis un mobile. Votre site s'adapte automatiquement au téléphone, à la tablette et à l'ordinateur, sans version dégradée.",
+        "Ce sont des sites de démonstration, pas des réalisations clients. Ils montrent concrètement ce à quoi pourrait ressembler votre site.",
     },
     services: {
       tagline: "Nos formules",
@@ -163,33 +164,23 @@ export const site = {
       ],
     },
     whyUs: {
-      tagline: "Pourquoi OcciCode",
-      title: "Un interlocuteur unique, basé en Occitanie",
+      title: "Pourquoi OcciCode",
       subtitle: "Un accompagnement direct, sans intermédiaire.",
-      items: [
-        {
-          title: "Basé en Occitanie",
-          description:
-            "Basé à Péret, dans l'Hérault, je me déplace partout en Occitanie et je travaille à distance avec des clients dans toute la France.",
-          icon: "mdi:map-marker-outline",
-        },
+      points: [
         {
           title: "Un seul interlocuteur",
           description:
-            "De la conception à la mise en ligne, vous échangez directement avec la personne qui construit votre site.",
-          icon: "mdi:account-outline",
+            "Je conçois et développe moi-même votre site, du premier échange à la mise en ligne.",
         },
         {
-          title: "Référencement local",
+          title: "Basé en Occitanie",
           description:
-            "Vos pages sont rédigées et structurées pour apparaître dans les recherches liées à votre métier et votre ville.",
-          icon: "mdi:map-search-outline",
+            "Je suis à Péret, dans l'Hérault. Rendez-vous sur place en Occitanie, travail à distance ailleurs.",
         },
         {
           title: "Le site vous appartient",
           description:
-            "Aucun abonnement obligatoire : le code, le contenu et le nom de domaine restent les vôtres.",
-          icon: "mdi:file-check-outline",
+            "Le code, le contenu et le nom de domaine restent les vôtres. La maintenance est optionnelle.",
         },
       ],
     },
@@ -224,7 +215,7 @@ export const site = {
         {
           question: "Travaillez-vous avec tous les types d'activités ?",
           answer:
-            "Je travaille surtout avec des artisans, commerçants, professions libérales et indépendants, en face à face en Occitanie et à distance partout en France.. Les formules Site Vitrine et Site Pro couvrent la plupart des besoins courants ; pour un besoin plus spécifique, la formule Sur Mesure permet d'adapter le site. Si votre projet sort de mon champ de compétence, je vous le dirai dès l'échange initial.",
+            "Je travaille surtout avec des artisans, commerçants, professions libérales et indépendants, en face à face en Occitanie et à distance partout en France. Les formules Site Vitrine et Site Pro couvrent la plupart des besoins courants ; pour un besoin plus spécifique, la formule Sur Mesure permet d'adapter le site. Si votre projet sort de mon champ de compétence, je vous le dirai dès l'échange initial.",
         },
         {
           question:
@@ -283,6 +274,7 @@ export const site = {
       ],
       buttonText: "Choisir cette formule",
       isPopular: false,
+      badge: null,
     },
     {
       id: "site-pro",
@@ -302,6 +294,7 @@ export const site = {
       ],
       buttonText: "Choisir cette formule",
       isPopular: true,
+      badge: "Le plus complet",
     },
     {
       id: "site-devis",
@@ -321,6 +314,7 @@ export const site = {
       ],
       isPopular: false,
       buttonText: "Demander un devis",
+      badge: null,
     },
   ],
   includedFeatures: {

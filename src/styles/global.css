@@ -21,53 +21,16 @@
     "Nunito", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
 
-  /* Révélation au scroll des maquettes d'écrans (section "chaque écran").
+  /* Révélation au scroll des sections (pages intérieures).
      Aucune `animation-duration` n'est déclarée : avec `animation-timeline:
      view()` c'est la timeline qui pilote la progression ; sur un navigateur
      sans support, la durée vaut 0s et `both` applique directement l'état
      final — l'élément reste visible, jamais bloqué à `opacity: 0`. */
-  --animate-screen-left: screen-left linear both;
-  --animate-screen-center: screen-center linear both;
-  --animate-screen-right: screen-right linear both;
-
   --animate-section-fade: section-fade linear both;
 }
 
-@keyframes screen-left {
-  from {
-    opacity: 0;
-    transform: translateX(-3rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes screen-center {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes screen-right {
-  from {
-    opacity: 0;
-    transform: translateX(3rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 /* La timeline doit rester dans une règle SÉPARÉE de la shorthand `animation`
-   (émise par les classes `animate-screen-*`), pour deux raisons :
+   (émise par la classe `animate-section-fade`), pour deux raisons :
    1. la shorthand réinitialise `animation-timeline` / `animation-range` ;
    2. dans une même règle, le minifieur les refusionne en une shorthand
       `animation: ... view()` que les navigateurs rejettent.
@@ -102,31 +65,6 @@
    16/09/2026 : la fonctionnalité est un axe Interop 2026, toujours derrière
    le flag `layout.css.scroll-driven-animations.enabled`, cf. bugzilla). */
 @media (prefers-reduced-motion: no-preference) {
-  .reveal-screen.js-reveal {
-    animation: none;
-    opacity: 0;
-    transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out;
-  }
-
-  .reveal-screen.js-reveal[data-direction="left"] {
-    transform: translateX(-3rem);
-  }
-
-  .reveal-screen.js-reveal[data-direction="center"] {
-    transform: scale(0.85);
-  }
-
-  .reveal-screen.js-reveal[data-direction="right"] {
-    transform: translateX(3rem);
-  }
-
-  .reveal-screen.js-reveal.is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
   .reveal-section.js-reveal {
     animation: none;
     opacity: 0;
@@ -153,9 +91,37 @@
     font-family: var(--font-sans);
   }
 
-  :focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
+  a[href],
+  button:not(:disabled),
+  summary,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
+
+/* Hors couche : l'anneau de focus doit gagner sur les utilitaires Tailwind.
+   3 px pour rester perceptible sur fond clair comme sur le panneau sombre. */
+:focus-visible {
+  outline-width: 3px;
+  outline-style: solid;
+  outline-color: var(--primary);
+  outline-offset: 3px;
+}
+
+/* Le mouvement des révélations est décoratif : il s'arrête quand l'utilisateur
+   demande moins d'animation. Les éléments restent visibles dans tous les cas. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section,
+  .reveal-section.js-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

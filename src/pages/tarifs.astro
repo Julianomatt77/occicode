@@ -59,10 +59,10 @@ const metadata = {
                 : "bg-card border-border/50 shadow-sm"
             }`}
           >
-            {service.isPopular && (
+            {service.badge && (
               <div class="absolute top-0 right-8 -translate-y-1/2">
                 <span class="inline-flex items-center rounded-full bg-primary px-4 py-1 text-xs font-semibold text-white shadow-sm">
-                  Meilleure vente
+                  {service.badge}
                 </span>
               </div>
             )}

@@ -7,7 +7,16 @@ import globals from "globals";
 
 export default [
   {
-    ignores: ["dist/**", ".astro/**", "node_modules/**"],
+    ignores: [
+      "dist/**",
+      ".astro/**",
+      "node_modules/**",
+      // Outils d'agents installés localement : code tiers, hors périmètre lint.
+      ".claude/**",
+      ".opencode/**",
+      ".impeccable/**",
+      "anti-slop/**",
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
