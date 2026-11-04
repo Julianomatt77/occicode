@@ -328,28 +328,28 @@ export const site = {
         description:
           "Votre site s'adapte parfaitement aux mobiles, tablettes et ordinateurs.",
         icon: "mdi:smartphone",
-        iconClass: "bg-green-500/10 text-green-500",
+        iconClass: "btext-green-500",
       },
       {
         title: "Hébergement sécurisé",
         description:
           "Serveurs en Europe, certificat SSL, sauvegardes automatiques et sécurité renforcée.",
         icon: "mdi:shield-check",
-        iconClass: "bg-blue-500/10 text-blue-500",
+        iconClass: "text-blue-500",
       },
       {
         title: "Référencement local",
         description:
           "Optimisation pour Google et les recherches locales dans votre ville et votre métier.",
         icon: "mdi:search",
-        iconClass: "bg-purple-500/10 text-purple-500",
+        iconClass: "text-purple-500",
       },
       {
         title: "Support client",
         description:
           "Une équipe réactive pour répondre à vos questions et vous accompagner.",
         icon: "mdi:headphones",
-        iconClass: "bg-orange-500/10 text-orange-500",
+        iconClass: "text-orange-500",
       },
     ],
   },

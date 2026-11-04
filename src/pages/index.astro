@@ -10,7 +10,6 @@ const { hero, services, process, whyUs, areas, faq, cta } = site.home;
 const packages = site.services;
 const phoneDisplay = formatPhone(site.telephone);
 
-// Three contact paths, given equal weight in the hero
 const contactPaths = [
   {
     label: "Demander un devis",
@@ -19,7 +18,7 @@ const contactPaths = [
     variant: "primary" as const,
   },
   {
-    label: site.telephone,
+    label: phoneDisplay,
     href: `tel:${site.telephone}`,
     kind: "tel",
     variant: "secondary" as const,

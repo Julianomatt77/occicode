@@ -110,33 +110,35 @@ const metadata = {
     class="relative isolate scroll-mt-[72px] bg-muted mb-4 reveal-section animate-section-fade"
     id="section-included-features"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 py-12 md:py-12 not-prose text-default">
-      <Headline
-        title={includedFeatures.title}
-        subtitle={includedFeatures.subtitle}
-        tagline={includedFeatures.tagline}
-      />
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 py-12 md:py-16 not-prose text-default">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+        <div>
+          <Headline
+            title={includedFeatures.title}
+            subtitle={includedFeatures.subtitle}
+            tagline={includedFeatures.tagline}
+          />
+        </div>
 
-      <div class="grid grid-cols-3 gap-4 max-[1000px]:grid-cols-2 max-[640px]:grid-cols-1 mt-8">
-        {features.map((feat: Feature) => (
-          <article
-            class="rounded-lg border border-line bg-background p-[28px_26px]
-             shadow-md transition-transform duration-200 ease-brand hover:-translate-y-1"
-            data-reveal
-          >
-            <div class="flex gap-2 items-center mb-6">
-              {feat.icon && (
-                <div
-                  class={`w-12 h-12 rounded-lg flex items-center justify-center ${feat.iconClass ? feat.iconClass : "bg-primary/10 text-primary"}`}
-                >
-                  <Icon name={feat.icon} class="w-6 h-6" />
-                </div>
-              )}
-              <h3 class="text-lg">{feat.title}</h3>
+        <dl class="divide-y divide-border border-y border-border">
+          {features.map((feat: Feature) => (
+            <div class="grid gap-2 py-5 sm:grid-cols-[14rem_minmax(0,1fr)] sm:gap-6">
+              <dt class="font-bold text-foreground flex items-center gap-2">
+                {feat.icon && (
+                  <div
+                    class={`w-12 h-12 rounded-lg flex items-center justify-center ${feat.iconClass ? feat.iconClass : "bg-primary/10 text-primary"}`}
+                  >
+                    <Icon name={feat.icon} class="w-6 h-6" />
+                  </div>
+                )}
+                <span>{feat.title}</span>
+              </dt>
+              <dd class="text-pretty text-sm text-muted-foreground">
+                {feat.description}
+              </dd>
             </div>
-            <p class="m-0 text-[.93rem] text-soft">{feat.description}</p>
-          </article>
-        ))}
+          ))}
+        </dl>
       </div>
     </div>
   </section>
