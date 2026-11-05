@@ -41,15 +41,23 @@ const metadata = {
         <h2 class="text-xl font-bold text-foreground">Données collectées</h2>
         <ul class="mt-3 list-disc space-y-2 pl-5">
           <li>
-            <strong>Email de contact :</strong> lorsque vous nous écrivez par
-            email ou via un lien "mailto", nous recevons votre adresse email et
-            le contenu de votre message.
+            <strong>Email :</strong> lorsque vous m'écrivez par email ou via un
+            lien "mailto", Je reçoit votre adresse email et le contenu de votre
+            message.
           </li>
           <li>
-            <strong>Données de navigation :</strong> nous utilisons Google
-            Analytics pour mesurer la fréquentation du site (pages visitées,
-            durée de visite, provenance approximative). Ces données sont
-            traitées par Google LLC, qui peut agir comme sous-traitant.
+            <strong>Formulaire de contact :</strong>
+            les informations saisies (nom,adresse email, objet, message et, si
+            vous le renseignez, numéro de téléphone) sont transmises par le
+            service Formspree, qui nous les fait parvenir par email. Formspree
+            peut aussi traiter des données techniques(par exemple votre adresse
+            IP) pour assurer l'envoi et lutter contre le spam.
+          </li>
+          <li>
+            <strong>Données de navigation :</strong> J'utilise Google Analytics
+            pour mesurer la fréquentation du site (pages visitées, durée de
+            visite, provenance approximative). Ces données sont traitées par
+            Google LLC, qui peut agir comme sous-traitant.
           </li>
           <li>
             <strong>Carte interactive :</strong> la page "À propos" intègre une
@@ -84,19 +92,44 @@ const metadata = {
       <div>
         <h2 class="text-xl font-bold text-foreground">Durée de conservation</h2>
         <p class="mt-3">
-          Les emails de contact sont conservés le temps nécessaire au traitement
-          de votre demande, puis archivés ou supprimés. Les données de mesure
-          d'audience sont conservées selon les durées par défaut de Google
-          Analytics (généralement 13 à 14 mois).
+          Les messages reçus par email ou via le formulaire sont conservés le
+          temps nécessaire au traitement de votre demande, puis archivés ou
+          supprimés. Les données de mesure d'audience sont conservées selon les
+          durées par défaut de Google Analytics (généralement 13 à 14 mois).
         </p>
       </div>
 
       <div>
         <h2 class="text-xl font-bold text-foreground">Destinataires</h2>
         <p class="mt-3">
-          Vos données sont accessibles par {site.legal.ownerName} et, pour les
-          données de navigation, par Google (Google Analytics). Aucune autre
+          Vos données sont accessibles par {site.legal.ownerName}. Elles sont
+          traitées par des prestataires techniques : Formspree (envoi des
+          messages du formulaire de contact), Google (mesure d'audience) et
+          OpenStreetMap Foundation (carte de la page "À propos"). Aucune autre
           transmission à des tiers n'est effectuée.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-foreground">
+          Transferts hors Union européenne
+        </h2>
+        <p class="mt-3">
+          Formspree (formulaire de contact) est une société américaine qui
+          héberge ses données aux États-Unis. Il indique encadrer ces transferts
+          par les clauses contractuelles types de la Commission européenne.
+          Google (mesure d'audience) est une société américaine certifiée au
+          EU-U.S. Data Privacy Framework. Pour en savoir plus, consultez la
+          <a
+            href="https://formspree.io/legal/privacy-policy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:underline"
+            title="Politique de confidentialité de Formspree (nouvel onglet)"
+          >
+            politique de confidentialité de Formspree
+          </a>
+          .
         </p>
       </div>
 
@@ -106,7 +139,7 @@ const metadata = {
           Conformément au Règlement Général sur la Protection des Données
           (RGPD), vous disposez d'un droit d'accès, de rectification,
           d'effacement, de limitation et d'opposition sur vos données. Pour les
-          exercer, écrivez-nous à{" "}
+          exercer, écrivez-moi à{" "}
           <a href={`mailto:${site.email}`} class="text-primary hover:underline">
             {site.email}
           </a>
@@ -139,7 +172,7 @@ const metadata = {
           site ou de la réglementation. La date de dernière mise à jour figure
           en pied de cette page.
         </p>
-        <p class="mt-3 text-sm">Dernière mise à jour : 14 septembre 2026.</p>
+        <p class="mt-3 text-sm">Dernière mise à jour : 5 novembre 2026.</p>
       </div>
     </div>
   </section>

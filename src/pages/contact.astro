@@ -6,7 +6,7 @@ import { site } from "@/config/site";
 import { formatPhone } from "@/utils/format";
 
 const metadata = {
-  title: "OcciCode - Contact",
+  title: "Contact : devis gratuit pour votre site internet | OcciCode",
   description:
     "Contactez OcciCode pour un devis gratuit : décrivez votre projet de site internet, réponse sous 48h.",
   pageType: "ContactPage" as const,
@@ -193,14 +193,12 @@ const labelClass = "mb-1 block text-sm font-medium text-foreground";
       const status = document.getElementById("contact-form-status");
       const submitBtn = form.querySelector('button[type="submit"]');
 
-      if (form.action.indexOf("VOTRE_ID") !== -1) {
-        console.warn(
-          "[OcciCode] Formulaire de contact non configuré : renseigne site.contact.formAction dans src/config/site.ts avec ton vrai lien Formspree.",
-        );
-      }
+      // if (form.action.indexOf("VOTRE_ID") !== -1) {
+      //   console.warn(
+      //     "[OcciCode] Formulaire de contact non configuré : renseigne site.contact.formAction dans src/config/site.ts avec ton vrai lien Formspree.",
+      //   );
+      // }
 
-      // Pré-remplissage de l'objet depuis l'URL (ex: /contact?objet=Site%20Pro),
-      // utilisé par les boutons "Voir le détail" de la page /tarifs.
       const objetSelect = document.getElementById("objet");
       const subjectField = document.getElementById("subject-field");
 

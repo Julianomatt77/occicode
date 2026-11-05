@@ -1,12 +1,12 @@
 export const site = {
   name: "OcciCode",
-  title: "OcciCode - Conception de site internet situé en Occitanie",
+  title: "Site internet pour artisans et TPE en Occitanie | OcciCode",
   description:
-    "OcciCode - Conception de sites internet pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "Développeur indépendant à Péret (Hérault), je crée votre site internet : sobre, rapide, bien référencé. Dès 890 €, un seul interlocuteur, site à vous.",
   ogDescription:
-    "OcciCode - Conception de sites internet pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "Développeur indépendant à Péret (Hérault), je crée votre site internet : sobre, rapide, bien référencé. Dès 890 €, un seul interlocuteur, site à vous.",
   twitterDescription:
-    "OcciCode - Conception de sites internet pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
+    "Développeur indépendant à Péret (Hérault), je crée votre site internet : sobre, rapide, bien référencé. Dès 890 €, un seul interlocuteur, site à vous.",
   footerTagline:
     "OcciCode - Conception de sites internet pour artisans et PME.",
   author: "Julien MARTIN",
@@ -60,41 +60,41 @@ export const site = {
   noindexPaths: ["/mentions-legales", "/confidentialite"],
   tarifs: {
     tagline: "Tarifs",
-    title: "Des prix adaptés aux petites entreprises",
+    title: "Tarifs de création de site internet, sans frais cachés",
     subtitle: "Le site est entièrement à vous.",
   },
   aPropos: {
-    tagline: "À propos",
+    tagline: "Julien Martin, développeur web indépendant en Hérault",
     title: "Un interlocuteur unique, une approche directe",
     subtitle:
       "OcciCode, c'est Julien Martin : un développeur basé en Occitanie qui conçoit des sites simples et durables pour les artisans et indépendants.",
   },
   realisations: {
     tagline: "Nos réalisations",
-    title: "Un design personnalisé et sur mesure",
+    title: "Trois sites de démonstration pour vous projeter",
     subtitle:
-      "Découvrez des exemples de sites afin de commencer à vous projeter.",
+      "Trois démos de sites vitrine (restaurant, paysagiste, menuisier) pour vous projeter. Ce sont des démonstrations, pas des sites clients.",
     sections: [
       {
         title: "Le Mazet",
         text: "Site vitrine d'un restaurant.",
         href: "https://demo3.occicode.fr",
         image: "/assets/images/demo3.webp",
-        imageAlt: "demo3 - Le Mazet",
+        imageAlt: "Capture du site de démonstration d’un restaurant",
       },
       {
         title: "Les Jardins du Biterrois",
         text: "Site vitrine d'un paysagiste avec un design moderne",
         href: "https://demo2.occicode.fr",
         image: "/assets/images/demo2.webp",
-        imageAlt: "demo2 - Les Jardins du Biterrois",
+        imageAlt: "Capture du site de démonstration d’un paysagiste",
       },
       {
         title: "L'Atelier du Bois",
         text: "Site vitrine d'un menuisier",
         href: "https://demo1.occicode.fr",
         image: "/assets/images/demo1.webp",
-        imageAlt: "demo1 - Atelier du bois",
+        imageAlt: "Capture du site de démonstration d’un menuisier",
       },
     ],
   },
@@ -120,7 +120,7 @@ export const site = {
   home: {
     hero: {
       tagline: "Sites internet pour artisans & TPE",
-      title: "Un site professionnel, pensé pour votre activité",
+      title: "Un site internet professionnel pour les artisans et TPE",
       subtitle:
         "OcciCode conçoit et livre des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
       trust: [
@@ -301,7 +301,7 @@ export const site = {
       name: "Sur Mesure",
       slug: "sur-mesure",
       description:
-        "Vous avez besoin de fonctionnalités spécifiques ? Nous créons la solution adaptée.",
+        "Vous avez besoin de fonctionnalités spécifiques ? Nous créerons ensemble la solution adaptée.",
       icon: "mdi:offer",
       from: "",
       price: "Sur devis",
@@ -347,7 +347,7 @@ export const site = {
       {
         title: "Support client",
         description:
-          "Une équipe réactive pour répondre à vos questions et vous accompagner.",
+          "Je suis disponible pour répondre à vos questions et vous accompagner.",
         icon: "mdi:headphones",
         iconClass: "text-orange-500",
       },

@@ -6,9 +6,9 @@ import Button from "@/components/ui/Button.astro";
 
 const page = site.realisations;
 const metadata = {
-  title: "OcciCode - Réalisations",
+  title: "Exemples de sites vitrine pour artisans | OcciCode",
   description:
-    "Démos de sites vitrine réalisés par OcciCode pour des artisans et indépendants d'Occitanie.",
+    "Trois démos de sites vitrine (restaurant, paysagiste, menuisier) pour vous projeter. Ce sont des démonstrations, pas des sites clients.",
   pageType: "CollectionPage" as const,
   breadcrumbs: [{ name: "Réalisations", path: "/realisations" }],
   extra: [
@@ -22,7 +22,7 @@ const metadata = {
           name: section.title,
           description: section.text,
           url: section.href,
-          image: section.image,
+          image: site.canonical + section.image,
         },
       })),
     },
@@ -63,6 +63,7 @@ const metadata = {
           </p>
           <Button
             href={section.href}
+            rel="noopener noreferrer"
             target="_blank"
             variant="primary"
             size="sm"

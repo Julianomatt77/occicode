@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Site vitrine OcciCode — agence web en Occitanie (artisans/TPE). Astro 7, Tailwind v4, i18n `fr` (défaut) + `en`. Prod : https://occicode.fr/
+Site vitrine OcciCode — agence web en Occitanie (artisans/TPE). Astro 7, Tailwind v4, i18n `fr`. Prod : https://www.occicode.fr/
 
 ## Règles projet (`.opencode/rules/` — à lire avant toute tâche non triviale)
 

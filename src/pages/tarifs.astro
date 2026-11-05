@@ -16,9 +16,8 @@ const faq = site.faqItems;
 const faqItems = site.faqItems.items;
 
 const metadata = {
-  title: "OcciCode - Tarifs",
-  description:
-    "Formules de création de site internet pour artisans et PME, à partir de 890 €.",
+  title: `Tarifs de création de site internet, dès ${site.services[0].price} | OcciCode`,
+  description: `Formules de création de site internet pour artisans et PME, à partir de ${site.services[0].price}.`,
   pageType: "CollectionPage" as const,
   breadcrumbs: [{ name: "Tarifs", path: "/tarifs" }],
   services: services.map((service) => ({
