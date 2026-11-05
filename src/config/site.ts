@@ -8,7 +8,7 @@ export const site = {
   twitterDescription:
     "OcciCode - Conception de sites internet pour artisans et PME. Sites professionnels, adaptés pour ordinateurs, tablettes et mobiles, optimisés SEO à prix abordable.",
   footerTagline:
-    "Julien Martin conçoit et développe lui-même chaque site, depuis Péret, en\u00A0Occitanie.",
+    "OcciCode - Conception de sites internet pour artisans et PME.",
   author: "Julien MARTIN",
   canonical: "https://www.occicode.fr",
   locale: "fr_FR",
@@ -122,7 +122,7 @@ export const site = {
       tagline: "Sites internet pour artisans & TPE",
       title: "Un site professionnel, pensé pour votre activité",
       subtitle:
-        "Julien Martin, développeur à Péret, conçoit et livre des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
+        "OcciCode conçoit et livre des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
       trust: [
         "Basé à Péret (34)",
         "En Occitanie et à distance partout en France",
@@ -328,7 +328,7 @@ export const site = {
         description:
           "Votre site s'adapte parfaitement aux mobiles, tablettes et ordinateurs.",
         icon: "mdi:smartphone",
-        iconClass: "btext-green-500",
+        iconClass: "text-green-500",
       },
       {
         title: "Hébergement sécurisé",
