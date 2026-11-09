@@ -10,27 +10,6 @@ const { hero, services, process, whyUs, areas, faq, cta } = site.home;
 const packages = site.services;
 const phoneDisplay = formatPhone(site.telephone);
 
-const contactPaths = [
-  {
-    label: "Demander un devis",
-    href: "/contact",
-    kind: "button",
-    variant: "primary" as const,
-  },
-  {
-    label: phoneDisplay,
-    href: `tel:${site.telephone}`,
-    kind: "tel",
-    variant: "secondary" as const,
-  },
-  {
-    label: "contact@occicode.fr",
-    href: `mailto:${site.email}`,
-    kind: "email",
-    variant: "secondary" as const,
-  },
-];
-
 const metadata = {
   title: "Site internet pour artisans et TPE | OcciCode",
   faq: faq.items.map(({ question, answer }) => ({ question, answer })),
