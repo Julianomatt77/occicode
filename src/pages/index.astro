@@ -57,14 +57,10 @@ const metadata = {
       decoding="async"
       class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
     />
-    <!-- Voile mobile et tablette : le texte couvre toute la largeur, donc la
-         photo reste très diluée pour conserver 4,5:1. -->
     <div
       class="absolute inset-0 -z-10 bg-background/88 lg:hidden"
       aria-hidden="true"
     ></div>
-    <!-- Voile desktop : opaque sous le texte à gauche, dégradé vers la photo
-         à droite. -->
     <div
       class="absolute inset-0 -z-10 hidden bg-linear-to-r from-background from-0% via-background/95 via-55% to-background/25 lg:block"
       aria-hidden="true"
@@ -91,59 +87,6 @@ const metadata = {
               </li>
             ))}
           </ul>
-          {/* Three contact paths, equal weight */}
-          <div class="mt-4 flex flex-wrap gap-3">
-            {contactPaths.map((cp) => {
-              if (cp.kind === "button") {
-                return (
-                  <Button
-                    href={cp.href}
-                    variant={cp.variant}
-                    size="md"
-                    title={cp.label}
-                    aria-label={cp.label}
-                  >
-                    {cp.label}
-                  </Button>
-                );
-              }
-              if (cp.kind === "tel") {
-                return (
-                  <a
-                    href={`tel:${site.telephone}`}
-                    class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
-                    title={`Appeler OcciCode au ${phoneDisplay}`}
-                    aria-label={`Appeler OcciCode au ${phoneDisplay}`}
-                  >
-                    <Icon
-                      name="mdi:phone-outline"
-                      class="h-5 w-5 shrink-0 text-primary"
-                      aria-hidden="true"
-                    />
-                    {cp.label}
-                  </a>
-                );
-              }
-              if (cp.kind === "email") {
-                return (
-                  <a
-                    href={`mailto:${site.email}`}
-                    class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
-                    title={`Envoyer un email à ${site.email}`}
-                    aria-label={`Envoyer un email à ${site.email}`}
-                  >
-                    <Icon
-                      name="mdi:email-outline"
-                      class="h-5 w-5 shrink-0 text-primary"
-                      aria-hidden="true"
-                    />
-                    {cp.label}
-                  </a>
-                );
-              }
-              return null;
-            })}
-          </div>
         </div>
 
         <aside
