@@ -15,7 +15,7 @@ const homeUrl = `${site.canonical}/`;
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://www.occicode.fr/",
+    site: "https://occicode.fr",
     integrations: [
         sitemap({
             // Exclut du sitemap les pages marquées noindex (voir

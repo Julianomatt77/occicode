@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# www -> non-www
+RewriteCond %{HTTP_HOST} ^www\.occicode\.fr$ [NC]
+RewriteRule ^ https://occicode.fr%{REQUEST_URI} [L,R=301]
+
+# http -> https
+RewriteCond %{HTTP_HOST} ^occicode\.fr$ [NC]
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://occicode.fr%{REQUEST_URI} [L,R=301]

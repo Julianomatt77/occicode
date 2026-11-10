@@ -1,20 +1,20 @@
 export const site = {
   name: "OcciCode",
-  title: "Site internet pour artisans et TPE en Occitanie | OcciCode",
+  title:
+    "Création de site internet pour artisans et TPE en Occitanie | OcciCode",
   description:
-    "Développeur indépendant à Péret (Hérault), je crée votre site internet : sobre, rapide, bien référencé. Dès 890 €, un seul interlocuteur, site à vous.",
+    "Création de site internet pour artisans et TPE en Hérault et Occitanie. Développeur indépendant à Péret : site rapide, bien référencé, dès 890 €.",
   ogDescription:
-    "Développeur indépendant à Péret (Hérault), je crée votre site internet : sobre, rapide, bien référencé. Dès 890 €, un seul interlocuteur, site à vous.",
+    "Création de site internet pour artisans et TPE en Hérault et Occitanie. Développeur indépendant à Péret : site rapide, bien référencé, dès 890 €.",
   twitterDescription:
-    "Développeur indépendant à Péret (Hérault), je crée votre site internet : sobre, rapide, bien référencé. Dès 890 €, un seul interlocuteur, site à vous.",
-  footerTagline:
-    "OcciCode - Conception de sites internet pour artisans et PME.",
+    "Création de site internet pour artisans et TPE en Hérault et Occitanie. Développeur indépendant à Péret : site rapide, bien référencé, dès 890 €.",
+  footerTagline: "OcciCode - Création de sites internet pour artisans et PME.",
   author: "Julien MARTIN",
-  canonical: "https://www.occicode.fr",
+  canonical: "https://occicode.fr",
   locale: "fr_FR",
-  logo_schema: "https://www.occicode.fr/assets/images/logo_675x675.png",
-  ogImage: "https://www.occicode.fr/assets/images/logo_avec_fond_1200x630.png",
-  ogImageAlt: "Logo OcciCode — Conception de sites internet situé Occitanie",
+  logo_schema: "https://occicode.fr/assets/images/logo_675x675.png",
+  ogImage: "https://occicode.fr/assets/images/logo_avec_fond_1200x630.png",
+  ogImageAlt: "Logo OcciCode — Création de sites internet situé Occitanie",
   telephone: "+33781373341",
   city: "Péret",
   postalCode: "34800",
@@ -119,8 +119,9 @@ export const site = {
   },
   home: {
     hero: {
-      tagline: "Sites internet pour artisans & TPE",
-      title: "Un site internet professionnel pour les artisans et TPE",
+      tagline: "Création de sites internet pour artisans & TPE",
+      title:
+        "Création de site internet pour artisans et TPE en Hérault et Occitanie",
       subtitle:
         "OcciCode conçoit et livre des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
       trust: [
