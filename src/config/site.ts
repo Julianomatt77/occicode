@@ -10,7 +10,7 @@ export const site = {
     "Création de site internet pour artisans et TPE en Hérault et Occitanie. Développeur indépendant à Péret : site rapide, bien référencé, dès 890 €.",
   footerTagline: "OcciCode - Création de sites internet pour artisans et PME.",
   author: "Julien MARTIN",
-  canonical: "https://occicode.fr",
+  canonical: "https://occicode.fr/",
   locale: "fr_FR",
   logo_schema: "https://occicode.fr/assets/images/logo_675x675.png",
   ogImage: "https://occicode.fr/assets/images/logo_avec_fond_1200x630.png",
