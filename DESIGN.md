@@ -1,26 +1,28 @@
 # OcciCode
 
-Sobriety, handcrafted authenticity, transparent pricing for artisans and SMEs in Occitanie.
+Handcrafted authenticity, transparent pricing and a polished frosted-glass finish for artisans and SMEs in Occitanie.
 
 ## Overview
 
-OcciCode is a design system for artisan web services where clarity and trust matter more than polish. The layout gives makers room to present their work through clear imagery and concise descriptions. A warm, sober colour palette evokes natural materials and transparent business practices. A flat, border-driven visual style avoids the corporate polish of mainstream web agencies, instead embracing the authenticity that artisan and SME clients value.
+OcciCode is a design system for artisan web services where clarity and trust matter more than polish. The layout gives makers room to present their work through clear imagery and concise descriptions. A warm bordeaux, gold and cream palette evokes natural materials and transparent business practices. On the home page, a full-screen hero and light frosted-glass surfaces (liquid glass) give a first impression that shows what a carefully made site looks like, while the tone of the copy stays direct and human.
 
 The project is owned and operated by a single developer (Julien Martin) based in Occitanie, France. Every site is owned by the client: code, content, and domain name remain the client's property after delivery.
 
 ## Colors
 
-- **Primary** (#0254d8): Primary CTAs, navigation active state, accent highlights
-- **Background** (#F7F7F5): Global page background, card backgrounds
+- **Primary** (#840120, bordeaux): Primary CTAs, navigation active state, focus ring, key accents
+- **Accent** (#b8800d, or): Decorative highlights, large icons, rules and glass edge glints. Never for small text (3.15:1 on the background); text placed on gold uses Accent-foreground
+- **Accent-foreground** (#0a0a0a): Text on gold surfaces (5.78:1)
+- **Background** (#f8f5ee, crème): Global page background, card backgrounds
 - **Foreground** (#0a0a0a): Default text colour
-- **Border** (#e5e7eb): Dividers, input borders, card borders
-- **Muted** (#e7e9ec): Disabled states, secondary text
+- **Border** (#e6dfd0): Dividers, input borders, card borders (warm neutral)
+- **Muted** (#efe9dc): Disabled states, section backgrounds (warm neutral)
 - **Muted-foreground** (#52525b): Secondary body text, hints
 - **Success** (#22C55E): Confirmation, valid states
 - **Warning** (#F59E0B): Attention states
-- **Error** (#DC2626): Error states, destructive actions
+- **Error** (#DC2626): Error states, destructive actions. Close in hue to the primary: always pair with an icon and a message, never colour alone
 
-> **Note**: The palette is limited to 2 core colours + 1 accent (R-29). Neutral colours (white, black, grey) do not count as part of the core palette (R-30).
+> **Note**: The palette is limited to 2 core colours (bordeaux, crème) + 1 accent (or) (R-29). Neutral colours (white, black, grey) do not count as part of the core palette (R-30).
 
 ## Typography
 
@@ -56,12 +58,14 @@ The project is owned and operated by a single developer (Julien Martin) based in
 
 ## Elevation
 
-OcciCode follows a flat design philosophy with no shadows. Depth is achieved through colour layering and deliberate border usage.
+OcciCode builds depth with frosted glass on the home page: translucent white surfaces, background blur, a light edge and a soft bordeaux-tinted shadow. Elsewhere, depth comes from colour layering and borders.
 
+- **Glass**: `glass` utility — decorative surfaces (45 % white, blur, light edge)
+- **Glass strong**: `glass-strong` utility — any block of body text (75 % white minimum for contrast); falls back to 90 % white without `backdrop-filter`
 - **Subtle**: `border: 1px var(--border)` — Default card and input border
 - **Medium**: `border: 1.5px var(--border)` with background layering
 - **Large**: `border: 2px var(--border)` for elevated importance
-- **Focus Ring**: 3px ring `var(--primary)` at 20% — Terracino-tinted focus indicator for keyboard navigation
+- **Focus Ring**: 3px ring `var(--primary)` at 20% — Bordeaux-tinted focus indicator for keyboard navigation
 
 > **R-32 — Keyboard Accessibility**: Every focused element has a clearly visible focus indicator. `outline: none` is forbidden without replacing with a custom focus indicator.
 
@@ -72,9 +76,10 @@ OcciCode follows a flat design philosophy with no shadows. Depth is achieved thr
 - Feature the maker's story alongside their product; include a clear author bio on service pages
 - Use warm, natural photography with soft lighting; avoid stark white studio backgrounds
 - Highlight materials and process with the primary accent colour
-- Use the flat, border-driven style consistently — it is intentional
+- Keep glass for the home page and always put body text on `glass-strong`, never on decorative `glass`
+- Place glass over a rich background (image, soft gradient, halo); on a plain colour it shows nothing
 - Show transparent pricing with no hidden fees
-- Reserve the primary accent (`#0254d8`) for interactive, actionable elements only
+- Reserve the primary colour (`#840120`) for interactive, actionable elements only
 - Keep colour palette limited to 2 core colours + 1 accent (R-29, R-30)
 - Make all interactive elements keyboard-operable (R-32)
 - Respect `prefers-reduced-motion: reduce` (R-39)
@@ -82,8 +87,8 @@ OcciCode follows a flat design philosophy with no shadows. Depth is achieved thr
 ### Don't
 
 - Use aggressive urgency tactics (countdown timers, "limited spots available"); clients value transparency over pressure
-- Apply drop shadows to product cards or feature sections — the flat style is intentional (R-13)
-- Use the primary accent for decorative borders or non-interactive elements — reserve it for actions (R-09)
+- Stack glass inside glass, or show more than about six glass surfaces at once (readability and GPU cost)
+- Use the primary colour at full strength for decorative borders or non-interactive elements — reserve it for actions; diluted tints (10–25 %) are fine for backgrounds and halos (R-09)
 - Crop images to forced squares if the content is tall or wide — use natural aspect ratios
 - Hide the developer's location or contact information — transparency about provenance is core to the trust model
 - Exceed 3 colours on any one page without a clear design system (R-29)
@@ -91,10 +96,10 @@ OcciCode follows a flat design philosophy with no shadows. Depth is achieved thr
 
 ## Design Direction
 
-Reading this as: B2B service landing for artisans and SMEs, in a warm/sober visual language, dial ENERGY 1 / RHYTHM 2 / MOTION 1.
+Reading this as: B2B service landing for artisans and SMEs, in a warm, crafted visual language with a glass hero, dial ENERGY 3 / RHYTHM 3 / MOTION 2.
 
-- **ENERGY 1**: Calm, restrained — the design says hello gently, without flash
-- **RHYTHM 2**: Mostly uniform with deliberate breaks — sections vary but stay grounded
-- **MOTION 1**: Hover states only — subtle feedback, no page-scale animation
+- **ENERGY 3**: Expressive hero and frosted glass, text always readable
+- **RHYTHM 3**: Full-screen hero, then sections that alternate gradients and glass cards
+- **MOTION 2**: Hover lift on cards, optional ambient hero video; everything stops with `prefers-reduced-motion`
 
-This dial configuration reflects the brand's identity: a single-interlocuteur, locally-anchoted artisanal service that values clarity and trust over spectacle.
+This dial configuration reflects the brand's identity: a single-interlocuteur, locally-anchoted artisanal service that values trust, and shows by example how good a client's site can look.

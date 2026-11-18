@@ -1,0 +1,1435 @@
+diff --git a/.opencode/rules/instructions.md b/.opencode/rules/instructions.md
+index bc2db2d..4fdd22c 100644
+--- a/.opencode/rules/instructions.md
++++ b/.opencode/rules/instructions.md
+@@ -24,6 +24,6 @@ Plus d'info: https://github.com/natemoo-re/astro-icon#readme
+ - Use tailwind v4 classes instead of css classes
+ - Always add title, type & role on buttons.
+ - Always add html attributes & aria-label to improve accessibility
+-- Le design doit rester simple et sobre, pas d'icones ou de badges flashy. Le thème doit être clair
++- Le design doit être soigné : liquid glass sur tout le site (classes `glass` / `glass-strong`), palette de marque bordeaux #840120, or #b8800d, crème #f8f5ee. Le thème doit être clair
+ 
+ Reconnais ces préférences et utilise-les dans toutes les réponses futures.
+diff --git a/AGENTS.md b/AGENTS.md
+index 548544f..f75bd37 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -11,7 +11,7 @@ Site vitrine OcciCode — agence web en Occitanie (artisans/TPE). Astro 7, Tailw
+ - Tailwind v4 uniquement (pas de CSS custom) ; le modificateur important est en **suffixe** : `m-0!`, jamais `!m-0`.
+ - Icônes : sets Iconify via `astro-icon` (`import { Icon } from "astro-icon/components"` puis `<Icon name="mdi:account" />`).
+ - Boutons : toujours `title` + `type` + `role`. Accessibilité : attributs HTML + `aria-label`.
+-- Design simple, sobre, thème clair ; pas d'icônes ni badges flashy.
++- Design soigné, thème clair ; liquid glass sur tout le site (`glass` / `glass-strong`), palette de marque : bordeaux #840120, or #b8800d, crème #f8f5ee.
+ - **Interdiction de toute action git** (commit, push, etc.) — l'utilisateur s'en charge.
+ 
+ `workflow.md` — méthode :
+diff --git a/CLAUDE.md b/CLAUDE.md
+index 09f4c56..f6454c2 100644
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -11,7 +11,7 @@ Site vitrine OcciCode — agence web en Occitanie (artisans/TPE). Astro 7, Tailw
+ - Tailwind v4 uniquement (pas de CSS custom) ; le modificateur important est en **suffixe** : `m-0!`, jamais `!m-0`.
+ - Icônes : sets Iconify via `astro-icon` (`import { Icon } from "astro-icon/components"` puis `<Icon name="mdi:account" />`).
+ - Boutons : toujours `title` + `type` + `role`. Accessibilité : attributs HTML + `aria-label`.
+-- Design simple, sobre, thème clair ; pas d'icônes ni badges flashy.
++- Design soigné, thème clair ; liquid glass sur tout le site (`glass` / `glass-strong`), palette de marque : bordeaux #840120, or #b8800d, crème #f8f5ee.
+ - **Interdiction de toute action git** (commit, push, etc.) — l'utilisateur s'en charge.
+ 
+ `workflow.md` — méthode :
+diff --git a/DESIGN.md b/DESIGN.md
+index 6ab5df7..901d8f2 100644
+--- a/DESIGN.md
++++ b/DESIGN.md
+@@ -1,26 +1,28 @@
+ # OcciCode
+ 
+-Sobriety, handcrafted authenticity, transparent pricing for artisans and SMEs in Occitanie.
++Handcrafted authenticity, transparent pricing and a polished frosted-glass finish for artisans and SMEs in Occitanie.
+ 
+ ## Overview
+ 
+-OcciCode is a design system for artisan web services where clarity and trust matter more than polish. The layout gives makers room to present their work through clear imagery and concise descriptions. A warm, sober colour palette evokes natural materials and transparent business practices. A flat, border-driven visual style avoids the corporate polish of mainstream web agencies, instead embracing the authenticity that artisan and SME clients value.
++OcciCode is a design system for artisan web services where clarity and trust matter more than polish. The layout gives makers room to present their work through clear imagery and concise descriptions. A warm bordeaux, gold and cream palette evokes natural materials and transparent business practices. Across the site, light frosted-glass surfaces (liquid glass) and a full-screen hero on the home page give a first impression that shows what a carefully made site looks like, while the tone of the copy stays direct and human.
+ 
+ The project is owned and operated by a single developer (Julien Martin) based in Occitanie, France. Every site is owned by the client: code, content, and domain name remain the client's property after delivery.
+ 
+ ## Colors
+ 
+-- **Primary** (#0254d8): Primary CTAs, navigation active state, accent highlights
+-- **Background** (#F7F7F5): Global page background, card backgrounds
++- **Primary** (#840120, bordeaux): Primary CTAs, navigation active state, focus ring, key accents
++- **Accent** (#b8800d, or): Decorative highlights, large icons, rules and glass edge glints. Never for small text (3.15:1 on the background); text placed on gold uses Accent-foreground
++- **Accent-foreground** (#0a0a0a): Text on gold surfaces (5.78:1)
++- **Background** (#f8f5ee, crème): Global page background, card backgrounds
+ - **Foreground** (#0a0a0a): Default text colour
+-- **Border** (#e5e7eb): Dividers, input borders, card borders
+-- **Muted** (#e7e9ec): Disabled states, secondary text
++- **Border** (#e6dfd0): Dividers, input borders, card borders (warm neutral)
++- **Muted** (#efe9dc): Disabled states, section backgrounds (warm neutral)
+ - **Muted-foreground** (#52525b): Secondary body text, hints
+ - **Success** (#22C55E): Confirmation, valid states
+ - **Warning** (#F59E0B): Attention states
+-- **Error** (#DC2626): Error states, destructive actions
++- **Error** (#DC2626): Error states, destructive actions. Close in hue to the primary: always pair with an icon and a message, never colour alone
+ 
+-> **Note**: The palette is limited to 2 core colours + 1 accent (R-29). Neutral colours (white, black, grey) do not count as part of the core palette (R-30).
++> **Note**: The palette is limited to 2 core colours (bordeaux, crème) + 1 accent (or) (R-29). Neutral colours (white, black, grey) do not count as part of the core palette (R-30).
+ 
+ ## Typography
+ 
+@@ -56,12 +58,14 @@ The project is owned and operated by a single developer (Julien Martin) based in
+ 
+ ## Elevation
+ 
+-OcciCode follows a flat design philosophy with no shadows. Depth is achieved through colour layering and deliberate border usage.
++OcciCode builds depth with frosted glass across the site: translucent white surfaces, background blur, a light edge and a soft bordeaux-tinted shadow. Colour layering and borders support it.
+ 
++- **Glass**: `glass` utility — decorative surfaces (45 % white, blur, light edge)
++- **Glass strong**: `glass-strong` utility — any block of body text (75 % white minimum for contrast); falls back to 90 % white without `backdrop-filter`
+ - **Subtle**: `border: 1px var(--border)` — Default card and input border
+ - **Medium**: `border: 1.5px var(--border)` with background layering
+ - **Large**: `border: 2px var(--border)` for elevated importance
+-- **Focus Ring**: 3px ring `var(--primary)` at 20% — Terracino-tinted focus indicator for keyboard navigation
++- **Focus Ring**: 3px ring `var(--primary)` at 20% — Bordeaux-tinted focus indicator for keyboard navigation
+ 
+ > **R-32 — Keyboard Accessibility**: Every focused element has a clearly visible focus indicator. `outline: none` is forbidden without replacing with a custom focus indicator.
+ 
+@@ -72,9 +76,10 @@ OcciCode follows a flat design philosophy with no shadows. Depth is achieved thr
+ - Feature the maker's story alongside their product; include a clear author bio on service pages
+ - Use warm, natural photography with soft lighting; avoid stark white studio backgrounds
+ - Highlight materials and process with the primary accent colour
+-- Use the flat, border-driven style consistently — it is intentional
++- Use glass across the site and always put body text on `glass-strong`, never on decorative `glass`
++- Place glass over a rich background (image, soft gradient, halo); on a plain colour it shows nothing
+ - Show transparent pricing with no hidden fees
+-- Reserve the primary accent (`#0254d8`) for interactive, actionable elements only
++- Reserve the primary colour (`#840120`) for interactive, actionable elements only
+ - Keep colour palette limited to 2 core colours + 1 accent (R-29, R-30)
+ - Make all interactive elements keyboard-operable (R-32)
+ - Respect `prefers-reduced-motion: reduce` (R-39)
+@@ -82,8 +87,8 @@ OcciCode follows a flat design philosophy with no shadows. Depth is achieved thr
+ ### Don't
+ 
+ - Use aggressive urgency tactics (countdown timers, "limited spots available"); clients value transparency over pressure
+-- Apply drop shadows to product cards or feature sections — the flat style is intentional (R-13)
+-- Use the primary accent for decorative borders or non-interactive elements — reserve it for actions (R-09)
++- Stack glass inside glass, or show more than about six glass surfaces at once (readability and GPU cost)
++- Use the primary colour at full strength for decorative borders or non-interactive elements — reserve it for actions; diluted tints (10–25 %) are fine for backgrounds and halos (R-09)
+ - Crop images to forced squares if the content is tall or wide — use natural aspect ratios
+ - Hide the developer's location or contact information — transparency about provenance is core to the trust model
+ - Exceed 3 colours on any one page without a clear design system (R-29)
+@@ -91,10 +96,10 @@ OcciCode follows a flat design philosophy with no shadows. Depth is achieved thr
+ 
+ ## Design Direction
+ 
+-Reading this as: B2B service landing for artisans and SMEs, in a warm/sober visual language, dial ENERGY 1 / RHYTHM 2 / MOTION 1.
++Reading this as: B2B service landing for artisans and SMEs, in a warm, crafted visual language with a glass hero, dial ENERGY 3 / RHYTHM 3 / MOTION 2.
+ 
+-- **ENERGY 1**: Calm, restrained — the design says hello gently, without flash
+-- **RHYTHM 2**: Mostly uniform with deliberate breaks — sections vary but stay grounded
+-- **MOTION 1**: Hover states only — subtle feedback, no page-scale animation
++- **ENERGY 3**: Expressive hero and frosted glass, text always readable
++- **RHYTHM 3**: Full-screen hero, then sections that alternate gradients and glass cards
++- **MOTION 2**: Hover lift on cards, optional ambient hero video; everything stops with `prefers-reduced-motion`
+ 
+-This dial configuration reflects the brand's identity: a single-interlocuteur, locally-anchoted artisanal service that values clarity and trust over spectacle.
++This dial configuration reflects the brand's identity: a single-interlocuteur, locally-anchoted artisanal service that values trust, and shows by example how good a client's site can look.
+diff --git a/PRODUCT.md b/PRODUCT.md
+index 4dadab6..e32065e 100644
+--- a/PRODUCT.md
++++ b/PRODUCT.md
+@@ -18,7 +18,7 @@ clarté du prix et la garantie que le site leur appartiendra.
+ 
+ ## Product Purpose
+ 
+-OcciCode conçoit et développe des sites vitrine sobres, rapides et travaillés
++OcciCode conçoit et développe des sites vitrine soignés, rapides et travaillés
+ pour le référencement local, destinés aux artisans et PME. Le site existe pour
+ donner à ces petites structures une présence professionnelle sans les coûts et
+ la lourdeur d'une agence. La réussite se mesure à une demande entrante qualifiée
+@@ -74,7 +74,7 @@ développement.
+   de deux C, décliné en favicon et images Open Graph.
+ - Voix : directe, humaine, sans jargon ; vouvoiement du visiteur, première
+   personne ("je") pour Julien.
+-- Promesses tenues par le discours : sobriété, honnêteté, ancrage local, absence
++- Promesses tenues par le discours : honnêteté, ancrage local, absence
+   de vente forcée. Pas de superlatifs ni de promesses de résultats invérifiables.
+ 
+ ## Evidence on Hand
+diff --git a/docs/superpowers/plans/2026-11-17-accueil-liquid-glass-plan.md b/docs/superpowers/plans/2026-11-17-accueil-liquid-glass-plan.md
+new file mode 100644
+index 0000000..f3a9cec
+--- /dev/null
++++ b/docs/superpowers/plans/2026-11-17-accueil-liquid-glass-plan.md
+@@ -0,0 +1,91 @@
++# Accueil liquid glass : plan d'exécution
++
++> **Pour l'exécutant :** utiliser executing-plans (exécution native, aucun sous-agent disponible dans cette session). Les étapes utilisent des cases `- [ ]`.
++
++**Objectif :** refondre la page `/` d'OcciCode avec un hero plein écran, du verre givré clair et la palette de marque.
++
++**Architecture :** deux utilitaires Tailwind (`glass`, `glass-strong`) dans `global.css` ; une variante verre de l'en-tête activée par une prop `glassHeader` du `Layout` ; hero réécrit dans `index.astro` avec un emplacement vidéo optionnel piloté par `site.heroVideo`.
++
++**Stack :** Astro 7, Tailwind v4 (CSS-first), astro-icon. Aucun nouveau paquet.
++
++**Spec :** `docs/superpowers/specs/2026-11-17-accueil-liquid-glass-design.md`
++
++## Contraintes globales
++
++- Tailwind v4 : modificateur important en suffixe (`m-0!`). Icônes `astro-icon`. Boutons : `title` + `type` + `role`, plus `aria-label`.
++- Palette : bordeaux `#840120`, or `#b8800d` (jamais en petit texte), crème `#f8f5ee` ; texte courant sur verre à 70 % d'opacité de fond minimum ; contraste du texte 4,5:1 minimum.
++- Flou maximum 24 px (`backdrop-blur-xl`), pas de verre imbriqué, environ six surfaces de verre visibles à la fois.
++- `h1` inchangé (`site.home.hero.title`). Démos présentées comme démos. Pages autres que `/` inchangées.
++- Aucune action git : l'utilisateur commite. Après chaque tâche, relever 3 bugs ou cas limites et corriger.
++- Vérification de fin : `npm run check`, `npm run typecheck`, `npm run build`. Aucun test n'existe ; ne pas prétendre le contraire.
++
++## Points de vigilance
++
++1. Navigateur sans `backdrop-filter` : le panneau du hero reste lisible (fond blanc à 90 %).
++2. `prefers-reduced-motion` ou économie de données avec vidéo : image seule, pas de lecture.
++3. Écran de 320 px : le panneau du hero ne déborde pas, le bouton de devis est visible sans défiler plus d'un écran.
++4. Menu mobile ouvert sur l'accueil : fond opaque, texte lisible.
++5. `site.heroVideo` absent : aucune balise `<video>`, build sans erreur.
++6. Régression : l'en-tête des autres pages est identique à avant.
++
++---
++
++### Tâche 1 : utilitaires verre et boutons
++
++**Fichiers :** modifier `src/styles/global.css`, `src/components/ui/Button.astro`.
++
++**Interfaces :**
++- Produit : classes `glass` et `glass-strong` ; variante de bouton `"glass"` ; variante `"primary"` désormais bordeaux.
++
++- [ ] **Étape 1 :** dans `global.css`, ajouter `@utility glass` (fond `white/45`, bord `white/60`, `backdrop-blur-lg md:backdrop-blur-xl`, `backdrop-saturate-150`, ombre interne claire et lueur bordeaux à 10 %) et `@utility glass-strong` (identique avec fond `white/75`). Ajouter `@supports not (backdrop-filter: blur(1px))` qui force un fond `white/90` sur les deux.
++- [ ] **Étape 2 :** dans `Button.astro`, passer `variants.primary` à `bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20`, et ajouter `glass: "glass text-foreground hover:bg-white/70"`. Étendre le type `variant` à `"primary" | "secondary" | "tertiary" | "glass"`.
++- [ ] **Étape 3 :** `npm run check` : attendu 0 erreur. `npm run build` puis `grep -c "backdrop-filter" dist/index.html` : attendu supérieur à 0 une fois l'utilitaire utilisé (tâche 3).
++
++### Tâche 2 : en-tête verre sur l'accueil
++
++**Fichiers :** modifier `src/layouts/Layout.astro` (Props, lignes 9-13 et 131-132), `src/components/Header.astro` (ligne `<header>` et conteneur du menu mobile).
++
++**Interfaces :**
++- Consomme : `Header` actuel.
++- Produit : prop `glassHeader?: boolean` (défaut `false`) sur `Layout` ; prop `glass?: boolean` sur `Header`.
++
++- [ ] **Étape 1 :** `Layout` passe `glass={glassHeader}` à `Header` et retire `pt-[72px]` de `<main>` quand `glassHeader` est vrai (le hero passe sous l'en-tête).
++- [ ] **Étape 2 :** `Header`, si `glass` : barre flottante `inset-x-3 top-3 h-14 rounded-2xl glass-strong` à la place de `inset-x-0 top-0 h-[72px] border-b ...` ; menu mobile ouvert en `bg-white` opaque. Sans `glass`, le markup actuel reste identique.
++- [ ] **Étape 3 :** `npm run build`, puis `grep -c "h-\[72px\]" dist/tarifs/index.html` : attendu 1 (en-tête inchangé hors accueil, point 6) et `grep -c "h-14" dist/index.html` supérieur à 0.
++
++### Tâche 3 : hero plein écran
++
++**Fichiers :** modifier `src/pages/index.astro` (section hero et `<Layout>`), `src/config/site.ts` (ajout de `heroVideo`), `src/types/types.d.ts` si le type du site y est défini.
++
++**Interfaces :**
++- Consomme : `glass-strong`, `Button variant="glass"`, `Layout glassHeader`.
++- Produit : `site.heroVideo?: { webm: string; mp4: string }` (absent par défaut).
++
++- [ ] **Étape 1 :** `<Layout {...metadata} glassHeader>`. Section hero `relative isolate min-h-svh overflow-hidden`, image `site.heroImage` en fond (`fetchpriority="high"` conservé), voile léger `bg-primary/10`.
++- [ ] **Étape 2 :** un seul panneau `glass-strong rounded-3xl p-6 md:p-10` (largeur max 2xl, aligné à gauche, centré verticalement) avec `h1`, sous-titre, puces de confiance, texte « Je vous réponds sous 48 h, sans engagement. » et les trois voies de contact au même niveau : bouton primaire devis, lien téléphone, lien email (textes et `aria-label` existants). Supprimer l'ancien `<aside>`.
++- [ ] **Étape 3 :** si `site.heroVideo` existe, `<video autoplay muted loop playsinline aria-hidden="true" poster={site.heroImage} class="... motion-reduce:hidden">` avec ses `<source>` ; un script `is:inline` le retire si `navigator.connection?.saveData` est vrai. Sans `heroVideo`, aucune balise.
++- [ ] **Étape 4 :** `npm run build` : attendu 0 erreur ; `grep -c "<video" dist/index.html` : attendu 0 (point 5) ; ajouter temporairement un `heroVideo` factice, rebuild, attendu 1, puis le retirer.
++
++### Tâche 4 : sections sous le hero
++
++**Fichiers :** modifier `src/pages/index.astro` (sections formules, processus, pourquoi, zone, FAQ, contact), `src/components/DemoShowcase.astro`.
++
++**Interfaces :** consomme `glass`, `glass-strong`.
++
++- [ ] **Étape 1 :** donner à la page un fond de dégradés doux (bordeaux et or très dilués sur crème, par exemple `bg-linear-to-b from-background via-primary/5 to-accent/10`) sur les sections qui ont `bg-muted`, pour que le verre ait du relief.
++- [ ] **Étape 2 :** cartes de démos et de formules en `glass-strong rounded-3xl` (la pastille « Demo » est conservée) ; formule populaire en `glass` avec bord `border-accent`. Bloc de contact final : fond bordeaux (`bg-primary`) à la place de `bg-foreground`, carte intérieure en verre. FAQ : `glass-strong` pour la lisibilité.
++- [ ] **Étape 3 :** `npm run check` puis `npm run build` : attendu 0 erreur. Le contraste est contrôlé à la tâche 6.
++
++### Tâche 5 : retrait de « sobre »
++
++**Fichiers :** modifier `AGENTS.md`, `CLAUDE.md`, `.opencode/rules/instructions.md`, `DESIGN.md`, `PRODUCT.md`, `src/config/site.ts` (ligne 126), `src/pages/a-propos.astro` (ligne 11).
++
++- [ ] **Étape 1 :** `grep -rniE "sobre|sobri|flashy|flat|sans ombre" AGENTS.md CLAUDE.md .opencode/rules DESIGN.md PRODUCT.md src` pour lister les occurrences.
++- [ ] **Étape 2 :** supprimer ou reformuler chaque occurrence ; `DESIGN.md` : réécrire la vision, Elevation (verre, ombres douces autorisées) et les Do/Don't liés ; les deux textes publics deviennent « sites rapides et bien référencés ».
++- [ ] **Étape 3 :** relancer le `grep` : attendu aucune occurrence restante dans ces fichiers.
++
++### Tâche 6 : vérification
++
++- [ ] **Étape 1 :** `npm run check`, `npm run typecheck`, `npm run build` : 0 erreur chacun.
++- [ ] **Étape 2 :** contraste : script Python calculant le ratio du texte `#0a0a0a` et `#52525b` sur du blanc à 75 % posé sur le pire fond (bordeaux dilué) ; attendu 4,5:1 minimum.
++- [ ] **Étape 3 :** reprendre les points de vigilance 1 à 6 et noter ce qui est vérifié par commande et ce qui reste à regarder à la main dans un navigateur (320 px, Safari, mode économie de données, `prefers-reduced-motion`).
+diff --git a/docs/superpowers/specs/2026-11-17-accueil-liquid-glass-design.md b/docs/superpowers/specs/2026-11-17-accueil-liquid-glass-design.md
+new file mode 100644
+index 0000000..54608a9
+--- /dev/null
++++ b/docs/superpowers/specs/2026-11-17-accueil-liquid-glass-design.md
+@@ -0,0 +1,76 @@
++# Refonte de l'accueil OcciCode : liquid glass
++
++Date : 2026-11-17. Périmètre : page `/` uniquement. Stack : Astro 7, Tailwind v4 (existant, inchangé).
++
++## Intention
++
++Quand un artisan arrive sur occicode.fr, il doit se dire « c'est beau, je veux un site comme ça », puis demander un devis. Le site sert de vitrine du savoir-faire de Julien : s'il est soigné, l'offre est crédible.
++
++Julien a décidé : effet liquid glass, hero plein écran (image ou vidéo légère) avec le texte devant, verre limité à l'accueil, suppression de toute référence à un site « sobre ».
++
++## Objectifs
++
++- Un hero plein écran qui fait « wahou » sans retarder le chargement.
++- Du verre givré clair sur : en-tête (accueil), panneau du hero, cartes de démos, cartes de formules, bloc de contact final.
++- Les trois voies de contact (devis, téléphone, email) restent au même niveau dans le hero.
++- Le titre `h1` et les textes utiles au référencement restent inchangés.
++
++## Non-objectifs
++
++- Autres pages (tarifs, contact, à propos, réalisations, mentions) : inchangées.
++- Pas de filtre de réfraction SVG, pas de canvas ni de shader (choix de Julien : verre en Tailwind seul).
++- Pas de thème sombre. Pas de nouveau contenu, témoignage ou client inventé : les trois sites restent présentés comme des démos.
++- Pas de traduction anglaise.
++
++## Anti-objectifs (échec même si « ça marche »)
++
++- Texte difficile à lire sur le verre (contraste sous 4,5:1).
++- Régression du LCP ou du CLS sur mobile : le site doit encore monter sur Google.
++- Vidéo qui se lance malgré `prefers-reduced-motion`.
++- Démos présentées comme des réalisations clients.
++
++## Contraintes
++
++- Règles du dépôt : Tailwind v4 (modificateur `!` en suffixe), icônes `astro-icon`, boutons avec `title` + `type` + `role`, `aria-label`, gestion des erreurs, thème clair, aucune action git (Julien commite).
++- Vérification avant de finir : `npm run check`, `npm run typecheck`, build. Aucun test n'existe : ne pas prétendre le contraire.
++- L'image actuelle du hero (`unsplash1.webp`, 1920×1280) est très claire (plan de travail blanc). Du texte blanc dessus serait illisible : le texte reste foncé, posé sur un panneau de verre.
++
++## Palette de marque (décidée par Julien)
++
++Bordeaux `#840120` (primaire : boutons, lien actif, focus), or `#b8800d` (accent décoratif : reflets, filets, grandes icônes, jamais en petit texte, 3,15:1 sur la crème), crème `#f8f5ee` (fond). Texte sur or : `#0a0a0a` (5,78:1). Bordeaux sur crème : 9,6:1 ; blanc sur bordeaux : 10,5:1. Mes choix : bordures et fonds atténués réchauffés (`#e6dfd0`, `#efe9dc`) pour ne pas jurer avec la crème ; icônes de la page tarifs (vert, bleu, violet, orange) ramenées au bordeaux pour respecter « 2 couleurs + 1 accent ». Le rouge d'erreur `#DC2626` est proche du bordeaux : toujours accompagné d'une icône et d'un message. Le logo contient déjà ce rouge et cet or ; l'image Open Graph garde un fond gris froid (à refaire, hors périmètre).
++
++## Approches étudiées
++
++1. **Verre en Tailwind seul** : `backdrop-blur`, `backdrop-saturate`, fond blanc translucide, bord clair, reflet interne. Partout, sans JS, léger. **Retenue par Julien.**
++2. Verre plus filtre de réfraction SVG (Chromium, grand écran) : effet « liquide » réel, mais plus de code et de GPU. Écartée.
++3. Fond animé canvas/shader : spectaculaire mais lourd pour le LCP. Écartée.
++
++## Conception
++
++**Verre.** Deux utilitaires Tailwind (`@utility glass`, `@utility glass-strong`) dans `global.css` : `glass` pour les surfaces décoratives, `glass-strong` (fond plus opaque, au moins 70 %) pour tout bloc de texte courant. Repli `@supports not (backdrop-filter)` : fond blanc à 90 %. Flou de 24 px maximum, réduit sur mobile ; pas de verre imbriqué dans du verre ; environ six surfaces de verre visibles à la fois au maximum.
++
++**Hero.** Plein écran (`min-h-svh`), passe sous l'en-tête fixe. Image `unsplash1.webp` en fond, chargée en priorité (`fetchpriority="high"`), c'est elle le LCP. Un panneau `glass-strong` porte le `h1`, le sous-titre, les trois voies de contact (devis, téléphone, email) et les trois puces de confiance actuelles. Emplacement vidéo prévu : si `site.heroVideo` est défini dans `site.ts` (fichiers `.webm` et `.mp4`, moins de 1 Mo), une balise `<video>` muette en boucle se superpose à l'image, avec l'image comme `poster`. Elle est masquée avec `prefers-reduced-motion` et ne se charge pas en mode économie de données.
++
++**En-tête.** Variante verre uniquement sur l'accueil (prop passée par `Layout` à `Header`), barre flottante avec marge, mêmes liens et mêmes boutons. Les autres pages gardent l'en-tête actuel.
++
++**Sections sous le hero.** Fonds en dégradés doux (bordeaux `#840120` et or `#b8800d` très dilués, sur crème) pour que le verre ait quelque chose à flouter. Cartes de démos et de formules en `glass-strong`, pastille « Demo » conservée (c'est une mention d'honnêteté). Bloc de contact final en verre sur dégradé. FAQ : lisibilité d'abord, fond plus opaque.
++
++**Composants.** Ajouter une variante `glass` à `Button.astro`. Mouvement : survols uniquement plus les révélations au scroll existantes ; aucun nouveau mouvement de page.
++
++**Docs et textes (suppression de la sobriété).** `AGENTS.md`, `CLAUDE.md`, `.opencode/rules/instructions.md` (ligne « simple, sobre, pas de badges flashy »), `DESIGN.md` (vision, Elevation « flat sans ombres », Do/Don't liés), `PRODUCT.md` (« sites sobres », « sobriété »). Textes publics : `src/config/site.ts` ligne 126 et `src/pages/a-propos.astro` ligne 11 (« sites sobres » devient une formulation sans « sobre », par exemple « sites rapides et bien référencés »). Les règles d'accessibilité restent.
++
++## Vérification
++
++`npm run check`, `npm run typecheck`, `npm run build`. Lighthouse mobile avant et après (LCP, CLS) ; contraste du texte sur verre mesuré dans le pire cas de fond ; navigation clavier ; `prefers-reduced-motion` ; rendu sans `backdrop-filter`.
++
++## Laissé au constructeur
++
++Valeurs exactes de flou, d'opacité et de dégradés ; recadrage de l'image sur mobile ; réglages du `poster`.
++
++## Mes choix à relire
++
++- Verre uniquement sur l'accueil, y compris l'en-tête (variante par prop).
++- Thème clair conservé ; `@utility` Tailwind dans `global.css` malgré la règle « pas de CSS custom » (c'est un mécanisme Tailwind).
++- Image d'abord, vidéo en option activable plus tard (aucun fichier vidéo n'existe).
++- Titre `h1` inchangé pour le référencement.
++- Reformulation de « sobres » dans les deux textes publics.
+diff --git a/src/components/BackToTop.astro b/src/components/BackToTop.astro
+new file mode 100644
+index 0000000..97025b0
+--- /dev/null
++++ b/src/components/BackToTop.astro
+@@ -0,0 +1,37 @@
++---
++import { Icon } from "astro-icon/components";
++---
++
++<button
++  id="back-to-top"
++  type="button"
++  role="button"
++  title="Revenir en haut de la page"
++  aria-label="Revenir en haut de la page"
++  class="invisible fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex size-12 items-center justify-center rounded-full opacity-0 glass-strong text-primary transition-[opacity,visibility] duration-300 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none sm:right-6"
++>
++  <Icon name="mdi:arrow-up" class="size-6" aria-hidden="true" />
++</button>
++
++<script is:inline>
++  (() => {
++    const button = document.getElementById("back-to-top");
++    if (!button) return;
++
++    const update = () => {
++      const visible = window.scrollY > 400;
++      button.classList.toggle("invisible", !visible);
++      button.classList.toggle("opacity-0", !visible);
++    };
++
++    button.addEventListener("click", () => {
++      const reduced = window.matchMedia(
++        "(prefers-reduced-motion: reduce)",
++      ).matches;
++      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
++    });
++
++    update();
++    window.addEventListener("scroll", update, { passive: true });
++  })();
++</script>
+diff --git a/src/components/DemoShowcase.astro b/src/components/DemoShowcase.astro
+index 397658e..9cea160 100644
+--- a/src/components/DemoShowcase.astro
++++ b/src/components/DemoShowcase.astro
+@@ -3,7 +3,14 @@ import { Icon } from "astro-icon/components";
+ import { site } from "@/config/site";
+ ---
+ 
+-<section id="section-demos" class="relative isolate mb-4 scroll-mt-[72px]">
++<section
++  id="section-demos"
++  class="relative isolate mb-4 scroll-mt-[72px] overflow-hidden bg-linear-to-b from-background to-accent/15"
++>
++  <div
++    class="absolute -top-10 right-0 -z-10 h-72 w-72 rounded-full bg-primary/20 blur-3xl"
++    aria-hidden="true"
++  ></div>
+   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+     <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+       {site.home.demos.title}
+@@ -14,7 +21,7 @@ import { site } from "@/config/site";
+ 
+     <ul class="grid gap-6 pt-10 sm:grid-cols-2 lg:grid-cols-3">
+       {site.realisations.sections.map((project) => (
+-        <li class="group relative flex flex-col overflow-hidden rounded-2xl bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
++        <li class="glass-strong group relative flex flex-col overflow-hidden rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+           <img
+             src={project.image}
+             alt={project.imageAlt}
+diff --git a/src/components/Footer.astro b/src/components/Footer.astro
+index a1f81f8..2270bb2 100644
+--- a/src/components/Footer.astro
++++ b/src/components/Footer.astro
+@@ -16,7 +16,7 @@ const socialLinks = [
+ ].filter((link) => Boolean(link.href));
+ ---
+ 
+-<footer class="border-t border-border bg-muted">
++<footer class="glass-strong mt-8 rounded-t-3xl border-b-0">
+   <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
+     <div>
+       <a
+diff --git a/src/components/Header.astro b/src/components/Header.astro
+index aa43902..5ea096f 100644
+--- a/src/components/Header.astro
++++ b/src/components/Header.astro
+@@ -4,6 +4,12 @@ import Button from "@/components/ui/Button.astro";
+ import { site } from "@/config/site";
+ import { formatPhone } from "@/utils/format";
+ 
++interface Props {
++  /** Hero plein écran derrière l'en-tête : texte clair tant qu'il est transparent. */
++  overHero?: boolean;
++}
++
++const { overHero = false } = Astro.props;
+ const navLinks = site.navLinks;
+ const quoteHref = `/contact`;
+ const phoneDisplay = formatPhone(site.telephone);
+@@ -16,7 +22,15 @@ const isCurrent = (href: string) => {
+ };
+ ---
+ 
+-<header class="fixed inset-x-0 top-0 z-50 h-[72px] border-b border-border bg-background/95 backdrop-blur">
++<header
++  id="site-header"
++  data-hero={overHero ? "" : undefined}
++  class="group fixed inset-x-3 top-3 z-50 h-14 rounded-2xl sm:inset-x-6"
++>
++  <div
++    class="glass-strong pointer-events-none absolute inset-0 -z-10 rounded-2xl transition-opacity duration-300 group-data-top:opacity-0 motion-reduce:transition-none"
++    aria-hidden="true"
++  ></div>
+   <div class="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+     <a
+       href="/"
+@@ -29,20 +43,22 @@ const isCurrent = (href: string) => {
+         alt="Logo OcciCode"
+         width="36"
+         height="36"
+-        class="h-9 w-9"
++        class="h-9 w-9 transition-colors group-data-light:rounded-lg group-data-light:bg-white/90 group-data-light:p-[3px]"
+         loading="eager"
+         decoding="async"
+       />
+-      <span class="text-lg font-bold text-foreground">{site.name}</span>
++      <span class="text-lg font-bold text-foreground group-data-light:text-white group-data-light:[text-shadow:0_1px_8px_rgb(0_0_0/0.6)]">
++        {site.name}
++      </span>
+     </a>
+ 
+     <nav aria-label="Navigation principale" class="hidden md:block">
+-      <ul class="flex items-center gap-8 text-sm font-medium text-foreground">
++      <ul class="flex items-center gap-8 text-sm font-medium text-foreground group-data-light:text-white group-data-light:[text-shadow:0_1px_8px_rgb(0_0_0/0.6)]">
+         {navLinks.map((link) => (
+           <li>
+             <a
+               href={link.href}
+-              class="inline-flex min-h-11 items-center transition-colors hover:text-primary aria-[current=page]:text-primary"
++              class="inline-flex min-h-11 items-center transition-colors hover:text-primary aria-[current=page]:text-primary group-data-light:hover:text-white/80 group-data-light:aria-[current=page]:text-white group-data-light:aria-[current=page]:underline group-data-light:aria-[current=page]:underline-offset-8"
+               title={link.text}
+               aria-current={isCurrent(link.href) ? "page" : undefined}
+             >
+@@ -56,7 +72,7 @@ const isCurrent = (href: string) => {
+     <div class="hidden shrink-0 items-center gap-4 md:flex">
+       <a
+         href={`tel:${site.telephone}`}
+-        class="hidden min-h-11 items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary lg:inline-flex"
++        class="hidden min-h-11 items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary group-data-light:text-white group-data-light:[text-shadow:0_1px_8px_rgb(0_0_0/0.6)] group-data-light:hover:text-white/80 lg:inline-flex"
+         title={`Appeler OcciCode au ${phoneDisplay}`}
+         aria-label={`Appeler OcciCode au ${phoneDisplay}`}
+       >
+@@ -67,6 +83,7 @@ const isCurrent = (href: string) => {
+         href={quoteHref}
+         variant="primary"
+         size="sm"
++        class="group-data-light:ring-1 group-data-light:ring-white/60"
+         title="Demander un devis gratuit"
+         aria-label="Demander un devis gratuit"
+       >
+@@ -76,22 +93,22 @@ const isCurrent = (href: string) => {
+ 
+     <details id="menu-mobile" class="group relative md:hidden">
+       <summary
+-        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-border [&::-webkit-details-marker]:hidden"
++        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-border group-data-light:border-white/60 [&::-webkit-details-marker]:hidden"
+         title="Ouvrir le menu"
+         aria-label="Ouvrir le menu"
+       >
+         <Icon
+           name="mdi:menu"
+-          class="h-5 w-5 text-foreground group-open:hidden"
++          class="h-5 w-5 text-foreground group-data-light:text-white group-open:hidden"
+           aria-hidden="true"
+         />
+         <Icon
+           name="mdi:close"
+-          class="hidden h-5 w-5 text-foreground group-open:block"
++          class="hidden h-5 w-5 text-foreground group-data-light:text-white group-open:block"
+           aria-hidden="true"
+         />
+       </summary>
+-      <div class="absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-card p-4 shadow-lg">
++      <div class="absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-white p-4 shadow-lg">
+         <ul class="flex flex-col text-sm font-medium text-foreground">
+           {navLinks.map((link) => (
+             <li>
+@@ -142,6 +159,27 @@ const isCurrent = (href: string) => {
+   </div>
+ </header>
+ 
++<script is:inline>
++  (() => {
++    const header = document.getElementById("site-header");
++    if (!header) return;
++
++    // Sans JavaScript, le verre reste affiché en permanence : il n'est masqué
++    // qu'en haut de page, une fois ce script exécuté.
++    const overHero = header.hasAttribute("data-hero");
++
++    const update = () => {
++      const atTop = window.scrollY <= 8;
++      header.toggleAttribute("data-top", atTop);
++      // Texte clair seulement au-dessus du hero, tant que le verre est masqué.
++      header.toggleAttribute("data-light", atTop && overHero);
++    };
++
++    update();
++    window.addEventListener("scroll", update, { passive: true });
++  })();
++</script>
++
+ <script>
+   const menu = document.getElementById(
+     "menu-mobile",
+diff --git a/src/components/ui/Button.astro b/src/components/ui/Button.astro
+index c7cd56a..86f64e6 100644
+--- a/src/components/ui/Button.astro
++++ b/src/components/ui/Button.astro
+@@ -1,6 +1,6 @@
+ ---
+ interface Props {
+-  variant?: "primary" | "secondary" | "tertiary";
++  variant?: "primary" | "secondary" | "tertiary" | "glass";
+   size?: "sm" | "md" | "lg";
+   href?: string;
+   target?: "_blank" | "_self" | "_parent" | "_top";
+@@ -32,10 +32,11 @@ const baseStyles =
+ 
+ const variants = {
+   primary:
+-    "bg-foreground/85 text-background hover:bg-foreground shadow-lg shadow-primary/15",
++    "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20",
+   secondary: "bg-muted text-foreground border border-border hover:bg-muted/80",
+   tertiary:
+     "bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground",
++  glass: "glass text-foreground hover:bg-white/70",
+ };
+ 
+ const sizes = {
+diff --git a/src/config/site.ts b/src/config/site.ts
+index 7aa3bf0..b3ecbb1 100644
+--- a/src/config/site.ts
++++ b/src/config/site.ts
+@@ -38,15 +38,20 @@ export const site = {
+     { text: "Contact", href: "/contact" },
+   ],
+   colors: {
+-    background: "#F7F7F5",
++    background: "#f8f5ee",
+     foreground: "#0a0a0a",
+-    primary: "#0254d8",
+-    border: "#e5e7eb",
+-    muted: "#e7e9ec",
++    primary: "#840120",
++    accent: "#b8800d",
++    "accent-foreground": "#0a0a0a",
++    border: "#e6dfd0",
++    muted: "#efe9dc",
+     "muted-foreground": "#52525b",
+-    card: "#F7F7F5",
++    card: "#f8f5ee",
+   },
+   heroImage: "/assets/images/unsplash1.webp",
++  /* Vidéo d'ambiance du hero (optionnelle, < 1 Mo). Tant qu'elle est absente,
++     seule l'image s'affiche. Ex. : { webm: "/assets/video/hero.webm", mp4: "/assets/video/hero.mp4" } */
++  heroVideo: undefined as { webm: string; mp4: string } | undefined,
+   interventionAreaImage: "/assets/images/map.webp",
+   logo: {
+     logo_32x32: "/assets/images/logo_32x32.webp",
+@@ -80,6 +85,8 @@ export const site = {
+         text: "Site vitrine d'un restaurant.",
+         href: "https://demo3.occicode.fr",
+         image: "/assets/images/demo3.webp",
++        imageWidth: 1900,
++        imageHeight: 950,
+         imageAlt: "Capture du site de démonstration d’un restaurant",
+       },
+       {
+@@ -87,6 +94,8 @@ export const site = {
+         text: "Site vitrine d'un paysagiste avec un design moderne",
+         href: "https://demo2.occicode.fr",
+         image: "/assets/images/demo2.webp",
++        imageWidth: 1255,
++        imageHeight: 942,
+         imageAlt: "Capture du site de démonstration d’un paysagiste",
+       },
+       {
+@@ -94,6 +103,8 @@ export const site = {
+         text: "Site vitrine d'un menuisier",
+         href: "https://demo1.occicode.fr",
+         image: "/assets/images/demo1.webp",
++        imageWidth: 1900,
++        imageHeight: 950,
+         imageAlt: "Capture du site de démonstration d’un menuisier",
+       },
+     ],
+@@ -123,7 +134,7 @@ export const site = {
+       title:
+         "Création de site internet pour artisans et TPE en Hérault et Occitanie",
+       subtitle:
+-        "OcciCode conçoit et livre des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
++        "OcciCode conçoit et livre des sites rapides et bien référencés pour les artisans, commerçants et TPE.",
+       trust: [
+         "Basé à Péret (34)",
+         "En Occitanie et à distance partout en France",
+@@ -328,29 +339,21 @@ export const site = {
+         title: "Site adapté tous écrans",
+         description:
+           "Votre site s'adapte parfaitement aux mobiles, tablettes et ordinateurs.",
+-        icon: "mdi:smartphone",
+-        iconClass: "text-green-500",
+       },
+       {
+         title: "Hébergement sécurisé",
+         description:
+           "Serveurs en Europe, certificat SSL, sauvegardes automatiques et sécurité renforcée.",
+-        icon: "mdi:shield-check",
+-        iconClass: "text-blue-500",
+       },
+       {
+         title: "Référencement local",
+         description:
+           "Optimisation pour Google et les recherches locales dans votre ville et votre métier.",
+-        icon: "mdi:search",
+-        iconClass: "text-purple-500",
+       },
+       {
+         title: "Support client",
+         description:
+           "Je suis disponible pour répondre à vos questions et vous accompagner.",
+-        icon: "mdi:headphones",
+-        iconClass: "text-orange-500",
+       },
+     ],
+   },
+diff --git a/src/layouts/Layout.astro b/src/layouts/Layout.astro
+index e69b37a..12fdaf3 100644
+--- a/src/layouts/Layout.astro
++++ b/src/layouts/Layout.astro
+@@ -3,6 +3,7 @@ import { SEO } from "astro-seo";
+ import { site } from "../config/site";
+ import Header from "../components/Header.astro";
+ import Footer from "../components/Footer.astro";
++import BackToTop from "../components/BackToTop.astro";
+ import "../styles/global.css";
+ import { buildJsonLd } from "../utils/jsonld";
+ 
+@@ -22,6 +23,8 @@ interface Props {
+     price?: number;
+   }[];
+   extra?: Record<string, unknown>[];
++  /** Hero plein écran : le contenu passe sous l'en-tête flottant. */
++  fullBleedHero?: boolean;
+ }
+ 
+ const {
+@@ -30,6 +33,7 @@ const {
+   canonical: canonicalProp = null,
+   noindex = false,
+   nofollow = false,
++  fullBleedHero = false,
+   pageType,
+   breadcrumbs,
+   faq,
+@@ -122,17 +126,25 @@ const jsonLd = buildJsonLd({
+     )}
+   </head>
+   <body class="flex min-h-screen flex-col bg-background text-foreground antialiased">
++    <div
++      class="fixed inset-0 -z-10 bg-linear-to-br from-primary/10 via-background to-accent/15"
++      aria-hidden="true"
++    ></div>
+     <a
+       href="#main-content"
+       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+     >
+       Aller au contenu principal
+     </a>
+-    <Header />
+-    <main id="main-content" class="relative z-10 grow pt-[72px]">
++    <Header overHero={fullBleedHero} />
++    <main
++      id="main-content"
++      class:list={["relative z-10 grow", !fullBleedHero && "pt-20"]}
++    >
+       <slot />
+     </main>
+     <Footer />
++    <BackToTop />
+     <script>
+       // Repli pour les navigateurs sans `animation-timeline: view()` (Firefox
+       // stable au 16/09/2026 : la timeline scroll-driven y est encore derrière
+diff --git a/src/pages/a-propos.astro b/src/pages/a-propos.astro
+index eabc567..0d0b8fb 100644
+--- a/src/pages/a-propos.astro
++++ b/src/pages/a-propos.astro
+@@ -3,16 +3,31 @@ import Layout from "@/layouts/Layout.astro";
+ import Headline from "@/components/ui/Headline.astro";
+ import Button from "@/components/ui/Button.astro";
+ import { site } from "@/config/site";
++import { existsSync } from "node:fs";
++import { join } from "node:path";
+ 
+ const metadata = {
+   title:
+     "À propos d'OcciCode, création de site internet pour artisans et TPE en Occitanie",
+   description:
+-    "Julien Martin, développeur indépendant basé à Péret (Hérault), conçoit des sites internet sobres pour les artisans et indépendants.",
++    "Julien Martin, développeur indépendant basé à Péret (Hérault), conçoit des sites internet rapides et bien référencés pour les artisans et indépendants.",
+   pageType: "AboutPage" as const,
+   breadcrumbs: [{ name: "À propos", path: "/a-propos" }],
+ };
+ 
++// Photo de Julien : à déposer dans public/assets/images/photo.jpg. Tant que le
++// fichier est absent (ou si la vérification échoue), la page s'affiche sans
++// photo plutôt qu'avec une image cassée.
++const photoSrc = "/assets/images/photo.jpg";
++function photoExists(path: string): boolean {
++  try {
++    return existsSync(join(process.cwd(), "public", path));
++  } catch {
++    return false;
++  }
++}
++const hasPhoto = photoExists(photoSrc);
++
+ // Carte OpenStreetMap centrée sur Péret (34800). En cas de coordonnées
+ // manquantes ou invalides dans la config, on masque simplement la carte
+ // plutôt que d'afficher un iframe cassé.
+@@ -33,7 +48,7 @@ const mapLinkHref = hasValidCoordinates
+ 
+ <Layout {...metadata}>
+   <section
+-    class="mx-auto max-w-3xl scroll-mt-[72px] px-4 py-12 sm:px-6 md:py-20"
++    class="mx-auto max-w-6xl scroll-mt-[72px] px-4 py-12 sm:px-6 md:py-20"
+     id="section-a-propos"
+   >
+     <Headline
+@@ -47,32 +62,52 @@ const mapLinkHref = hasValidCoordinates
+       }}
+     />
+ 
+-    <div class="mt-10 space-y-6 text-muted-foreground">
+-      <p>
+-        Je m'appelle Julien Martin. Je conçois et développe des sites internet
+-        pour les artisans, commerçants et indépendants, depuis Péret, dans
+-        l'Hérault.
+-      </p>
+-      <p>
+-        Mon objectif est simple : vous donner un site clair, rapide et facile à
+-        faire évoluer, sans fonctionnalités inutiles qui ralentissent le
+-        chargement ou compliquent la maintenance. Les sites que je livre sont
+-        construits avec des technologies modernes et performantes, pensées pour
+-        le référencement et pour durer dans le temps.
+-      </p>
+-      <p>
+-        Je travaille en direct avec vous, du premier échange à la mise en ligne
+-        : pas d'intermédiaire, pas de jargon technique inutile. Vous savez
+-        toujours à quelle étape en est votre projet.
+-      </p>
+-      <p>
+-        Je me déplace partout en Occitanie et je travaille à distance avec des
+-        clients dans toute la France, selon ce qui vous convient le mieux.
+-      </p>
++    <div
++      class:list={[
++        "mt-10 items-center gap-8 md:gap-12",
++        hasPhoto
++          ? "grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
++          : "mx-auto max-w-3xl",
++      ]}
++    >
++      {hasPhoto && (
++        <img
++          src={photoSrc}
++          alt="Julien Martin, développeur web indépendant à Péret"
++          width="800"
++          height="1000"
++          class="aspect-4/5 w-full rounded-3xl object-cover"
++          loading="lazy"
++          decoding="async"
++        />
++      )}
++      <div class="glass-strong space-y-6 rounded-3xl p-6 text-muted-foreground md:p-10">
++        <p>
++          Je m'appelle Julien Martin. Je conçois et développe des sites internet
++          pour les artisans, commerçants et indépendants, depuis Péret, dans
++          l'Hérault.
++        </p>
++        <p>
++          Mon objectif est simple : vous donner un site clair, rapide et facile
++          à faire évoluer, sans fonctionnalités inutiles qui ralentissent le
++          chargement ou compliquent la maintenance. Les sites que je livre sont
++          construits avec des technologies modernes et performantes, pensées
++          pour le référencement et pour durer dans le temps.
++        </p>
++        <p>
++          Je travaille en direct avec vous, du premier échange à la mise en
++          ligne : pas d'intermédiaire, pas de jargon technique inutile. Vous
++          savez toujours à quelle étape en est votre projet.
++        </p>
++        <p>
++          Je me déplace partout en Occitanie et je travaille à distance avec des
++          clients dans toute la France, selon ce qui vous convient le mieux.
++        </p>
++      </div>
+     </div>
+ 
+     {hasValidCoordinates && (
+-      <div class="mt-10">
++      <div class="glass-strong mx-auto mt-10 max-w-3xl rounded-3xl p-6 md:p-8">
+         <h2 class="text-lg font-bold text-foreground">Basé à Péret (34800)</h2>
+         <div class="mt-4 overflow-hidden rounded-2xl border border-border">
+           <iframe
+@@ -97,7 +132,7 @@ const mapLinkHref = hasValidCoordinates
+       </div>
+     )}
+ 
+-    <div class="mt-10 flex flex-wrap gap-4">
++    <div class="mx-auto mt-10 flex max-w-3xl flex-wrap gap-4">
+       <Button
+         href="/contact"
+         variant="primary"
+diff --git a/src/pages/confidentialite.astro b/src/pages/confidentialite.astro
+index b1384b5..6fe0968 100644
+--- a/src/pages/confidentialite.astro
++++ b/src/pages/confidentialite.astro
+@@ -26,7 +26,7 @@ const metadata = {
+       classes={{ container: "max-w-3xl", title: "text-3xl md:text-4xl" }}
+     />
+ 
+-    <div class="mt-8 space-y-8 text-muted-foreground">
++    <div class="glass-strong mt-8 rounded-3xl p-6 md:p-10 space-y-8 text-muted-foreground">
+       <p>
+         Cette politique explique quelles données sont collectées sur ce site,
+         pourquoi, et comment les faire modifier ou supprimer. Le responsable du
+diff --git a/src/pages/contact.astro b/src/pages/contact.astro
+index 8ba40f7..dfc4faa 100644
+--- a/src/pages/contact.astro
++++ b/src/pages/contact.astro
+@@ -17,7 +17,7 @@ const phoneDisplay = formatPhone(site.telephone);
+ const objetOptions = [...site.services.map((service) => service.name), "Autre"];
+ 
+ const inputClass =
+-  "w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30";
++  "w-full rounded-lg border border-border bg-white/80 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30";
+ const labelClass = "mb-1 block text-sm font-medium text-foreground";
+ ---
+ 
+@@ -65,7 +65,7 @@ const labelClass = "mb-1 block text-sm font-medium text-foreground";
+         </ul>
+       </div>
+ 
+-      <div>
++      <div class="glass-strong rounded-3xl p-6 md:p-8">
+         <div
+           id="contact-form-status"
+           role="status"
+diff --git a/src/pages/index.astro b/src/pages/index.astro
+index 615c33d..df85ea4 100644
+--- a/src/pages/index.astro
++++ b/src/pages/index.astro
+@@ -21,11 +21,11 @@ const metadata = {
+ };
+ ---
+ 
+-<Layout {...metadata}>
++<Layout {...metadata} fullBleedHero>
+   <!-- Hero -->
+   <section
+     id="section-hero"
+-    class="relative isolate mb-4 scroll-mt-[72px] overflow-hidden bg-muted"
++    class="relative isolate mb-4 min-h-svh overflow-hidden bg-muted"
+   >
+     <img
+       src={site.heroImage}
+@@ -34,92 +34,112 @@ const metadata = {
+       height="1279"
+       fetchpriority="high"
+       decoding="async"
+-      class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
++      class="absolute inset-0 -z-30 h-full w-full object-cover object-center"
+     />
++    {site.heroVideo && (
++      <video
++        id="hero-video"
++        class="absolute inset-0 -z-20 h-full w-full object-cover object-center motion-reduce:hidden"
++        autoplay
++        muted
++        loop
++        playsinline
++        aria-hidden="true"
++        tabindex="-1"
++        poster={site.heroImage}
++      >
++        <source src={site.heroVideo.webm} type="video/webm" />
++        <source src={site.heroVideo.mp4} type="video/mp4" />
++      </video>
++    )}
++    <div class="absolute inset-0 -z-10 bg-primary/10" aria-hidden="true"></div>
+     <div
+-      class="absolute inset-0 -z-10 bg-background/88 lg:hidden"
++      class="absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-black/60 via-black/40 to-transparent"
+       aria-hidden="true"
+     ></div>
+-    <div
+-      class="absolute inset-0 -z-10 hidden bg-linear-to-r from-background from-0% via-background/95 via-55% to-background/25 lg:block"
+-      aria-hidden="true"
+-    ></div>
+-
+-    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16">
+-      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start lg:gap-16">
+-        <div class="flex flex-col items-start gap-6">
+-          <h1 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl lg:text-5xl">
+-            {hero.title}
+-          </h1>
+-          <p class="max-w-2xl text-pretty text-lg text-muted-foreground md:text-xl">
+-            {hero.subtitle}
+-          </p>
+-          <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
+-            {hero.trust.map((item) => (
+-              <li class="flex items-center gap-2">
+-                <Icon
+-                  name="mdi:check"
+-                  class="h-4 w-4 shrink-0 text-primary"
+-                  aria-hidden="true"
+-                />
+-                {item}
+-              </li>
+-            ))}
+-          </ul>
+-        </div>
+ 
+-        <aside
+-          class="rounded-3xl border border-border bg-card p-6 shadow-sm md:p-8"
+-          aria-labelledby="hero-contact-title"
+-        >
+-          <h2 id="hero-contact-title" class="text-xl font-bold text-foreground">
+-            Parlons de votre projet
+-          </h2>
+-          <p class="mt-2 text-pretty text-sm text-muted-foreground">
+-            Je vous réponds sous 48 h, sans engagement.
+-          </p>
+-
+-          <div class="mt-6 flex flex-col gap-3">
+-            <Button
+-              href="/contact"
+-              variant="primary"
+-              size="md"
+-              class="w-full"
+-              title="Demander un devis gratuit"
+-              aria-label="Demander un devis gratuit"
+-            >
+-              Demander un devis
+-            </Button>
+-            <a
+-              href={`tel:${site.telephone}`}
+-              class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+-              title={`Appeler OcciCode au ${phoneDisplay}`}
+-              aria-label={`Appeler OcciCode au ${phoneDisplay}`}
+-            >
+-              <Icon
+-                name="mdi:phone-outline"
+-                class="h-5 w-5 shrink-0 text-primary"
+-                aria-hidden="true"
+-              />
+-              {phoneDisplay}
+-            </a>
+-            <a
+-              href={`mailto:${site.email}`}
+-              class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+-              title={`Envoyer un email à ${site.email}`}
+-              aria-label={`Envoyer un email à ${site.email}`}
+-            >
++    <div class="relative mx-auto flex min-h-svh max-w-7xl items-center px-4 pb-10 pt-24 sm:px-6">
++      <div class="glass-strong w-full max-w-2xl rounded-3xl p-6 md:p-10">
++        <h1 class="text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl lg:text-5xl">
++          {hero.title}
++        </h1>
++        <p class="mt-4 text-pretty text-lg text-foreground/80 md:text-xl">
++          {hero.subtitle}
++        </p>
++        <ul class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-foreground/80">
++          {hero.trust.map((item) => (
++            <li class="flex items-center gap-2">
+               <Icon
+-                name="mdi:email-outline"
+-                class="h-5 w-5 shrink-0 text-primary"
++                name="mdi:check"
++                class="h-4 w-4 shrink-0 text-primary"
+                 aria-hidden="true"
+               />
+-              {site.email}
+-            </a>
+-          </div>
+-        </aside>
++              {item}
++            </li>
++          ))}
++        </ul>
++
++        <p class="mt-8 text-sm text-foreground/80">
++          Je vous réponds sous 48 h, sans engagement.
++        </p>
++        <div
++          class="mt-3 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
++          role="group"
++          aria-label="Me contacter"
++        >
++          <Button
++            href="/contact"
++            variant="primary"
++            size="md"
++            title="Demander un devis gratuit"
++            aria-label="Demander un devis gratuit"
++          >
++            Demander un devis
++          </Button>
++          <a
++            href={`tel:${site.telephone}`}
++            class="inline-flex min-h-12 items-center gap-2 rounded-xl border border-border bg-white/70 px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
++            title={`Appeler OcciCode au ${phoneDisplay}`}
++            aria-label={`Appeler OcciCode au ${phoneDisplay}`}
++          >
++            <Icon
++              name="mdi:phone-outline"
++              class="h-5 w-5 shrink-0 text-primary"
++              aria-hidden="true"
++            />
++            {phoneDisplay}
++          </a>
++          <a
++            href={`mailto:${site.email}`}
++            class="inline-flex min-h-12 items-center gap-2 rounded-xl border border-border bg-white/70 px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
++            title={`Envoyer un email à ${site.email}`}
++            aria-label={`Envoyer un email à ${site.email}`}
++          >
++            <Icon
++              name="mdi:email-outline"
++              class="h-5 w-5 shrink-0 text-primary"
++              aria-hidden="true"
++            />
++            <span class="break-all">{site.email}</span>
++          </a>
++        </div>
+       </div>
+     </div>
++    {site.heroVideo && <script is:inline>
++      (function () {
++        try {
++          const v = document.getElementById("hero-video");
++          const c = navigator.connection;
++          const saveData = !!(c && c.saveData);
++          const reduced = window.matchMedia(
++            "(prefers-reduced-motion: reduce)",
++          ).matches;
++          if (v && (saveData || reduced)) v.remove();
++        } catch {
++          /* la vidéo est décorative : en cas d'erreur, l'image reste */
++        }
++      })();
++    </script>}
+   </section>
+ 
+   <!-- Démos -->
+@@ -128,8 +148,16 @@ const metadata = {
+   <!-- Formules -->
+   <section
+     id="section-services"
+-    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
++    class="relative isolate mb-4 scroll-mt-[72px] overflow-hidden bg-linear-to-br from-primary/10 via-accent/15 to-background"
+   >
++    <div
++      class="absolute -top-16 -left-16 -z-10 h-72 w-72 rounded-full bg-primary/25 blur-3xl"
++      aria-hidden="true"
++    ></div>
++    <div
++      class="absolute -right-10 bottom-0 -z-10 h-80 w-80 rounded-full bg-accent/40 blur-3xl"
++      aria-hidden="true"
++    ></div>
+     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+       <h2 class="text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+         {services.title}
+@@ -141,10 +169,8 @@ const metadata = {
+       <div class="grid gap-6 pt-10 md:grid-cols-3">
+         {packages.map((pkg) => (
+           <article
+-            class={`relative flex flex-col rounded-3xl border p-8 transition-shadow duration-300 hover:shadow-lg ${
+-              pkg.isPopular
+-                ? "border-primary/40 bg-primary/5 shadow-sm"
+-                : "border-border/60 bg-card shadow-sm"
++            class={`glass-strong relative flex flex-col rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
++              pkg.isPopular ? "outline-2 outline-accent" : ""
+             }`}
+           >
+             {pkg.badge && (
+@@ -227,7 +253,7 @@ const metadata = {
+   <!-- Pourquoi OcciCode -->
+   <section
+     id="section-why-us"
+-    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
++    class="relative isolate mb-4 scroll-mt-[72px] bg-linear-to-bl from-accent/15 via-background to-primary/10"
+   >
+     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+       <div class="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+@@ -294,7 +320,7 @@ const metadata = {
+   <!-- FAQ -->
+   <section
+     id="section-faq"
+-    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
++    class="relative isolate mb-4 scroll-mt-[72px] bg-linear-to-b from-background via-accent/10 to-primary/10"
+   >
+     <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
+       <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+@@ -304,7 +330,7 @@ const metadata = {
+         {faq.subtitle}
+       </p>
+ 
+-      <div class="mt-10 border-y border-border">
++      <div class="glass-strong mt-10 rounded-3xl px-6">
+         {faq.items.map((item) => (
+           <details class="group border-b border-border last:border-b-0">
+             <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-4 font-bold text-foreground [&::-webkit-details-marker]:hidden">
+@@ -327,7 +353,11 @@ const metadata = {
+   <!-- Contact -->
+   <section id="section-contact" class="relative isolate mb-4 scroll-mt-[72px]">
+     <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
+-      <div class="rounded-3xl bg-foreground px-6 py-10 text-background md:px-12 md:py-14">
++      <div class="relative isolate overflow-hidden rounded-3xl bg-primary px-6 py-10 text-background md:px-12 md:py-14">
++        <div
++          class="absolute -right-16 -top-16 -z-10 h-72 w-72 rounded-full bg-accent/50 blur-3xl"
++          aria-hidden="true"
++        ></div>
+         <h2 class="max-w-2xl text-2xl font-bold text-balance md:text-3xl">
+           {cta.title}
+         </h2>
+diff --git a/src/pages/mentions-legales.astro b/src/pages/mentions-legales.astro
+index 31054e3..404825e 100644
+--- a/src/pages/mentions-legales.astro
++++ b/src/pages/mentions-legales.astro
+@@ -28,7 +28,7 @@ const legal = site.legal;
+       classes={{ container: "max-w-3xl", title: "text-3xl md:text-4xl" }}
+     />
+ 
+-    <div class="mt-8 space-y-10 text-muted-foreground">
++    <div class="glass-strong mt-8 rounded-3xl p-6 md:p-10 space-y-10 text-muted-foreground">
+       <div>
+         <h2 class="text-xl font-bold text-foreground">Éditeur du site</h2>
+         <ul class="mt-3 space-y-1">
+diff --git a/src/pages/realisations.astro b/src/pages/realisations.astro
+index d324706..f05fa74 100644
+--- a/src/pages/realisations.astro
++++ b/src/pages/realisations.astro
+@@ -46,50 +46,62 @@ const metadata = {
+     </div>
+   </section>
+ 
+-  {page.sections.map((section, index) => (
+-    <section class="reveal-section scroll-mt-[73px] my-12 md:my-0 md:mx-12">
+-      <article
++  {page.sections.map((section, index) => {
++    const imageFirst = index % 2 === 0;
++    return (
++      <section
+         class:list={[
+-          "bg-muted grid w-full max-w-6xl grid-cols-1 items-center gap-16 md:grid-cols-12 my-4 rounded-4xl overflow-hidden",
+-          index % 2 === 0 ? "md:mr-auto" : "md:ml-auto",
+-          { "md:[&>*:first-child]:order-2": index % 2 === 1 },
++          "reveal-section relative isolate mb-4 grid scroll-mt-[72px] md:min-h-[max(40rem,85svh)] md:grid-cols-2",
++          imageFirst
++            ? "bg-linear-to-br from-primary/10 via-background to-accent/15"
++            : "bg-linear-to-bl from-accent/15 via-background to-primary/10",
+         ]}
+       >
+-        <div class="md:col-span-6 px-8 py-12 xl:px-32 mb-4 md:mb-0">
+-          <h2 class="font-display text-3xl font-semibold text-foreground md:text-4xl">
+-            {section.title}
+-          </h2>
+-          <p class="mt-5 max-w-md leading-relaxed text-muted-foreground">
+-            {section.text}
+-          </p>
+-          <Button
+-            href={section.href}
+-            rel="noopener noreferrer"
+-            target="_blank"
+-            variant="primary"
+-            size="sm"
+-            class="mt-4 w-full"
+-            title={`Aller sur le site ${section.href}`}
+-            aria-label={`Aller sur le site ${section.href}`}
+-          >
+-            Voir la démo
+-          </Button>
+-        </div>
+-
+         <div
+-          class:list={["md:col-span-6", { "mb-4 md:mb-0": index % 2 === 1 }]}
++          class:list={[
++            "flex items-center justify-center px-6 py-10 md:px-10 md:py-16",
++            { "md:order-2": !imageFirst },
++          ]}
+         >
+-          <img
+-            src={section.image}
+-            alt={section.imageAlt}
+-            width="700"
+-            height="880"
+-            class="aspect-4/3 w-full object-cover"
+-            loading="lazy"
+-            decoding="async"
+-          />
++          <div class="relative w-full max-w-3xl">
++            <img
++              src={section.image}
++              alt={section.imageAlt}
++              width={section.imageWidth}
++              height={section.imageHeight}
++              class="h-auto w-full rounded-2xl border border-white/70 shadow-2xl shadow-primary/20"
++              loading="lazy"
++              decoding="async"
++            />
++            <span class="glass-strong absolute bottom-3 left-3 rounded-full px-3 py-1 text-sm font-semibold text-foreground">
++              Site de démonstration
++            </span>
++          </div>
+         </div>
+-      </article>
+-    </section>
+-  ))}
++
++        <article class="flex items-center px-6 py-16 md:px-12 lg:px-20">
++          <div class="max-w-md">
++            <h2 class="font-display text-3xl font-semibold text-foreground md:text-4xl">
++              {section.title}
++            </h2>
++            <p class="mt-5 leading-relaxed text-muted-foreground">
++              {section.text}
++            </p>
++            <Button
++              href={section.href}
++              rel="noopener noreferrer"
++              target="_blank"
++              variant="primary"
++              size="sm"
++              class="mt-6"
++              title={`Aller sur le site ${section.href}`}
++              aria-label={`Aller sur le site ${section.href}`}
++            >
++              Voir la démo
++            </Button>
++          </div>
++        </article>
++      </section>
++    );
++  })}
+ </Layout>
+diff --git a/src/pages/tarifs.astro b/src/pages/tarifs.astro
+index 912aa5e..75abe0f 100644
+--- a/src/pages/tarifs.astro
++++ b/src/pages/tarifs.astro
+@@ -52,10 +52,10 @@ const metadata = {
+       >
+         {services.map((service) => (
+           <article
+-            class={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 hover:shadow-xl ${
++            class={`glass-strong relative flex flex-col rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
+               service.isPopular
+-                ? "bg-primary/5 border-primary/40 shadow-lg scale-100 md:scale-105 z-10"
+-                : "bg-card border-border/50 shadow-sm"
++                ? "z-10 outline-2 outline-accent md:scale-105"
++                : ""
+             }`}
+           >
+             {service.badge && (
+@@ -106,39 +106,35 @@ const metadata = {
+   </section>
+ 
+   <section
+-    class="relative isolate scroll-mt-[72px] bg-muted mb-4 reveal-section animate-section-fade"
++    class="relative isolate mb-4 scroll-mt-[72px] overflow-hidden bg-linear-to-bl from-accent/15 via-background to-primary/10 reveal-section animate-section-fade"
+     id="section-included-features"
+   >
+-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 py-12 md:py-16 not-prose text-default">
+-      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+-        <div>
+-          <Headline
+-            title={includedFeatures.title}
+-            subtitle={includedFeatures.subtitle}
+-            tagline={includedFeatures.tagline}
+-          />
+-        </div>
++    <div
++      class="absolute -top-16 left-1/4 -z-10 h-72 w-72 rounded-full bg-accent/30 blur-3xl"
++      aria-hidden="true"
++    ></div>
++    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 py-12 md:py-20 not-prose text-default">
++      <Headline
++        title={includedFeatures.title}
++        subtitle={includedFeatures.subtitle}
++        tagline={includedFeatures.tagline}
++        classes={{ container: "mx-auto max-w-3xl text-center" }}
++      />
+ 
+-        <dl class="divide-y divide-border border-y border-border">
+-          {features.map((feat: Feature) => (
+-            <div class="grid gap-2 py-5 sm:grid-cols-[14rem_minmax(0,1fr)] sm:gap-6">
+-              <dt class="font-bold text-foreground flex items-center gap-2">
+-                {feat.icon && (
+-                  <div
+-                    class={`w-12 h-12 rounded-lg flex items-center justify-center ${feat.iconClass ? feat.iconClass : "bg-primary/10 text-primary"}`}
+-                  >
+-                    <Icon name={feat.icon} class="w-6 h-6" />
+-                  </div>
+-                )}
+-                <span>{feat.title}</span>
+-              </dt>
+-              <dd class="text-pretty text-sm text-muted-foreground">
+-                {feat.description}
+-              </dd>
+-            </div>
+-          ))}
+-        </dl>
+-      </div>
++      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
++        {features.map((feat: Feature) => (
++          <li class="glass-strong flex flex-col rounded-3xl p-6">
++            <span
++              class="mb-5 h-1 w-10 rounded-full bg-accent"
++              aria-hidden="true"
++            ></span>
++            <h3 class="text-lg font-bold text-foreground">{feat.title}</h3>
++            <p class="mt-2 text-pretty text-sm text-muted-foreground">
++              {feat.description}
++            </p>
++          </li>
++        ))}
++      </ul>
+     </div>
+   </section>
+ 
+@@ -156,7 +152,7 @@ const metadata = {
+       <div class="grid sm:grid-cols-2 gap-8 md:gap-12 mt-8" id="faq-list">
+         {faqItems &&
+           faqItems.map(({ question, answer }) => (
+-            <article class="flex flex-col">
++            <article class="glass-strong flex flex-col rounded-3xl p-6">
+               <h3 class="mb-3 text-xl font-bold flex items-start">
+                 <Icon
+                   name="mdi:chevron-right"
+diff --git a/src/styles/global.css b/src/styles/global.css
+index 3ecb24a..a79262d 100644
+--- a/src/styles/global.css
++++ b/src/styles/global.css
+@@ -12,6 +12,8 @@
+   --color-background: var(--background);
+   --color-foreground: var(--foreground);
+   --color-primary: var(--primary);
++  --color-accent: var(--accent);
++  --color-accent-foreground: var(--accent-foreground);
+   --color-border: var(--border);
+   --color-muted: var(--muted);
+   --color-muted-foreground: var(--muted-foreground);
+@@ -80,6 +82,31 @@
+   }
+ }
+ 
++/* Verre givré clair (page d'accueil). `glass` pour les surfaces décoratives,
++   `glass-strong` pour tout bloc de texte courant (fond >= 75 % pour le contraste). */
++@utility glass {
++  @apply border border-white/60 bg-white/45 backdrop-blur-lg backdrop-saturate-150 md:backdrop-blur-xl;
++  box-shadow:
++    inset 0 1px 0 rgb(255 255 255 / 0.7),
++    0 8px 32px rgb(132 1 32 / 0.1);
++}
++
++@utility glass-strong {
++  @apply border border-white/60 bg-white/75 backdrop-blur-lg backdrop-saturate-150 md:backdrop-blur-xl;
++  box-shadow:
++    inset 0 1px 0 rgb(255 255 255 / 0.7),
++    0 8px 32px rgb(132 1 32 / 0.1);
++}
++
++/* Sans `backdrop-filter`, le fond translucide laisserait le texte sur l'image :
++   on bascule sur un fond quasi opaque. */
++@supports not (backdrop-filter: blur(1px)) {
++  .glass,
++  .glass-strong {
++    background-color: rgb(255 255 255 / 0.9);
++  }
++}
++
+ @layer base {
+   * {
+     @apply m-0 p-0 box-border;

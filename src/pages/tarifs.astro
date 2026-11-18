@@ -52,10 +52,10 @@ const metadata = {
       >
         {services.map((service) => (
           <article
-            class={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 hover:shadow-xl ${
+            class={`glass-strong relative flex flex-col rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
               service.isPopular
-                ? "bg-primary/5 border-primary/40 shadow-lg scale-100 md:scale-105 z-10"
-                : "bg-card border-border/50 shadow-sm"
+                ? "z-10 outline-2 outline-accent md:scale-105"
+                : ""
             }`}
           >
             {service.badge && (
@@ -106,39 +106,35 @@ const metadata = {
   </section>
 
   <section
-    class="relative isolate scroll-mt-[72px] bg-muted mb-4 reveal-section animate-section-fade"
+    class="relative isolate mb-4 scroll-mt-[72px] overflow-hidden bg-linear-to-bl from-accent/15 via-background to-primary/10 reveal-section animate-section-fade"
     id="section-included-features"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 py-12 md:py-16 not-prose text-default">
-      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-        <div>
-          <Headline
-            title={includedFeatures.title}
-            subtitle={includedFeatures.subtitle}
-            tagline={includedFeatures.tagline}
-          />
-        </div>
+    <div
+      class="absolute -top-16 left-1/4 -z-10 h-72 w-72 rounded-full bg-accent/30 blur-3xl"
+      aria-hidden="true"
+    ></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 py-12 md:py-20 not-prose text-default">
+      <Headline
+        title={includedFeatures.title}
+        subtitle={includedFeatures.subtitle}
+        tagline={includedFeatures.tagline}
+        classes={{ container: "mx-auto max-w-3xl text-center" }}
+      />
 
-        <dl class="divide-y divide-border border-y border-border">
-          {features.map((feat: Feature) => (
-            <div class="grid gap-2 py-5 sm:grid-cols-[14rem_minmax(0,1fr)] sm:gap-6">
-              <dt class="font-bold text-foreground flex items-center gap-2">
-                {feat.icon && (
-                  <div
-                    class={`w-12 h-12 rounded-lg flex items-center justify-center ${feat.iconClass ? feat.iconClass : "bg-primary/10 text-primary"}`}
-                  >
-                    <Icon name={feat.icon} class="w-6 h-6" />
-                  </div>
-                )}
-                <span>{feat.title}</span>
-              </dt>
-              <dd class="text-pretty text-sm text-muted-foreground">
-                {feat.description}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </div>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {features.map((feat: Feature) => (
+          <li class="glass-strong flex flex-col rounded-3xl p-6">
+            <span
+              class="mb-5 h-1 w-10 rounded-full bg-accent"
+              aria-hidden="true"
+            ></span>
+            <h3 class="text-lg font-bold text-foreground">{feat.title}</h3>
+            <p class="mt-2 text-pretty text-sm text-muted-foreground">
+              {feat.description}
+            </p>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
@@ -156,7 +152,7 @@ const metadata = {
       <div class="grid sm:grid-cols-2 gap-8 md:gap-12 mt-8" id="faq-list">
         {faqItems &&
           faqItems.map(({ question, answer }) => (
-            <article class="flex flex-col">
+            <article class="glass-strong flex flex-col rounded-3xl p-6">
               <h3 class="mb-3 text-xl font-bold flex items-start">
                 <Icon
                   name="mdi:chevron-right"

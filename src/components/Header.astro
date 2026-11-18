@@ -4,6 +4,12 @@ import Button from "@/components/ui/Button.astro";
 import { site } from "@/config/site";
 import { formatPhone } from "@/utils/format";
 
+interface Props {
+  /** Hero plein écran derrière l'en-tête : texte clair tant qu'il est transparent. */
+  overHero?: boolean;
+}
+
+const { overHero = false } = Astro.props;
 const navLinks = site.navLinks;
 const quoteHref = `/contact`;
 const phoneDisplay = formatPhone(site.telephone);
@@ -16,7 +22,15 @@ const isCurrent = (href: string) => {
 };
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 h-[72px] border-b border-border bg-background/95 backdrop-blur">
+<header
+  id="site-header"
+  data-hero={overHero ? "" : undefined}
+  class="group fixed inset-x-3 top-3 z-50 h-14 rounded-2xl sm:inset-x-6"
+>
+  <div
+    class="glass-strong pointer-events-none absolute inset-0 -z-10 rounded-2xl transition-opacity duration-300 group-data-top:opacity-0 motion-reduce:transition-none"
+    aria-hidden="true"
+  ></div>
   <div class="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
     <a
       href="/"
@@ -29,20 +43,22 @@ const isCurrent = (href: string) => {
         alt="Logo OcciCode"
         width="36"
         height="36"
-        class="h-9 w-9"
+        class="h-9 w-9 transition-colors group-data-light:rounded-lg group-data-light:bg-white/90 group-data-light:p-[3px]"
         loading="eager"
         decoding="async"
       />
-      <span class="text-lg font-bold text-foreground">{site.name}</span>
+      <span class="text-lg font-bold text-foreground group-data-light:text-white group-data-light:[text-shadow:0_1px_8px_rgb(0_0_0/0.6)]">
+        {site.name}
+      </span>
     </a>
 
     <nav aria-label="Navigation principale" class="hidden md:block">
-      <ul class="flex items-center gap-8 text-sm font-medium text-foreground">
+      <ul class="flex items-center gap-8 text-sm font-medium text-foreground group-data-light:text-white group-data-light:[text-shadow:0_1px_8px_rgb(0_0_0/0.6)]">
         {navLinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="inline-flex min-h-11 items-center transition-colors hover:text-primary aria-[current=page]:text-primary"
+              class="inline-flex min-h-11 items-center transition-colors hover:text-primary aria-[current=page]:text-primary group-data-light:hover:text-white/80 group-data-light:aria-[current=page]:text-white group-data-light:aria-[current=page]:underline group-data-light:aria-[current=page]:underline-offset-8"
               title={link.text}
               aria-current={isCurrent(link.href) ? "page" : undefined}
             >
@@ -56,7 +72,7 @@ const isCurrent = (href: string) => {
     <div class="hidden shrink-0 items-center gap-4 md:flex">
       <a
         href={`tel:${site.telephone}`}
-        class="hidden min-h-11 items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary lg:inline-flex"
+        class="hidden min-h-11 items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary group-data-light:text-white group-data-light:[text-shadow:0_1px_8px_rgb(0_0_0/0.6)] group-data-light:hover:text-white/80 lg:inline-flex"
         title={`Appeler OcciCode au ${phoneDisplay}`}
         aria-label={`Appeler OcciCode au ${phoneDisplay}`}
       >
@@ -67,6 +83,7 @@ const isCurrent = (href: string) => {
         href={quoteHref}
         variant="primary"
         size="sm"
+        class="group-data-light:ring-1 group-data-light:ring-white/60"
         title="Demander un devis gratuit"
         aria-label="Demander un devis gratuit"
       >
@@ -76,22 +93,22 @@ const isCurrent = (href: string) => {
 
     <details id="menu-mobile" class="group relative md:hidden">
       <summary
-        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-border [&::-webkit-details-marker]:hidden"
+        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-border group-data-light:border-white/60 [&::-webkit-details-marker]:hidden"
         title="Ouvrir le menu"
         aria-label="Ouvrir le menu"
       >
         <Icon
           name="mdi:menu"
-          class="h-5 w-5 text-foreground group-open:hidden"
+          class="h-5 w-5 text-foreground group-data-light:text-white group-open:hidden"
           aria-hidden="true"
         />
         <Icon
           name="mdi:close"
-          class="hidden h-5 w-5 text-foreground group-open:block"
+          class="hidden h-5 w-5 text-foreground group-data-light:text-white group-open:block"
           aria-hidden="true"
         />
       </summary>
-      <div class="absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-card p-4 shadow-lg">
+      <div class="absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-white p-4 shadow-lg">
         <ul class="flex flex-col text-sm font-medium text-foreground">
           {navLinks.map((link) => (
             <li>
@@ -141,6 +158,27 @@ const isCurrent = (href: string) => {
     </details>
   </div>
 </header>
+
+<script is:inline>
+  (() => {
+    const header = document.getElementById("site-header");
+    if (!header) return;
+
+    // Sans JavaScript, le verre reste affiché en permanence : il n'est masqué
+    // qu'en haut de page, une fois ce script exécuté.
+    const overHero = header.hasAttribute("data-hero");
+
+    const update = () => {
+      const atTop = window.scrollY <= 8;
+      header.toggleAttribute("data-top", atTop);
+      // Texte clair seulement au-dessus du hero, tant que le verre est masqué.
+      header.toggleAttribute("data-light", atTop && overHero);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+  })();
+</script>
 
 <script>
   const menu = document.getElementById(

@@ -38,15 +38,21 @@ export const site = {
     { text: "Contact", href: "/contact" },
   ],
   colors: {
-    background: "#F7F7F5",
+    background: "#f8f5ee",
     foreground: "#0a0a0a",
-    primary: "#0254d8",
-    border: "#e5e7eb",
-    muted: "#e7e9ec",
+    primary: "#840120",
+    accent: "#b8800d",
+    "accent-foreground": "#0a0a0a",
+    border: "#e6dfd0",
+    muted: "#efe9dc",
     "muted-foreground": "#52525b",
-    card: "#F7F7F5",
+    card: "#f8f5ee",
   },
   heroImage: "/assets/images/unsplash1.webp",
+  heroVideo: {
+    webm: "",
+    mp4: "",
+  },
   interventionAreaImage: "/assets/images/map.webp",
   logo: {
     logo_32x32: "/assets/images/logo_32x32.webp",
@@ -73,7 +79,7 @@ export const site = {
     tagline: "Nos réalisations",
     title: "Trois sites de démonstration pour vous projeter",
     subtitle:
-      "Trois démos de sites vitrine (restaurant, paysagiste, menuisier) pour vous projeter. Ce sont des démonstrations, pas des sites clients.",
+      "Trois démos de sites vitrine (restaurant, paysagiste, menuisier) pour vous projeter.",
     sections: [
       {
         title: "Le Mazet",
@@ -81,6 +87,8 @@ export const site = {
         href: "https://demo3.occicode.fr",
         image: "/assets/images/demo3.webp",
         imageAlt: "Capture du site de démonstration d’un restaurant",
+        imageHeight: "1900",
+        imageWidth: "950",
       },
       {
         title: "Les Jardins du Biterrois",
@@ -88,6 +96,8 @@ export const site = {
         href: "https://demo2.occicode.fr",
         image: "/assets/images/demo2.webp",
         imageAlt: "Capture du site de démonstration d’un paysagiste",
+        imageHeight: "1255",
+        imageWidth: "942",
       },
       {
         title: "L'Atelier du Bois",
@@ -95,6 +105,8 @@ export const site = {
         href: "https://demo1.occicode.fr",
         image: "/assets/images/demo1.webp",
         imageAlt: "Capture du site de démonstration d’un menuisier",
+        imageHeight: "1900",
+        imageWidth: "950",
       },
     ],
   },
@@ -123,7 +135,7 @@ export const site = {
       title:
         "Création de site internet pour artisans et TPE en Hérault et Occitanie",
       subtitle:
-        "OcciCode conçoit et livre des sites sobres, rapides et bien référencés pour les artisans, commerçants et TPE.",
+        "OcciCode conçoit et livre des sites rapides et bien référencés pour les artisans, commerçants et TPE.",
       trust: [
         "Basé à Péret (34)",
         "En Occitanie et à distance partout en France",
@@ -133,7 +145,7 @@ export const site = {
     demos: {
       title: "Trois démos à explorer",
       subtitle:
-        "Ce sont des sites de démonstration, pas des réalisations clients. Ils montrent concrètement ce à quoi pourrait ressembler votre site.",
+        "Voici des exemples de sites montrant concrètement ce à quoi pourrait ressembler le votre.",
     },
     services: {
       tagline: "Nos formules",
@@ -329,28 +341,24 @@ export const site = {
         description:
           "Votre site s'adapte parfaitement aux mobiles, tablettes et ordinateurs.",
         icon: "mdi:smartphone",
-        iconClass: "text-green-500",
       },
       {
         title: "Hébergement sécurisé",
         description:
           "Serveurs en Europe, certificat SSL, sauvegardes automatiques et sécurité renforcée.",
         icon: "mdi:shield-check",
-        iconClass: "text-blue-500",
       },
       {
         title: "Référencement local",
         description:
           "Optimisation pour Google et les recherches locales dans votre ville et votre métier.",
         icon: "mdi:search",
-        iconClass: "text-purple-500",
       },
       {
         title: "Support client",
         description:
           "Je suis disponible pour répondre à vos questions et vous accompagner.",
         icon: "mdi:headphones",
-        iconClass: "text-orange-500",
       },
     ],
   },

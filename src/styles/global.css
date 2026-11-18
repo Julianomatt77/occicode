@@ -12,6 +12,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
@@ -77,6 +79,31 @@
   .reveal-section.js-reveal.is-visible {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Verre givré clair (page d'accueil). `glass` pour les surfaces décoratives,
+   `glass-strong` pour tout bloc de texte courant (fond >= 75 % pour le contraste). */
+@utility glass {
+  @apply border border-white/60 bg-white/45 backdrop-blur-lg backdrop-saturate-150 md:backdrop-blur-xl;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.7),
+    0 8px 32px rgb(132 1 32 / 0.1);
+}
+
+@utility glass-strong {
+  @apply border border-white/60 bg-white/75 backdrop-blur-lg backdrop-saturate-150 md:backdrop-blur-xl;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.7),
+    0 8px 32px rgb(132 1 32 / 0.1);
+}
+
+/* Sans `backdrop-filter`, le fond translucide laisserait le texte sur l'image :
+   on bascule sur un fond quasi opaque. */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass,
+  .glass-strong {
+    background-color: rgb(255 255 255 / 0.9);
   }
 }
 

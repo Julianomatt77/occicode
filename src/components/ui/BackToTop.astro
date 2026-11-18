@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button
+  id="back-to-top"
+  type="button"
+  role="button"
+  title="Revenir en haut de la page"
+  aria-label="Revenir en haut de la page"
+  class="invisible fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex size-12 items-center justify-center rounded-full opacity-0 glass-strong text-primary transition-[opacity,visibility] duration-300 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none sm:right-6"
+>
+  <Icon name="mdi:arrow-up" class="size-6" aria-hidden="true" />
+</button>
+
+<script is:inline>
+  (() => {
+    const button = document.getElementById("back-to-top");
+    if (!button) return;
+
+    const update = () => {
+      const visible = window.scrollY > 400;
+      button.classList.toggle("invisible", !visible);
+      button.classList.toggle("opacity-0", !visible);
+    };
+
+    button.addEventListener("click", () => {
+      const reduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    });
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+  })();
+</script>

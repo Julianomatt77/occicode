@@ -5,6 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import { buildJsonLd } from "../utils/jsonld";
+import BackToTop from "@/components/ui/BackToTop.astro";
 
 interface Props {
   title?: string;
@@ -22,6 +23,8 @@ interface Props {
     price?: number;
   }[];
   extra?: Record<string, unknown>[];
+  /** Hero plein écran : le contenu passe sous l'en-tête flottant. */
+  fullBleedHero?: boolean;
 }
 
 const {
@@ -30,6 +33,7 @@ const {
   canonical: canonicalProp = null,
   noindex = false,
   nofollow = false,
+  fullBleedHero = false,
   pageType,
   breadcrumbs,
   faq,
@@ -122,17 +126,25 @@ const jsonLd = buildJsonLd({
     )}
   </head>
   <body class="flex min-h-screen flex-col bg-background text-foreground antialiased">
+    <div
+      class="fixed inset-0 -z-10 bg-linear-to-br from-primary/10 via-background to-accent/15"
+      aria-hidden="true"
+    ></div>
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
     >
       Aller au contenu principal
     </a>
-    <Header />
-    <main id="main-content" class="relative z-10 grow pt-[72px]">
+    <Header overHero={fullBleedHero} />
+    <main
+      id="main-content"
+      class:list={["relative z-10 grow", !fullBleedHero && "pt-20"]}
+    >
       <slot />
     </main>
     <Footer />
+    <BackToTop />
     <script>
       // Repli pour les navigateurs sans `animation-timeline: view()` (Firefox
       // stable au 16/09/2026 : la timeline scroll-driven y est encore derrière
