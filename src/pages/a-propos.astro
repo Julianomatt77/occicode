@@ -3,15 +3,27 @@ import Layout from "@/layouts/Layout.astro";
 import Headline from "@/components/ui/Headline.astro";
 import Button from "@/components/ui/Button.astro";
 import { site } from "@/config/site";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 
 const metadata = {
   title:
     "À propos d'OcciCode, création de site internet pour artisans et TPE en Occitanie",
   description:
-    "Julien Martin, développeur indépendant basé à Péret (Hérault), conçoit des sites internet sobres pour les artisans et indépendants.",
+    "Julien Martin, développeur indépendant basé à Péret (Hérault), conçoit des sites internet rapides et bien référencés pour les artisans et indépendants.",
   pageType: "AboutPage" as const,
   breadcrumbs: [{ name: "À propos", path: "/a-propos" }],
 };
+
+const photoSrc = "/assets/images/photo.JPG";
+function photoExists(path: string): boolean {
+  try {
+    return existsSync(join(process.cwd(), "public", path));
+  } catch {
+    return false;
+  }
+}
+const hasPhoto = photoExists(photoSrc);
 
 // Carte OpenStreetMap centrée sur Péret (34800). En cas de coordonnées
 // manquantes ou invalides dans la config, on masque simplement la carte
@@ -33,7 +45,7 @@ const mapLinkHref = hasValidCoordinates
 
 <Layout {...metadata}>
   <section
-    class="mx-auto max-w-3xl scroll-mt-[72px] px-4 py-12 sm:px-6 md:py-20"
+    class="mx-auto max-w-6xl scroll-mt-[72px] px-4 py-12 sm:px-6 md:py-20"
     id="section-a-propos"
   >
     <Headline
@@ -47,32 +59,52 @@ const mapLinkHref = hasValidCoordinates
       }}
     />
 
-    <div class="mt-10 space-y-6 text-muted-foreground">
-      <p>
-        Je m'appelle Julien Martin. Je conçois et développe des sites internet
-        pour les artisans, commerçants et indépendants, depuis Péret, dans
-        l'Hérault.
-      </p>
-      <p>
-        Mon objectif est simple : vous donner un site clair, rapide et facile à
-        faire évoluer, sans fonctionnalités inutiles qui ralentissent le
-        chargement ou compliquent la maintenance. Les sites que je livre sont
-        construits avec des technologies modernes et performantes, pensées pour
-        le référencement et pour durer dans le temps.
-      </p>
-      <p>
-        Je travaille en direct avec vous, du premier échange à la mise en ligne
-        : pas d'intermédiaire, pas de jargon technique inutile. Vous savez
-        toujours à quelle étape en est votre projet.
-      </p>
-      <p>
-        Je me déplace partout en Occitanie et je travaille à distance avec des
-        clients dans toute la France, selon ce qui vous convient le mieux.
-      </p>
+    <div
+      class:list={[
+        "mt-10 items-center gap-8 md:gap-12",
+        hasPhoto
+          ? "grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
+          : "mx-auto max-w-3xl",
+      ]}
+    >
+      {hasPhoto && (
+        <img
+          src={photoSrc}
+          alt="Julien Martin, développeur web indépendant à Péret"
+          width="800"
+          height="1000"
+          class="aspect-4/5 w-full rounded-3xl object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      <div class="glass-strong space-y-6 rounded-3xl p-6 text-muted-foreground md:p-10">
+        <p>
+          Je m'appelle Julien Martin. Je conçois et développe des sites internet
+          pour les artisans, commerçants et indépendants, depuis Péret, dans
+          l'Hérault.
+        </p>
+        <p>
+          Mon objectif est simple : vous donner un site clair, rapide et facile
+          à faire évoluer, sans fonctionnalités inutiles qui ralentissent le
+          chargement ou compliquent la maintenance. Les sites que je livre sont
+          construits avec des technologies modernes et performantes, pensées
+          pour le référencement et pour durer dans le temps.
+        </p>
+        <p>
+          Je travaille en direct avec vous, du premier échange à la mise en
+          ligne : pas d'intermédiaire, pas de jargon technique inutile. Vous
+          savez toujours à quelle étape en est votre projet.
+        </p>
+        <p>
+          Je me déplace partout en Occitanie et je travaille à distance avec des
+          clients dans toute la France, selon ce qui vous convient le mieux.
+        </p>
+      </div>
     </div>
 
     {hasValidCoordinates && (
-      <div class="mt-10">
+      <div class="glass-strong mx-auto mt-10 max-w-3xl rounded-3xl p-6 md:p-8">
         <h2 class="text-lg font-bold text-foreground">Basé à Péret (34800)</h2>
         <div class="mt-4 overflow-hidden rounded-2xl border border-border">
           <iframe
@@ -97,7 +129,7 @@ const mapLinkHref = hasValidCoordinates
       </div>
     )}
 
-    <div class="mt-10 flex flex-wrap gap-4">
+    <div class="mx-auto mt-10 flex max-w-3xl flex-wrap gap-4">
       <Button
         href="/contact"
         variant="primary"

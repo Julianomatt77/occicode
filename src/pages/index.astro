@@ -21,11 +21,11 @@ const metadata = {
 };
 ---
 
-<Layout {...metadata}>
+<Layout {...metadata} fullBleedHero>
   <!-- Hero -->
   <section
     id="section-hero"
-    class="relative isolate mb-4 scroll-mt-[72px] overflow-hidden bg-muted"
+    class="relative isolate mb-4 min-h-svh overflow-hidden bg-muted"
   >
     <img
       src={site.heroImage}
@@ -34,92 +34,114 @@ const metadata = {
       height="1279"
       fetchpriority="high"
       decoding="async"
-      class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+      class="absolute inset-0 -z-30 h-full w-full object-cover object-center"
     />
+    {site.heroVideo && (
+      <video
+        id="hero-video"
+        class="absolute inset-0 -z-20 h-full w-full object-cover object-center motion-reduce:hidden"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+        tabindex="-1"
+        poster={site.heroImage}
+      >
+        <source src={site.heroVideo.webm} type="video/webm" />
+        <source src={site.heroVideo.mp4} type="video/mp4" />
+      </video>
+    )}
+    <div class="absolute inset-0 -z-10 bg-primary/10" aria-hidden="true"></div>
     <div
-      class="absolute inset-0 -z-10 bg-background/88 lg:hidden"
-      aria-hidden="true"
-    ></div>
-    <div
-      class="absolute inset-0 -z-10 hidden bg-linear-to-r from-background from-0% via-background/95 via-55% to-background/25 lg:block"
+      class="absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-black/60 via-black/40 to-transparent"
       aria-hidden="true"
     ></div>
 
-    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16">
-      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start lg:gap-16">
-        <div class="flex flex-col items-start gap-6">
-          <h1 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl lg:text-5xl">
-            {hero.title}
-          </h1>
-          <p class="max-w-2xl text-pretty text-lg text-muted-foreground md:text-xl">
-            {hero.subtitle}
-          </p>
-          <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
-            {hero.trust.map((item) => (
-              <li class="flex items-center gap-2">
-                <Icon
-                  name="mdi:check"
-                  class="h-4 w-4 shrink-0 text-primary"
-                  aria-hidden="true"
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div class="relative mx-auto flex min-h-svh max-w-7xl items-center px-4 pb-10 pt-24 sm:px-6">
+      <div class="glass-strong w-full max-w-3xl rounded-3xl p-6 md:p-10">
+        <h1 class="text-3xl tracking-tight text-balance text-foreground md:text-4xl lg:text-5xl">
+          {hero.title}
+        </h1>
+        <p class="mt-4 text-pretty text-lg text-foreground/80 md:text-xl">
+          {hero.subtitle}
+        </p>
+        <ul class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-foreground/80">
+          {hero.trust.map((item) => (
+            <li class="flex items-center gap-2">
+              <Icon
+                name="mdi:check"
+                class="h-4 w-4 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              {item}
+            </li>
+          ))}
+        </ul>
 
-        <aside
-          class="rounded-3xl border border-border bg-card p-6 shadow-sm md:p-8"
-          aria-labelledby="hero-contact-title"
+        <p class="mt-8 text-sm text-foreground/80">
+          Je vous réponds sous 48 h, sans engagement.
+        </p>
+        <div
+          class="mt-6 flex flex-col gap-3 md:flex-row md:flex-nowrap"
+          role="group"
+          aria-label="Me contacter"
         >
-          <h2 id="hero-contact-title" class="text-xl font-bold text-foreground">
-            Parlons de votre projet
-          </h2>
-          <p class="mt-2 text-pretty text-sm text-muted-foreground">
-            Je vous réponds sous 48 h, sans engagement.
-          </p>
-
-          <div class="mt-6 flex flex-col gap-3">
-            <Button
-              href="/contact"
-              variant="primary"
-              size="md"
-              class="w-full"
-              title="Demander un devis gratuit"
-              aria-label="Demander un devis gratuit"
-            >
-              Demander un devis
-            </Button>
-            <a
-              href={`tel:${site.telephone}`}
-              class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
-              title={`Appeler OcciCode au ${phoneDisplay}`}
-              aria-label={`Appeler OcciCode au ${phoneDisplay}`}
-            >
-              <Icon
-                name="mdi:phone-outline"
-                class="h-5 w-5 shrink-0 text-primary"
-                aria-hidden="true"
-              />
-              {phoneDisplay}
-            </a>
-            <a
-              href={`mailto:${site.email}`}
-              class="flex min-h-12 items-center gap-3 rounded-xl border border-border px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
-              title={`Envoyer un email à ${site.email}`}
-              aria-label={`Envoyer un email à ${site.email}`}
-            >
-              <Icon
-                name="mdi:email-outline"
-                class="h-5 w-5 shrink-0 text-primary"
-                aria-hidden="true"
-              />
+          <Button
+            href="/contact"
+            variant="primary"
+            size="md"
+            title="Demander un devis gratuit"
+            aria-label="Demander un devis gratuit"
+          >
+            Demander un devis
+          </Button>
+          <a
+            href={`tel:${site.telephone}`}
+            class="inline-flex min-h-12 items-center gap-2 rounded-xl border border-border bg-white/70 px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            title={`Appeler OcciCode au ${phoneDisplay}`}
+            aria-label={`Appeler OcciCode au ${phoneDisplay}`}
+          >
+            <Icon
+              name="mdi:phone-outline"
+              class="h-5 w-5 shrink-0 text-primary"
+              aria-hidden="true"
+            />
+            {phoneDisplay}
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            class="inline-flex min-h-12 items-center gap-2 rounded-xl border border-border bg-white/70 px-4 font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            title={`Envoyer un email à ${site.email}`}
+            aria-label={`Envoyer un email à ${site.email}`}
+          >
+            <Icon
+              name="mdi:email-outline"
+              class="h-5 w-5 shrink-0 text-primary"
+              aria-hidden="true"
+            />
+            <span class="break-all md:break-normal md:whitespace-nowrap">
               {site.email}
-            </a>
-          </div>
-        </aside>
+            </span>
+          </a>
+        </div>
       </div>
     </div>
+    {site.heroVideo && <script is:inline>
+      (function () {
+        try {
+          const v = document.getElementById("hero-video");
+          const c = navigator.connection;
+          const saveData = !!(c && c.saveData);
+          const reduced = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches;
+          if (v && (saveData || reduced)) v.remove();
+        } catch {
+          /* la vidéo est décorative : en cas d'erreur, l'image reste */
+        }
+      })();
+    </script>}
   </section>
 
   <!-- Démos -->
@@ -128,10 +150,18 @@ const metadata = {
   <!-- Formules -->
   <section
     id="section-services"
-    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
+    class="relative isolate mb-4 scroll-mt-[72px] overflow-hidden bg-linear-to-br from-primary/10 via-accent/15 to-background"
   >
+    <div
+      class="absolute -top-16 -left-16 -z-10 h-72 w-72 rounded-full bg-primary/25 blur-3xl"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute -right-10 bottom-0 -z-10 h-80 w-80 rounded-full bg-accent/40 blur-3xl"
+      aria-hidden="true"
+    ></div>
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
-      <h2 class="text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+      <h2 class="text-3xl tracking-tight text-balance text-foreground md:text-5xl">
         {services.title}
       </h2>
       <p class="mt-4 text-pretty text-lg text-muted-foreground">
@@ -141,10 +171,8 @@ const metadata = {
       <div class="grid gap-6 pt-10 md:grid-cols-3">
         {packages.map((pkg) => (
           <article
-            class={`relative flex flex-col rounded-3xl border p-8 transition-shadow duration-300 hover:shadow-lg ${
-              pkg.isPopular
-                ? "border-primary/40 bg-primary/5 shadow-sm"
-                : "border-border/60 bg-card shadow-sm"
+            class={`glass-strong relative flex flex-col rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
+              pkg.isPopular ? "outline-2 outline-accent" : ""
             }`}
           >
             {pkg.badge && (
@@ -198,7 +226,7 @@ const metadata = {
   <!-- Processus -->
   <section id="section-process" class="relative isolate mb-4 scroll-mt-[72px]">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
-      <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+      <h2 class="max-w-2xl text-3xl tracking-tight text-balance text-foreground md:text-5xl">
         {process.title}
       </h2>
       <p class="mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
@@ -227,12 +255,12 @@ const metadata = {
   <!-- Pourquoi OcciCode -->
   <section
     id="section-why-us"
-    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
+    class="relative isolate mb-4 scroll-mt-[72px] bg-linear-to-bl from-accent/15 via-background to-primary/10"
   >
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
       <div class="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
         <div>
-          <h2 class="max-w-md text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+          <h2 class="max-w-md text-3xl tracking-tight text-balance text-foreground md:text-5xl">
             {whyUs.title}
           </h2>
           <p class="mt-4 max-w-md text-pretty text-lg text-muted-foreground">
@@ -259,7 +287,7 @@ const metadata = {
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
       <div class="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
         <div>
-          <h2 class="max-w-xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+          <h2 class="max-w-xl text-3xl tracking-tight text-balance text-foreground md:text-5xl">
             {areas.title}
           </h2>
           <p class="mt-4 max-w-xl text-pretty text-lg text-muted-foreground">
@@ -294,17 +322,17 @@ const metadata = {
   <!-- FAQ -->
   <section
     id="section-faq"
-    class="relative isolate mb-4 scroll-mt-[72px] bg-muted"
+    class="relative isolate mb-4 scroll-mt-[72px] bg-linear-to-b from-background via-accent/10 to-primary/10"
   >
     <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
-      <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+      <h2 class="max-w-2xl text-3xl tracking-tight text-balance text-foreground md:text-5xl">
         {faq.title}
       </h2>
       <p class="mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
         {faq.subtitle}
       </p>
 
-      <div class="mt-10 border-y border-border">
+      <div class="glass-strong mt-10 rounded-3xl px-6">
         {faq.items.map((item) => (
           <details class="group border-b border-border last:border-b-0">
             <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-4 font-bold text-foreground [&::-webkit-details-marker]:hidden">
@@ -327,10 +355,12 @@ const metadata = {
   <!-- Contact -->
   <section id="section-contact" class="relative isolate mb-4 scroll-mt-[72px]">
     <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
-      <div class="rounded-3xl bg-foreground px-6 py-10 text-background md:px-12 md:py-14">
-        <h2 class="max-w-2xl text-2xl font-bold text-balance md:text-3xl">
-          {cta.title}
-        </h2>
+      <div class="relative isolate overflow-hidden rounded-3xl bg-primary px-6 py-10 text-background md:px-12 md:py-14">
+        <div
+          class="absolute -right-16 -top-16 -z-10 h-72 w-72 rounded-full bg-accent/50 blur-3xl"
+          aria-hidden="true"
+        ></div>
+        <h2 class="max-w-3xl text-2xl text-balance md:text-4xl">{cta.title}</h2>
         <p class="mt-3 max-w-2xl text-background/80">{cta.subtitle}</p>
 
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

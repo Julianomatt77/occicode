@@ -46,50 +46,62 @@ const metadata = {
     </div>
   </section>
 
-  {page.sections.map((section, index) => (
-    <section class="reveal-section scroll-mt-[73px] my-12 md:my-0 md:mx-12">
-      <article
+  {page.sections.map((section, index) => {
+    const imageFirst = index % 2 === 0;
+    return (
+      <section
         class:list={[
-          "bg-muted grid w-full max-w-6xl grid-cols-1 items-center gap-16 md:grid-cols-12 my-4 rounded-4xl overflow-hidden",
-          index % 2 === 0 ? "md:mr-auto" : "md:ml-auto",
-          { "md:[&>*:first-child]:order-2": index % 2 === 1 },
+          "reveal-section relative isolate mb-4 grid scroll-mt-[72px] md:min-h-[max(40rem,85svh)] md:grid-cols-2",
+          imageFirst
+            ? "bg-linear-to-br from-primary/10 via-background to-accent/15"
+            : "bg-linear-to-bl from-accent/15 via-background to-primary/10",
         ]}
       >
-        <div class="md:col-span-6 px-8 py-12 xl:px-32 mb-4 md:mb-0">
-          <h2 class="font-display text-3xl font-semibold text-foreground md:text-4xl">
-            {section.title}
-          </h2>
-          <p class="mt-5 max-w-md leading-relaxed text-muted-foreground">
-            {section.text}
-          </p>
-          <Button
-            href={section.href}
-            rel="noopener noreferrer"
-            target="_blank"
-            variant="primary"
-            size="sm"
-            class="mt-4 w-full"
-            title={`Aller sur le site ${section.href}`}
-            aria-label={`Aller sur le site ${section.href}`}
-          >
-            Voir la démo
-          </Button>
+        <div
+          class:list={[
+            "flex items-center justify-center px-6 py-10 md:px-10 md:py-16",
+            { "md:order-2": !imageFirst },
+          ]}
+        >
+          <div class="relative w-full max-w-3xl">
+            <img
+              src={section.image}
+              alt={section.imageAlt}
+              width={section.imageWidth}
+              height={section.imageHeight}
+              class="h-auto w-full rounded-2xl border border-white/70 shadow-2xl shadow-primary/20"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="glass-strong absolute bottom-3 left-3 rounded-full px-3 py-1 text-sm font-semibold text-foreground">
+              Site de démonstration
+            </span>
+          </div>
         </div>
 
-        <div
-          class:list={["md:col-span-6", { "mb-4 md:mb-0": index % 2 === 1 }]}
-        >
-          <img
-            src={section.image}
-            alt={section.imageAlt}
-            width="700"
-            height="880"
-            class="aspect-4/3 w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </article>
-    </section>
-  ))}
+        <article class="flex items-center px-6 py-16 md:px-12 lg:px-20">
+          <div class="max-w-md">
+            <h2 class="font-display text-3xl font-semibold text-foreground md:text-4xl">
+              {section.title}
+            </h2>
+            <p class="mt-5 leading-relaxed text-muted-foreground">
+              {section.text}
+            </p>
+            <Button
+              href={section.href}
+              rel="noopener noreferrer"
+              target="_blank"
+              variant="primary"
+              size="sm"
+              class="mt-6"
+              title={`Aller sur le site ${section.href}`}
+              aria-label={`Aller sur le site ${section.href}`}
+            >
+              Voir la démo
+            </Button>
+          </div>
+        </article>
+      </section>
+    );
+  })}
 </Layout>
