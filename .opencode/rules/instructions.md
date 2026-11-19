@@ -22,7 +22,7 @@ import { Icon } from "astro-icon/components";
 Plus d'info: https://github.com/natemoo-re/astro-icon#readme
 
 - Use tailwind v4 classes instead of css classes
-- Always add title, type & role on buttons.
+- Always add title & type on buttons. Never add `role="button"` to a native `<button>`: the role is implicit.
 - Always add html attributes & aria-label to improve accessibility
 - Le design doit rester simple et sobre, pas d'icones ou de badges flashy. Le thème doit être clair
 

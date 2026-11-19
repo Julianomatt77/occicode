@@ -27,7 +27,7 @@
      Aucune `animation-duration` n'est déclarée : avec `animation-timeline:
      view()` c'est la timeline qui pilote la progression ; sur un navigateur
      sans support, la durée vaut 0s et `both` applique directement l'état
-     final — l'élément reste visible, jamais bloqué à `opacity: 0`. */
+     final: l'élément reste visible, jamais bloqué à `opacity: 0`. */
   --animate-section-fade: section-fade linear both;
 }
 

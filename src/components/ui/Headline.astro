@@ -30,7 +30,7 @@ const Title = titleAs as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
     )}
     {title && (
       <Title
-        class={`font-bold tracking-tight text-foreground mb-4 ${titleClass}`}
+        class={`text-3xl md:text-4xl lg:text-5xl tracking-tight text-foreground mb-4 ${titleClass}`}
         set:html={title}
       />
     )}

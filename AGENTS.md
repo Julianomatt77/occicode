@@ -10,7 +10,7 @@ Site vitrine OcciCode — agence web en Occitanie (artisans/TPE). Astro 7, Tailw
 - Après chaque fonction / fichier / modification : identifier 3 bugs potentiels ou cas limites, puis corriger le code.
 - Tailwind v4 uniquement (pas de CSS custom) ; le modificateur important est en **suffixe** : `m-0!`, jamais `!m-0`.
 - Icônes : sets Iconify via `astro-icon` (`import { Icon } from "astro-icon/components"` puis `<Icon name="mdi:account" />`).
-- Boutons : toujours `title` + `type` + `role`. Accessibilité : attributs HTML + `aria-label`.
+- Boutons : toujours `title` + `type`. Ne pas ajouter `role="button"` sur un `<button>` natif, son rôle est déjà implicite. Accessibilité : attributs HTML + `aria-label`.
 - Design simple, sobre, thème clair ; pas d'icônes ni badges flashy.
 - **Interdiction de toute action git** (commit, push, etc.) — l'utilisateur s'en charge.
 

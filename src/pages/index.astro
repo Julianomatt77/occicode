@@ -10,6 +10,11 @@ const { hero, services, process, whyUs, areas, faq, cta } = site.home;
 const packages = site.services;
 const phoneDisplay = formatPhone(site.telephone);
 
+// Les sources vidées dans la config ne doivent pas produire un <video> mort :
+// on ne rend le lecteur que si au moins une URL est renseignée.
+const heroVideo: { webm?: string; mp4?: string } | null =
+  site.heroVideo.webm || site.heroVideo.mp4 ? site.heroVideo : null;
+
 const metadata = {
   title: "Site internet pour artisans et TPE | OcciCode",
   faq: faq.items.map(({ question, answer }) => ({ question, answer })),
@@ -36,10 +41,12 @@ const metadata = {
       decoding="async"
       class="absolute inset-0 -z-30 h-full w-full object-cover object-center"
     />
-    {site.heroVideo && (
+    {heroVideo && (
       <video
         id="hero-video"
         class="absolute inset-0 -z-20 h-full w-full object-cover object-center motion-reduce:hidden"
+        width="1919"
+        height="1279"
         autoplay
         muted
         loop
@@ -48,8 +55,8 @@ const metadata = {
         tabindex="-1"
         poster={site.heroImage}
       >
-        <source src={site.heroVideo.webm} type="video/webm" />
-        <source src={site.heroVideo.mp4} type="video/mp4" />
+        {heroVideo.webm && <source src={heroVideo.webm} type="video/webm" />}
+        {heroVideo.mp4 && <source src={heroVideo.mp4} type="video/mp4" />}
       </video>
     )}
     <div class="absolute inset-0 -z-10 bg-primary/10" aria-hidden="true"></div>
@@ -127,7 +134,7 @@ const metadata = {
         </div>
       </div>
     </div>
-    {site.heroVideo && <script is:inline>
+    {heroVideo && <script is:inline>
       (function () {
         try {
           const v = document.getElementById("hero-video");
@@ -170,23 +177,21 @@ const metadata = {
 
       <div class="grid gap-6 pt-10 md:grid-cols-3">
         {packages.map((pkg) => (
-          <article
-            class={`glass-strong relative flex flex-col rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
-              pkg.isPopular ? "outline-2 outline-accent" : ""
-            }`}
-          >
-            {pkg.badge && (
-              <span class="absolute -top-3 right-8 inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">
-                {pkg.badge}
-              </span>
-            )}
-            <h3 class="text-xl font-bold text-foreground">{pkg.name}</h3>
+          <article class="glass-strong relative flex flex-col rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="text-xl font-bold text-foreground">{pkg.name}</h3>
+              {pkg.badge && (
+                <span class="rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-white">
+                  {pkg.badge}
+                </span>
+              )}
+            </div>
             <p class="mt-2 text-pretty text-sm text-muted-foreground">
               {pkg.description}
             </p>
             <p class="mt-6 flex items-baseline gap-1">
               <span class="text-sm text-muted-foreground">{pkg.from}</span>
-              <span class="text-2xl font-extrabold text-foreground">
+              <span class="text-2xl font-bold text-foreground">
                 {pkg.price}
               </span>
             </p>
@@ -233,17 +238,16 @@ const metadata = {
         {process.subtitle}
       </p>
 
-      <ol class="grid gap-8 pt-10 md:grid-cols-3">
+      <ol class="mt-10 grid gap-8 md:grid-cols-3 md:gap-0">
         {process.steps.map((step, index) => (
-          <li class="flex flex-col gap-3">
+          <li class="relative border-l-2 border-border pl-5 md:border-l-0 md:border-t-2 md:pt-6 md:pr-8 md:pl-0">
             <span
-              class="text-4xl font-extrabold text-primary/70"
+              class="absolute -left-[5px] top-1 h-2 w-2 rounded-full bg-primary md:-top-[5px] md:left-0"
               aria-hidden="true"
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <h3 class="text-lg font-bold text-foreground">{step.title}</h3>
-            <p class="text-pretty text-sm text-muted-foreground">
+            ></span>
+            <p class="text-sm font-semibold text-primary">Étape {index + 1}</p>
+            <h3 class="mt-1 text-lg font-bold text-foreground">{step.title}</h3>
+            <p class="mt-2 text-pretty text-sm text-muted-foreground">
               {step.description}
             </p>
           </li>

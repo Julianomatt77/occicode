@@ -14,7 +14,7 @@ export const site = {
   locale: "fr_FR",
   logo_schema: "https://occicode.fr/assets/images/logo_675x675.png",
   ogImage: "https://occicode.fr/assets/images/logo_avec_fond_1200x630.png",
-  ogImageAlt: "Logo OcciCode — Création de sites internet situé Occitanie",
+  ogImageAlt: "Logo OcciCode, création de sites internet en Occitanie",
   telephone: "+33781373341",
   city: "Péret",
   postalCode: "34800",
@@ -76,10 +76,10 @@ export const site = {
       "OcciCode, c'est Julien Martin : un développeur basé en Occitanie qui conçoit des sites simples et durables pour les artisans et indépendants.",
   },
   realisations: {
-    tagline: "Nos réalisations",
+    tagline: "Mes réalisations",
     title: "Trois sites de démonstration pour vous projeter",
     subtitle:
-      "Trois démos de sites vitrine (restaurant, paysagiste, menuisier) pour vous projeter.",
+      "Trois éxemples de sites vitrine (restaurant, paysagiste, menuisier) pour vous projeter.",
     sections: [
       {
         title: "Le Mazet",
@@ -148,7 +148,7 @@ export const site = {
         "Voici des exemples de sites montrant concrètement ce à quoi pourrait ressembler le votre.",
     },
     services: {
-      tagline: "Nos formules",
+      tagline: "Les formules",
       title: "Trois formules simples, sans mauvaise surprise",
       subtitle:
         "Du site vitrine à la solution sur mesure, un accompagnement adapté à votre budget.",

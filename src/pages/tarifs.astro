@@ -47,33 +47,26 @@ const metadata = {
       />
 
       <div
-        class="grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8 items-stretch pt-12 md:pt-20"
+        class="grid scroll-mt-[72px] gap-8 md:grid-cols-3 md:gap-6 lg:gap-8 items-stretch pt-12 md:pt-20"
         id="tarif-list"
       >
         {services.map((service) => (
-          <article
-            class={`glass-strong relative flex flex-col rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
-              service.isPopular
-                ? "z-10 outline-2 outline-accent md:scale-105"
-                : ""
-            }`}
-          >
-            {service.badge && (
-              <div class="absolute top-0 right-8 -translate-y-1/2">
-                <span class="inline-flex items-center rounded-full bg-primary px-4 py-1 text-xs font-semibold text-white shadow-sm">
-                  {service.badge}
-                </span>
-              </div>
-            )}
-
+          <article class="glass-strong relative flex flex-col rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
             <div class="mb-6">
-              <h3 class="text-2xl font-bold">{service.name}</h3>
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-2xl font-bold">{service.name}</h3>
+                {service.badge && (
+                  <span class="rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-white">
+                    {service.badge}
+                  </span>
+                )}
+              </div>
               <p class="mt-2 text-muted-foreground">{service.description}</p>
             </div>
 
             <div class="mb-8 flex items-baseline text-foreground">
               <span class="text-muted-foreground mx-2">{service.from}</span>
-              <span class="text-5xl font-extrabold tracking-tight">
+              <span class="text-5xl font-bold tracking-tight">
                 {service.price}
               </span>
             </div>
@@ -84,6 +77,7 @@ const metadata = {
                   <Icon
                     name="mdi:check"
                     class="h-5 w-5 shrink-0 text-primary mt-0.5"
+                    aria-hidden="true"
                   />
                   <span class="ml-3 text-muted-foreground">{feature}</span>
                 </li>
@@ -114,27 +108,25 @@ const metadata = {
       aria-hidden="true"
     ></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 py-12 md:py-20 not-prose text-default">
-      <Headline
-        title={includedFeatures.title}
-        subtitle={includedFeatures.subtitle}
-        tagline={includedFeatures.tagline}
-        classes={{ container: "mx-auto max-w-3xl text-center" }}
-      />
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] lg:items-start lg:gap-16">
+        <Headline
+          title={includedFeatures.title}
+          subtitle={includedFeatures.subtitle}
+          tagline={includedFeatures.tagline}
+          classes={{ container: "max-w-xl" }}
+        />
 
-      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {features.map((feat: Feature) => (
-          <li class="glass-strong flex flex-col rounded-3xl p-6">
-            <span
-              class="mb-5 h-1 w-10 rounded-full bg-accent"
-              aria-hidden="true"
-            ></span>
-            <h3 class="text-lg font-bold text-foreground">{feat.title}</h3>
-            <p class="mt-2 text-pretty text-sm text-muted-foreground">
-              {feat.description}
-            </p>
-          </li>
-        ))}
-      </ul>
+        <ul class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+          {features.map((feat: Feature) => (
+            <li class="border-t-2 border-border pt-5">
+              <h3 class="text-lg font-bold text-foreground">{feat.title}</h3>
+              <p class="mt-2 text-pretty text-sm text-muted-foreground">
+                {feat.description}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -157,6 +149,7 @@ const metadata = {
                 <Icon
                   name="mdi:chevron-right"
                   class="w-6 h-6 text-primary shrink-0 mr-2 mt-0.5"
+                  aria-hidden="true"
                 />
                 {question}
               </h3>

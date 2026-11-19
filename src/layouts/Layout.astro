@@ -85,7 +85,7 @@ const jsonLd = buildJsonLd({
           url: canonical ?? site.canonical,
         },
         optional: {
-          description: site.ogDescription,
+          description,
           locale: site.locale,
           siteName: site.name,
         },
@@ -98,7 +98,7 @@ const jsonLd = buildJsonLd({
       twitter={{
         card: "summary_large_image",
         title,
-        description: site.twitterDescription,
+        description,
         image: site.ogImage,
         imageAlt: site.ogImageAlt,
       }}
@@ -139,6 +139,7 @@ const jsonLd = buildJsonLd({
     <Header overHero={fullBleedHero} />
     <main
       id="main-content"
+      tabindex="-1"
       class:list={["relative z-10 grow", !fullBleedHero && "pt-20"]}
     >
       <slot />

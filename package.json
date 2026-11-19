@@ -1,8 +1,8 @@
 {
   "name": "occicode",
   "type": "module",
-  "version": "1.0.0",
-  "description": "Astro starter used digital agency.",
+  "version": "2.0.0",
+  "description": "Astro theme for OcciCode",
   "license": "MIT",
   "author": "Julien MARTIN <contact@occicode.fr>",
   "homepage": "https://occicode.fr",
