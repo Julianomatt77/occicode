@@ -79,7 +79,7 @@ export const site = {
     tagline: "Mes réalisations",
     title: "Trois sites de démonstration pour vous projeter",
     subtitle:
-      "Trois éxemples de sites vitrine (restaurant, paysagiste, menuisier) pour vous projeter.",
+      "Trois exemples de sites vitrine (restaurant, paysagiste, menuisier) pour vous projeter.",
     sections: [
       {
         title: "Le Mazet",
