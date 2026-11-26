@@ -19,23 +19,31 @@ const socialLinks = [
 <footer class="border-t border-border bg-muted">
   <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
     <div>
-      <a
-        href="/"
-        class="flex min-h-11 items-center gap-2"
-        title="Retour à l'accueil OcciCode"
-        aria-label="Retour à l'accueil OcciCode"
-      >
-        <img
-          src={site.logo.logo_32x32}
-          alt="Logo OcciCode"
-          width="32"
-          height="32"
-          class="h-8 w-8"
-          loading="lazy"
-          decoding="async"
-        />
-        <span class="text-lg font-bold text-foreground">{site.name}</span>
-      </a>
+      <div class="flex min-h-11 items-center gap-2">
+        <a
+          href="/"
+          class="flex h-11 items-center"
+          title="Retour à l'accueil OcciCode"
+          aria-label="Retour à l'accueil OcciCode"
+        >
+          <img
+            src={site.logo.logo_32x32}
+            alt="Logo OcciCode"
+            width="32"
+            height="32"
+            class="h-8 w-8"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <a
+          href={site.canonical}
+          class="inline-flex min-h-11 items-center text-lg font-bold text-foreground transition-colors hover:text-primary"
+          title="OcciCode, site officiel"
+        >
+          {site.name}
+        </a>
+      </div>
       <p class="mt-3 max-w-xs text-pretty text-sm text-muted-foreground">
         {site.footerTagline}
       </p>
@@ -67,7 +75,7 @@ const socialLinks = [
         {navLinks.map((link) => (
           <li>
             <a
-              href={link.href}
+              href={`${site.canonical}${link.href}`}
               class="transition-colors hover:text-primary"
               title={link.text}
             >

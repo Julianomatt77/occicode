@@ -41,7 +41,11 @@ export function buildJsonLd({
     { "@type": "Country", name: "France" },
     { "@type": "AdministrativeArea", name: "Occitanie" },
     { "@type": "AdministrativeArea", name: "Hérault" },
-    ...site.home.areas.cities.map((name) => ({ "@type": "City", name })),
+    ...site.home.areas.cities.map(({ name, wikipedia }) => ({
+      "@type": "City",
+      name,
+      sameAs: wikipedia,
+    })),
   ];
 
   // --- Nœuds globaux (présents sur toutes les pages) ---

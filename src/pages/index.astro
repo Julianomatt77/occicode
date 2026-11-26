@@ -95,7 +95,7 @@ const metadata = {
           aria-label="Me contacter"
         >
           <Button
-            href="/contact"
+            href={`${site.canonical}/contact`}
             variant="primary"
             size="md"
             title="Demander un devis gratuit"
@@ -306,11 +306,18 @@ const metadata = {
 
           <ul
             class="flex flex-wrap gap-3 pt-8"
-            aria-label="Villes et secteurs d'intervention"
+            aria-label="Villes d'intervention, chaque ville mène à sa page Wikipédia"
           >
             {areas.cities.map((city) => (
-              <li class="rounded-full border border-border bg-muted/60 px-4 py-2 text-sm text-foreground">
-                {city}
+              <li>
+                <a
+                  href={city.wikipedia}
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex min-h-11 items-center rounded-full border border-border bg-muted/60 px-4 text-sm text-foreground underline-offset-4 transition-colors hover:bg-muted hover:underline"
+                >
+                  {city.name}
+                </a>
               </li>
             ))}
           </ul>
@@ -378,7 +385,7 @@ const metadata = {
 
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Button
-            href="/contact"
+            href={`${site.canonical}/contact`}
             variant="secondary"
             size="lg"
             title="Demander un devis gratuit"

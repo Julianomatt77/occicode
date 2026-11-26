@@ -11,7 +11,7 @@ interface Props {
 
 const { overHero = false } = Astro.props;
 const navLinks = site.navLinks;
-const quoteHref = `/contact`;
+const quoteHref = site.canonical + "/contact";
 const phoneDisplay = formatPhone(site.telephone);
 const pathname = Astro.url.pathname;
 

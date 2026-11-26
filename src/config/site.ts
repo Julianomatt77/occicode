@@ -204,14 +204,38 @@ export const site = {
       subtitle:
         "Que vous soyez artisan à Béziers, commerçant à Pézenas ou indépendant à Montpellier, je me déplace pour vous rencontrer. Hors Occitanie, nous travaillons à distance, par visio et par téléphone.",
       cities: [
-        "Péret",
-        "Béziers",
-        "Pézenas",
-        "Clermont-l'Hérault",
-        "Montpellier",
-        "Agde",
-        "Sète",
-        "Lodève",
+        {
+          name: "Péret",
+          wikipedia: "https://fr.wikipedia.org/wiki/P%C3%A9ret",
+        },
+        {
+          name: "Béziers",
+          wikipedia: "https://fr.wikipedia.org/wiki/B%C3%A9ziers",
+        },
+        {
+          name: "Pézenas",
+          wikipedia: "https://fr.wikipedia.org/wiki/P%C3%A9zenas",
+        },
+        {
+          name: "Clermont-l'Hérault",
+          wikipedia: "https://fr.wikipedia.org/wiki/Clermont-l%27H%C3%A9rault",
+        },
+        {
+          name: "Montpellier",
+          wikipedia: "https://fr.wikipedia.org/wiki/Montpellier",
+        },
+        {
+          name: "Agde",
+          wikipedia: "https://fr.wikipedia.org/wiki/Agde",
+        },
+        {
+          name: "Sète",
+          wikipedia: "https://fr.wikipedia.org/wiki/S%C3%A8te",
+        },
+        {
+          name: "Lodève",
+          wikipedia: "https://fr.wikipedia.org/wiki/Lod%C3%A8ve",
+        },
       ],
     },
     faq: {
