@@ -85,7 +85,7 @@ const metadata = {
             </ul>
 
             <Button
-              href={`/contact?objet=${encodeURIComponent(service.name)}`}
+              href={`${site.canonical}/contact?objet=${encodeURIComponent(service.name)}`}
               variant={service.isPopular ? "primary" : "secondary"}
               class="w-full"
               title={`Demander un devis pour la formule ${service.name}`}

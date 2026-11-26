@@ -131,7 +131,7 @@ const mapLinkHref = hasValidCoordinates
 
     <div class="mx-auto mt-10 flex max-w-3xl flex-wrap gap-4">
       <Button
-        href="/contact"
+        href={`${site.canonical}/contact`}
         variant="primary"
         title="Aller vers la page contact pour demander un devis gratuit"
         aria-label="Aller vers la page contact pour demander un devis gratuit"
@@ -139,7 +139,7 @@ const mapLinkHref = hasValidCoordinates
         Demander un devis gratuit
       </Button>
       <Button
-        href="/tarifs"
+        href={`${site.canonical}/tarifs`}
         variant="secondary"
         title="Consulter la page des tarifs"
         aria-label="Voir les tarifs"
